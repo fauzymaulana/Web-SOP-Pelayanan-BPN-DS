@@ -231,14 +231,9 @@ $selectedSel = '0';
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
-          <li>
-            <a href="register.php">
-              <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
-            </a>
-          </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-bar-chart-o"></i>
+              <i class="fa fa-users"></i>
               <span>Pengguna</span>
               <i class="fa fa-angle-left pull-right"></i>
             </a>
@@ -248,7 +243,7 @@ $selectedSel = '0';
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-laptop"></i>
+              <i class="fa fa-copy"></i>
               <span>Undang-Undang</span>
               <i class="fa fa-angle-left pull-right"></i>
             </a>
@@ -293,7 +288,6 @@ $selectedSel = '0';
                   <div class="form-group row">
                     <span class="col-md-3">Bab Pembahasan</span>
                     <div class="col-md-9">
-                      <!-- <input type="text" class="form-control" name="nama_kumpulan_uu" id="nama_kumpulan_uu" value="<?= $data['nama_uu_bab']; ?>" required readonly> -->
                       <select class="select form-control" id="bab_pembahasan" name="bab_pembahasan" disabled>
                         <option disabled selected><?= $data['judul_bab_utama_sop']; ?></option>
                       </select>
@@ -304,7 +298,6 @@ $selectedSel = '0';
                   <div class="form-group row">
                     <span class="col-md-3">Urutan Bab Pembahasan</span>
                     <div class="col-md-9">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_bab_utama_sop']; ?>" class="form-control" readonly> -->
                       <select class="select form-control" id="urutan_bab_utama" name="urutan_bab_utama" disabled>
                         <option disabled selected><?= $data['urutan_bab_utama_sop']; ?></option>
                       </select>
@@ -315,37 +308,30 @@ $selectedSel = '0';
                   <div class="form-group row">
                     <span class="col-md-3">Sub Bab Pembahasan</span>
                     <div class="col-md-9">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_bab_utama_sop']; ?>" class="form-control" readonly> -->
                       <?php
                       $sub_bab_utamaa = '0';
-                      // $select_sub_bab = strval($select_sub_bab);
-                      // $sub_bab = array(
-                      //   'Tidak',
-                      //   'Ya'
-                      // );
                       ?>
                       <select class="select form-control" id="sub_bab_utamaa" name="sub_bab_utamaa">
                         <option value="0">Tidak</option>
                         <option value="1">Ya</option>
-                        <?php
-                        // foreach ($sub_bab as $key_sub_bab => $value_sub_bab) {
-                        //   echo '<option value="' . $value_sub_bab . '">' . $value_sub_bab . '</option>';
-                        // }
-                        ?>
                       </select>
                     </div>
                   </div>
                   <hr>
 
                   <div class="0 kotak" id="ktk" hidden>
-                    <!--?php
-                    $aaa = "./proses/tambah_sop_sub_bab_tanpa_sub_bab.php?id=".$get_id."&id_bab_utama_sop=".$get_id_bab_utama_sop."" ?-->
-                    <!-- $queu = array(
-                      'id' => $_POST['id'],
-                      'id_bab_utama_sop' => $_POST['id_bab_utama_sop']
-                    ); -->
+                  <div class="box-header justify-content-between ml-auto">
+                    <button type="button" class="btn btn-success pull-right" style="margin-top: 10px; margin-right: 8px;" id="hidetable" onclick="hideTable()" aria-pressed="true">
+                      <i class="fa fa-eye"></i> Lihat Data Bab
+                    </button>
+                    <button type="button" class="btn btn-primary pull-right" style="margin-top: 10px; margin-right: 8px;" id="unhidetable" onclick="unhideTable()" aria-pressed="true">
+                      <i class="fa fa-plus"></i> Tambah Sub Bab
+                    </button>
+                  </div>
+                  
+
+                  <div class="box-body" id="forminp" style="display: none;">
                     <form action='./proses/tambah_sop_sub_bab_tanpa_sub_bab.php' method="POST">
-                    <!-- <form action="./proses/tambah_sop_sub_bab_tanpa_sub_bab.php?id=$get_id&id_bab_utama_sop=$get_id_bab_utama_sop" method="POST"> -->
                       <input type="number" id="id" name="id" value="<?=$get_id?>" readonly hidden>
                       <input type="number" id="id_bab_utama_sop" name="id_bab_utama_sop" value="<?=$get_id_bab_utama_sop?>" readonly hidden >
                       <div class="form-group row">
@@ -394,6 +380,67 @@ $selectedSel = '0';
                     </form>
                   </div>
 
+                  <div class="box-body table-responsive" id="tabel" style="display: none;">
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead class="bg-olive">
+                          <tr>
+                            <th class="text-center" width="50px">#</th>
+                            <th class="text-center" width="150px">Dasar Hukum</th>
+                            <th class="text-center">Persyaratan</th>
+                            <th class="text-center">Biaya</th>
+                            <th class="text-center">Waktu</th>
+                            <th class="text-center">Keterangan</th>
+                            <th class="text-center" width="190px">Aksi</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+
+
+                          $no = 1;
+                          $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_bab_utama_sop= '$get_id_bab_utama_sop'");
+                          if (mysqli_num_rows($select_tb_pasal) > 0) {
+                            while ($dt = mysqli_fetch_array($select_tb_pasal)) {
+                          ?>
+
+                              <tr>
+                                <td class="text-center"><?= $no++; ?></td>
+                                <td class="text-center"><?= $dt['dasar_hukum']; ?></td>
+                                <td class="text-center"><?= $dt['persyaratan']; ?></td>
+                                <td class="text-center"><?= $dt['biaya']; ?></td>
+                                <td class="text-center"><?= $dt['waktu']; ?></td>
+                                <td class="text-center"><?= $dt['keterangan']; ?></td>
+                                <td class="text-center">
+                                  <?php
+                                  $id_modal = $dt['id_bab_utama_sop_tanpa_sub_bab'];
+                                  ?>
+                                  <button data-toggle="modal" data-target="#exampleModal<?=$id_modal?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_bab_utama_sop_tanpa_sub_bab=<?= $dt['id_bab_utama_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+
+                                </td>
+                              </tr>
+                          <?php
+
+                            }
+                          } else {
+                            // colspan adalah merge column, 6 adalah banyaknya kolom yang mau di merger
+                            // klo rowspan adalah merge baris 
+                            echo '
+												<tr>
+												<td colspan="7" class="text-center">Tidak ada data.</td>
+												</tr>
+												';
+                          }
+
+                          ?>
+                        </tbody>
+
+                      </table>
+                    </div><!-- /.box-body -->
+                  </div>
+
 
 
                   <!-- Select option Ya -->
@@ -423,6 +470,7 @@ $selectedSel = '0';
                           $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_bab_utama_sop= '$get_id_bab_utama_sop'");
                           if (mysqli_num_rows($select_tb_pasal) > 0) {
                             while ($dt = mysqli_fetch_array($select_tb_pasal)) {
+                              $id_modal_edit = $dt['id_sub_bab_sop'];
                           ?>
 
                               <tr>
@@ -431,10 +479,10 @@ $selectedSel = '0';
                                 <td><?= $dt['judul_sub_bab']; ?></td>
                                 <td class="text-center">
                                   <a href="sop_anak_sub_bab.php?id=<?= $data['id']; ?>&id_bab_utama_sop=<?= $data['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop'];?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
+                                  
+                                  <button data-toggle="modal" data-target="#editModalSubBab<?= $id_modal_edit ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
-                                  <a href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
-
-                                  <a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                 </td>
                               </tr>
@@ -458,8 +506,6 @@ $selectedSel = '0';
                     </div><!-- /.box-body -->
                   </div>
                   <!-- akhir select option Ya -->
-
-
                 </div><!-- /.box body -->
               <?php
               endwhile;
@@ -542,68 +588,168 @@ $selectedSel = '0';
   </div>
   <!-- End Modal -->
 
+  <!-- Start Modal -->
+  <div class="modal fade" id="exampleModal<?=$id_modal?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+    <?php
+    $query_edit = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_bab_utama_sop_tanpa_sub_bab = '$id_modal'");
 
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="" method="POST">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel"></h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="control-group">
-                            <div class="form-group row">
-                                <label class="col-md-3" name="no_bab" id="no_bab">BAB</label>
-                                <div class="col-md-9">
-                                    <select class="select form-control" id="nomor_bab" name="nomor_bab">
-                                        <?php
-                                        foreach ($bab_romawi as $key_bab_romawi => $value_bab_romawi) {
-                                          echo '<option value="' . $value_bab_romawi . '">' . $value_bab_romawi . '</option>';
-                                        }
-                                        ?>
-                                    </select>
+    while ($data = mysqli_fetch_array($query_edit)) :
+      // $id_modal = $data['id_bab_utama_sop_tanpa_sub_bab'];
+    ?>
 
-                                </div>
-                            </div>
-                        </div>
+      <form action="./proses/edit_modal_bab_utama_sop_tanpa_sub_bab.php?id_bab_utama_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Ubah Data</h4>
 
-                        <div class="control-group">
-                            <div class="form-group row">
-                                <label class="col-md-3" name="jlh_pasal" id="jlh_pasal">Jumlah Pasal </label>
-                                <div class="col-md-9">
-                                    <select class="select form-control" id="jlh_pasal" name="jlh_pasal">
-                                        <?php
-                                        foreach ($jumlah_pasal as $key_jumlah_pasal => $value_jumlah_pasal) {
-                                          echo '<option value="' . $value_jumlah_pasal . '">' . $value_jumlah_pasal . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                    </div>
-                </div>
             </div>
+            <div class="modal-body">
+              <div class="control-group">
+              <input type="number" id="txt_id_modal" name="txt_id_modal" value="<?= $get_id ?>" readonly hidden>
+                      <input type="text" id="txt_id_bab_utama_sop_modal" name="txt_id_bab_utama_sop_modal" value="<?= $get_id_bab_utama_sop ?>" readonly hidden>
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab">Dasar Hukum</label>
+                  <div class="col-md-9">
+                    <textarea class="ckeditor col-md-8" id="txt_dasar_hukum_modal" name="txt_dasar_hukum_modal" rows="10" cols="80"><?= $data['dasar_hukum'] ?></textarea>
+                  </div>
+                </div>
 
-        </form>
-    </div> -->
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab">Persyaratan</label>
+                  <div class="col-md-9">
+                    <textarea class="ckeditor col-md-8" id="txt_persyaratan_modal" name="txt_persyaratan_modal" rows="10" cols="80"><?= $data['persyaratan'] ?></textarea>
+                  </div>
+                </div>
 
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab">Biaya</label>
+                  <div class="col-md-9">
+                    <textarea class="ckeditor col-md-8" id="txt_biaya_modal" name="txt_biaya_modal" rows="10" cols="80"><?= $data['biaya'] ?></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab">Waktu</label>
+                  <div class="col-md-9">
+                    <textarea class="ckeditor col-md-8" id="txt_waktu_modal" name="txt_waktu_modal" rows="10" cols="80"><?= $data['waktu'] ?></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab_sub_bab" id="num_bab_sub_bab">Keterangan</label>
+                  <div class="col-md-9">
+                    <textarea class="ckeditor col-md-8" id="txt_keterangan_modal" name="txt_keterangan_modal" rows="10" cols="80"><?= $data['keterangan'] ?></textarea>
+                    <input type="datetime" id="tanggal_modal" name="tanggal_modal" value="<?= $data['tanggal_pembuatan']; ?>" readonly hidden>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+            </div>
+          </div>
+        </div>
+      </form>
+    <?php
+    endwhile; ?>
+  </div>
   <!-- End Modal -->
 
 
+  <!-- Start Modal -->
+  <div class="modal fade" id="editModalSubBab<?=$id_modal_edit?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <?php
+    $bab_romawi_edit = array(
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+      '15',
+      '16',
+      '17',
+      '18',
+      '19',
+      '20'
+    );
 
+    $query_edit = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_bab_utama_sop = '$get_id_bab_utama_sop' && id_sub_bab_sop = '$id_modal_edit'");
 
-  <!-- add new calendar event modal -->
+    while ($data_sop = mysqli_fetch_array($query_edit)) :
+      $id_modal_edit = $data_sop['id_sub_bab_sop'];
+    ?>
+
+      <form action="./proses/edit_modal_sop_sub_bab.php?id_sub_bab_sop=<?=$id_modal_edit?>" method="POST">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Ubah Data</h4>
+
+            </div>
+
+            <div class="modal-body">
+            <div class="control-group">
+            <input type="hidden" id="txt_id_modal_sub_bab" name="txt_id_modal_sub_bab" value="<?= $get_id ?>" readonly>
+                      <input type="hidden" id="txt_id_bab_utama_sop_modal_sub_bab" name="txt_id_bab_utama_sop_modal_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
+              <div class="form-group row">
+                <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
+                <div class="col-md-9">
+                  <select class="select form-control" id="edit_select_bab" name="edit_select_bab" required>
+                    <?php
+                    foreach ($bab_romawi_edit as $key_bab_romawi_edit => $value_bab_romawi_edit) {
+                      if ($value_bab_romawi_edit == $data_sop['urutan_sub_bab']) {
+                        $selec = "selected";
+                      }else{
+                        $selec = "";
+                      }
+                      echo "<option value ='$value_bab_romawi_edit' $selec>$value_bab_romawi_edit</option>";
+                      // echo '<option value="' . $value_bab_romawi_edit . '">' . $value_bab_romawi_edit . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3" name="num_bab" id="num_bab">Judul Sub Bab </label>
+                <div class="col-md-9">
+                  <input type="text" id="edit_judul_bab" name="edit_judul_bab" class="form-control" value="<?=$data_sop['judul_sub_bab']?>">
+                  
+                </div>
+              </div>
+              <input type="hidden" id="edit_tgl_bab_modal" name="edit_tgl_bab_modal" class="form-control" value="<?=$data_sop['tanggal_pembuatan']?>" readonly>
+            </div>
+
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+            </div>
+          </div>
+        </div>
+      </form>
+    <?php
+    endwhile; ?>
+  </div>
+
+  <!-- End Modal -->
+
   <!-- jQuery 2.1.1 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <!-- Bootstrap -->
@@ -638,6 +784,33 @@ $selectedSel = '0';
     //   });
     // });
 
+    function hideTable() {
+    
+      var tabel = document.getElementById("tabel");
+      var forminp = document.getElementById("forminp");
+      if (tabel.style.display === "none") {
+
+        tabel.style.display = "block";
+        forminp.style.display = "none";
+
+      } else {
+        tabel.style.display = "none";
+      }
+    }
+
+    function unhideTable() {
+      var tabel = document.getElementById("tabel");
+      var forminp = document.getElementById("forminp");
+      if (forminp.style.display === "none") {
+        forminp.style.display = "block";
+        tabel.style.display = "none";
+
+
+      } else {
+        forminp.style.display = "none";
+      }
+    }
+
 
     // functione hide / show based select option
     // var selectedSel = '0';
@@ -663,37 +836,13 @@ $selectedSel = '0';
     //     $('.' + $(this).val()).show();
     //   }).trigger('change');
     $(document).ready(function() {
-
-
-
-
       // $('.inp_bab').inp_bab()
-
-
       $('#inp_bab').on('change', function() {
         const selectedSelect = $('#inp_bab').val();
         // $('#myModal').modal('show');
         $('#sp').text(selectedSelect);
         $("#asp").val(selectedSelect);
       });
-
-      //   $(document).ready(function() {
-      //   $('.inp_pasal').inp_pasal()
-      // });
-      // var z = "";
-      // $('#inp_pasal' + z).on('change', function() {
-      //   const po = $('#inp_pasal' + z).val();
-      //   $('#asb' + z).val(po);
-      //   if (po == true) {
-      //     var hsl = document.getElementById("pasal_tampil");
-      //     hsl.innerHTML = "<input type='text' id='a' name='a' placeholder='ini pasal'>";
-      //   }
-      //   if (po == false) {
-      //     hsl.innerHTML = "";
-      //   }
-
-      // });
-
     });
   </script>
 
