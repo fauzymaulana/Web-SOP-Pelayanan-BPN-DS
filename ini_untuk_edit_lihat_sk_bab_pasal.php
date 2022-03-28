@@ -198,41 +198,42 @@ $get_id = $_GET['id'];
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-          <li class="">
+          <li>
             <a href="dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="register.php">
-              <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+            <a href="dashboard.php">
+              <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-bar-chart-o"></i>
+              <i class="fa fa-users"></i>
               <span>Pengguna</span>
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right active"></i> Data Pengguna Admin</a></li>
+              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                                    <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-laptop"></i>
+              <i class="fa fa-copy"></i>
               <span>Undang-Undang</span>
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
-              <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
-              <li><a href="lihat_bab.php"><i class="fa fa-angle-double-right"></i> Kumpulan Bab</a></li>
-              <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> T</a></li>
+              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li class="active"><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
+              <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
+              <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
+              <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
             </ul>
           </li>
-
         </ul>
       </section>
       <!-- /.sidebar -->
