@@ -12,7 +12,6 @@ $nama = $_SESSION['nama'];
 $email = $_SESSION['email'];
 
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -77,7 +76,7 @@ $email = $_SESSION['email'];
               <li class="user-header bg-light-blue">
                 <img src="img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
-                  <?= $nama; ?>
+                  <?= $_SESSION['nama']; ?>
 
                 </p>
               </li>
@@ -108,7 +107,7 @@ $email = $_SESSION['email'];
             <img src="img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
-            <p>Hello, <?= $nama; ?></p>
+            <p>Hello, <?= $_SESSION['nama']; ?></p>
 
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
@@ -116,12 +115,12 @@ $email = $_SESSION['email'];
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-          <li class="active">
+          <li>
             <a href="dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
-          <li>
+          <li class="active">
             <a href="dashboard.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
@@ -159,35 +158,85 @@ $email = $_SESSION['email'];
 
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Dashboard
-          <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Dashboard</li>
-        </ol>
-      </section>
 
       <!-- Main content -->
       <section class="content">
-
         <div class="row">
-          <div class="col-xs-12">
-            <div class="box">
-              <div class="box-header text-center">
-                <!-- <h1>Selamat Datang <?= $nama; ?></h1>
-                <h3>Aplikasi Buku Saku Pelayanan SOP Kantah Deli Serdang</h2> -->
-              </div>
-              <div class="box-body text-center">
-                <h1>Selamat Datang <?= $nama; ?></h1>
-                <h3>Aplikasi Buku Saku Pelayanan SOP Kantah Deli Serdang</h2>
-              </div>
+          <div class="col-md-6">
+            <div class="box box-primary">
+              <div class="box-header">
+                <h3 class="box-title">Profil Kantor</h3>
+              </div><!-- /.box-header -->
+              <!-- form start -->
+              <form role="form">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <input type="file" id="exampleInputFile">
+                    <p class="help-block">Example block-level help text here.</p>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Check me out
+                    </label>
+                  </div>
+                </div><!-- /.box-body -->
+
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
             </div>
           </div>
+          <!-- SAMPE SINI, mau buat form untuk profil kantor dan penulis -->
+          <div class="col-md-6">
+            <div class="box box-warning">
+              <div class="box-header">
+                <h3 class="box-title">Profil Penulis</h3>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <form role="form">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <label>Gambar</label>
+                    <input type="text" class="form-control" name="judul_profil_kantor"/>
+                  </div>
+                  <div class="form-group">
+                    <label>Judul</label>
+                    <input type="text" class="form-control" name="judul_profil_kantor"/>
+                  </div>
+                  <div class="form-group">
+                    <label>Text Disabled</label>
+                    <input type="text" class="form-control" placeholder="Enter ..." disabled />
+                  </div>
+
+                  <!-- textarea -->
+                  <div class="form-group">
+                    <label>Textarea</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Textarea Disabled</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
+                  </div>
+
+
+
+                </form>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+          </div>
         </div>
+
+
       </section><!-- /.content -->
     </aside><!-- /.right-side -->
   </div><!-- ./wrapper -->
@@ -197,34 +246,28 @@ $email = $_SESSION['email'];
 
   <!-- jQuery 2.0.2 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-  <!-- jQuery UI 1.10.3 -->
-  <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
   <!-- Bootstrap -->
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
-  <!-- Morris.js charts -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
-  <!-- Sparkline -->
-  <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-  <!-- jvectormap -->
-  <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-  <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-  <!-- fullCalendar -->
-  <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-  <!-- daterangepicker -->
-  <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-  <!-- Bootstrap WYSIHTML5 -->
-  <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-  <!-- iCheck -->
-  <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-
+  <!-- DATA TABES SCRIPT -->
+  <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
   <script src="js/AdminLTE/app.js" type="text/javascript"></script>
 
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+  <!-- page script -->
+  <script type="text/javascript">
+    $(function() {
+      $("#example1").dataTable();
+      $('#example2').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": false,
+        "bSort": true,
+        "bInfo": true,
+        "bAutoWidth": false
+      });
+    });
+  </script>
 
 </body>
 

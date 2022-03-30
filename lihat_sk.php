@@ -37,6 +37,8 @@ $email = $_SESSION['email'];
   <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
   <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <!-- DATA TABLES -->
+  <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
   <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
@@ -178,10 +180,10 @@ $email = $_SESSION['email'];
                 <table id="example1" class="table table-bordered table-striped">
                   <thead class="bg-olive">
                     <tr>
-                      <th class="text-center" width="50px">#</th>
+                      <th class="text-center" width="65px">#</th>
                       <th class="text-center" width="350px">Aksi</th>
                       <th class="text-center">Judul Kumpulan Undang-Undang</th>
-                      <th class="text-center" width="150px">Tanggal Pembuatan</th>
+                      <!-- <th class="text-center" width="150px">Tanggal Pembuatan</th> -->
 
 
                     </tr>
@@ -207,7 +209,7 @@ $email = $_SESSION['email'];
 
                           </td>
                           <td><?= $dt['nama_uu']; ?></td>
-                          <td class="text-center"><?= $dt['tanggal_pembuatan']; ?></td>
+                          <!-- <td class="text-center"><?= $dt['tanggal_pembuatan']; ?></td> -->
 
                         </tr>
                     <?php

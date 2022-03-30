@@ -35,6 +35,8 @@ $email = $_SESSION['email'];
   <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
   <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <!-- DATA TABLES -->
+  <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
   <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
@@ -179,8 +181,8 @@ $email = $_SESSION['email'];
                       <th class="text-center" width="60px">#</th>
                       <th class="text-center">Judul Kumpulan Undang-Undang</th>
                       <th class="text-center" width="150px">Tanggal Pembuatan</th>
-                      <th class="text-center" width="70px">Tampil</th>
-                      <th class="text-center" width="60px">Aksi</th>
+                      <th class="text-center" width="70px">Status Tampil</th>
+                      <th class="text-center" width="150px">Aksi</th>
 
                     </tr>
                   </thead>
@@ -198,7 +200,15 @@ $email = $_SESSION['email'];
                           <td class="text-center"><?= $no++; ?></td>
                           <td><?= $dt['nama_uu']; ?></td>
                           <td class="text-center"><?= $dt['tanggal_pembuatan']; ?></td>
-                          <td class="text-center"><span class="badge justify-content-center badge-success">Ya</span></td>
+                          <?php
+                          $status = $dt['status'];
+                          if ($status === "Publish") {
+                            $bg = "bg-green";
+                          }else{
+                            $bg = "bg-yellow";
+                          }
+                          ?>
+                          <td class="stat text-center"><span class="badge justify-content-center <?=$bg?>"><?=$status?></span></td>
                           <td class="text-center">
 
                             <a href="lihat.php?id=<?= $dt['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
