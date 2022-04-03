@@ -448,20 +448,20 @@ if (isset($_POST['submit'])) {
               $("#asp").val(selectedSelect);
             });
 
-            $('#submit').click(function(){
-              var data = $('#form').serialize();
-              $.ajax({
-                type    :  'POST',
-                url     :  'input_jumlah_pasal_per_b.php',
-                data    :  data,
+            // $('#submit').click(function(){
+            //   var data = $('#form').serialize();
+            //   $.ajax({
+            //     type    :  'POST',
+            //     url     :  'input_jumlah_pasal_per_b.php',
+            //     data    :  data,
 
-                cache   :  false
-                success :  function(data){
-                  $('#asb').val(data);
-                }
-              });
+            //     cache   :  false
+            //     success :  function(data){
+            //       $('#asb').val(data);
+            //     }
+            //   });
 
-            });
+            // });
           });
 
         </script>

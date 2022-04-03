@@ -121,7 +121,7 @@ $email = $_SESSION['email'];
             </a>
           </li>
           <li>
-            <a href="dashboard.php">
+          <a href="pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>

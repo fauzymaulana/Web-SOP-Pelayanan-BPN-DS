@@ -121,7 +121,7 @@ $email = $_SESSION['email'];
             </a>
           </li>
           <li>
-            <a href="dashboard.php">
+          <a href="pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -183,7 +183,7 @@ $email = $_SESSION['email'];
                       <label>Nama kumpulan undang-undang</label>
                       </div>
                       <div class="col-md-9">
-                      <input type="text" name="nama_kumpulan_uu" class="form-control" placeholder="masukkan nama kumpulan undang-undang">
+                      <input type="text" name="nama_kumpulan_uu" class="form-control" placeholder="masukkan nama kumpulan undang-undang" required>
                       </div>
                     </div>
                     <div class="form-group row">

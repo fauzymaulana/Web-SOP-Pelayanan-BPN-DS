@@ -125,7 +125,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
             </a>
           </li>
           <li>
-            <a href="dashboard.php">
+          <a href="pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -445,8 +445,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
   </div>
   <!-- End Modal -->
 
-  <!-- Start Modal -->
-
+  <!-- Start Modal Edit -->
   <div class="modal fade" id="exampleModal<?= $id_modal ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php
     $query_edit = mysqli_query($con, "SELECT * FROM tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab = '$id_modal'");

@@ -1,4 +1,5 @@
 <?php
+include './connect/koneksi.php';
 session_start();
 
 if (!isset($_SESSION['email'])) {
@@ -121,7 +122,7 @@ $email = $_SESSION['email'];
             </a>
           </li>
           <li class="active">
-            <a href="dashboard.php">
+          <a href="pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -168,69 +169,80 @@ $email = $_SESSION['email'];
                 <h3 class="box-title">Profil Kantor</h3>
               </div><!-- /.box-header -->
               <!-- form start -->
-              <form role="form">
-                <div class="box-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block">Example block-level help text here.</p>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> Check me out
-                    </label>
-                  </div>
-                </div><!-- /.box-body -->
 
-                <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
+              <?php
+              $query_tampil = mysqli_query($con, "SELECT * FROM tb_profil_kantor ORDER BY id_profil_kantor DESC LIMIT 0,1");
+
+              while ($data_kantor = mysqli_fetch_array($query_tampil)) :
+                $id_kntr = $data_kantor['id_profil_kantor'];
+              ?>
+                <form role="form" action="./proses/tambah_profil_kantor.php?id_profil_kantor=<?= $id_kntr ?>" method="POST" enctype="multipart/form-data">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Judul profil</label>
+                      <input type="text" class="form-control" name="judul_kantor" id="exampleInputEmail1" value="<?= $data_kantor['judul_profil_kantor'] ?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputFile">Foto profil kantor*</label>
+                      <input type="file" id="gambar_kantor" class="form-control" name="gambar_kantor" value="<?= $data_kantor['gambar_profil_kantor']['name']; ?>">
+                      <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
+                      <img src="gambar/<?= $data_kantor['gambar_profil_kantor']; ?>" width="400px" height="400px">
+
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Deskripsi</label>
+                      <textarea class="ckeditor" id="deskripsi_kantor" name="deskripsi_kantor"><?= $data_kantor['deskripsi_kantor'] ?></textarea>
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                <?php
+              endwhile;
+
+                ?>
+                </form>
             </div>
           </div>
-          <!-- SAMPE SINI, mau buat form untuk profil kantor dan penulis -->
+
           <div class="col-md-6">
             <div class="box box-warning">
               <div class="box-header">
                 <h3 class="box-title">Profil Penulis</h3>
               </div><!-- /.box-header -->
               <div class="box-body">
-                <form role="form">
-                  <!-- text input -->
-                  <div class="form-group">
-                    <label>Gambar</label>
-                    <input type="text" class="form-control" name="judul_profil_kantor"/>
-                  </div>
-                  <div class="form-group">
-                    <label>Judul</label>
-                    <input type="text" class="form-control" name="judul_profil_kantor"/>
-                  </div>
-                  <div class="form-group">
-                    <label>Text Disabled</label>
-                    <input type="text" class="form-control" placeholder="Enter ..." disabled />
-                  </div>
+              <?php
+                $query_profil = mysqli_query($con, "SELECT * FROM tb_profil_penulis ORDER BY id_profil_penulis DESC LIMIT 0,1");
 
-                  <!-- textarea -->
-                  <div class="form-group">
-                    <label>Textarea</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label>Textarea Disabled</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
-                  </div>
-
-
-
-                </form>
+                while ($data_penulis = mysqli_fetch_array($query_profil)) :
+                  $id_penulis = $data_penulis['id_profil_penulis'];
+                ?>
+                
+                  <form role="form" action="./proses/tambah_profil_penulis.php?id_profil_penulis=<?= $id_penulis ?>" method="POST" enctype="multipart/form-data">
+                  
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Gambar</label>
+                      <input type="file" id="exampleInputFile" class="form-control" name="gambar_penulis" value="<?= $data_penulis['gambar_penulis']['name']; ?>">
+                      <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
+                      <img src="gambar/penulis/<?= $data_penulis['gambar_penulis']; ?>" width="177px" height="236px">
+                    </div>
+                    <div class="form-group">
+                      <label>Nama Penulis</label>
+                      <input type="text" class="form-control" name="nama_penulis" value="<?=$data_penulis['nama_profil_penulis']?>"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Deskripsi</label>
+                      <textarea class="ckeditor" name="deksripsi_penulis"><?=$data_penulis['deskripsi_penulis']?></textarea>
+                    </div>
+                    <div class="box-footer">
+                      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+                <?php
+                endwhile;
+                ?>
               </div><!-- /.box-body -->
             </div><!-- /.box -->
           </div>
@@ -253,6 +265,9 @@ $email = $_SESSION['email'];
   <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
   <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <!-- CK Editor -->
+  <script src="./js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+  <script src="./js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
 
   <!-- page script -->
   <script type="text/javascript">

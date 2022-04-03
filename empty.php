@@ -11,6 +11,8 @@ $id = $_SESSION['id'];
 $nama = $_SESSION['nama'];
 $email = $_SESSION['email'];
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -123,7 +125,7 @@ $email = $_SESSION['email'];
             </a>
           </li>
           <li>
-            <a href="dashboard.php">
+          <a href="pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -194,6 +196,7 @@ $email = $_SESSION['email'];
                     $data = mysqli_query($con, "SELECT * from tb_nama_uu order by tanggal_pembuatan DESC");
                     if (mysqli_num_rows($data) > 0) {
                       while ($dt = mysqli_fetch_array($data)) {
+                        $id = $dt['id'];
                     ?>
 
                         <tr>
@@ -204,15 +207,18 @@ $email = $_SESSION['email'];
                           $status = $dt['status'];
                           if ($status === "Publish") {
                             $bg = "bg-green";
-                          }else{
+                          } else {
                             $bg = "bg-yellow";
                           }
                           ?>
-                          <td class="stat text-center"><span class="badge justify-content-center <?=$bg?>"><?=$status?></span></td>
+                          <td class="stat text-center"><span class="badge justify-content-center <?= $bg ?>"><?= $status ?></span></td>
                           <td class="text-center">
 
-                            <a href="lihat.php?id=<?= $dt['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
-                            <a href="edit.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Ubah</a>
+                            <!-- <a href="lihat.php?id=<?= $dt['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a> -->
+                            <!-- <a href="edit.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Ubah</a> -->
+                            <button data-toggle="modal" data-target="#editModal<?=$id?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+                            <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_modal_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+
 
 
                           </td>
@@ -312,8 +318,74 @@ $email = $_SESSION['email'];
   </aside><!-- /.right-side -->
   </div><!-- ./wrapper -->
 
-  <!-- add new calendar event modal -->
+  <!-- Start Modal Edit -->
+  <div class="modal fade" id="editModal<?=$id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <?php
+    $query_edit = mysqli_query($con, "SELECT * from tb_nama_uu WHERE id = '$id'");
 
+    while ($data = mysqli_fetch_array($query_edit)) :
+      $id = $data['id'];
+    ?>
+
+      <form action="./proses/edit_modal_kumpulan_uu.php?id=<?= $id ?>" method="POST">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Ubah Data</h4>
+
+            </div>
+            <div class="modal-body">
+              <div class="control-group">
+                <input type="number" id="txt_id_modal" name="txt_id_modal" value="<?= $id ?>" readonly hidden> 
+                <?php
+                  $status_select = array('Draft', 'Publish');
+                  $status = 'Draft';
+                  ?>
+
+                <div class="form-group row">
+                  <div class="col-md-3">
+                    <label>Nama kump. UU</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input type="text" name="mod_nama_kumpulan_uu" class="form-control" value="<?=$data['nama_uu']?>" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-3">
+                    <label>Status Tampil</label>
+                  </div>
+                  <div class="col-md-9">
+                  <input type="hidden" id="edit_tgl_nama_uu" name="edit_tgl_nama_uu" class="form-control" value="<?=$data['tanggal_pembuatan']?>" readonly>
+                    <select class="select form-control" id="status" name="mod_status">
+                      <?php
+                      foreach ($status_select as $key_status_select => $value_status_select) {
+                        if ($value_status_select == $data['status']) {
+                          $selec = "selected";
+                        }else{
+                          $selec = "";
+                        }
+                        echo "<option value= '$value_status_select' $selec >$value_status_select</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+              </div>
+            </div>
+          </div>
+      </form>
+    <?php
+    endwhile; ?>
+  </div>
+
+  <!-- End Modal -->
 
   <!-- jQuery 2.0.2 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
