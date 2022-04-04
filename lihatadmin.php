@@ -123,7 +123,7 @@ $email = $_SESSION['email'];
             </a>
           </li>
           <li>
-          <a href="pengaturan.php">
+            <a href="pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -134,7 +134,7 @@ $email = $_SESSION['email'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li  class="active"><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li class="active"><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -174,11 +174,31 @@ $email = $_SESSION['email'];
 
       <!-- Main content -->
       <section class="content">
+        <?php if (isset($_GET['pesan'])) { ?>
+          <?php if ($_GET['pesan'] == "berhasil") { ?>
+            <div class="alert alert-success show" role="alert">
+              Data <strong>Berhasil</strong> di proses.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+            <!-- <h5 class="alert alert-success show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>Data <strong>Berhasil</strong> di proses.
+            </h5> -->
+          <?php } elseif ($_GET['pesan'] == "gagal") { ?>
+            <div class="alert alert-danger show" role="alert">
+              Data <strong>Gagal</strong> di proses.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } ?>
+        <?php } ?>
+
 
         <div class="row">
           <div class="col-xs-12">
-
-
             <div class="box">
               <div class="box-header">
                 <h3 class="box-title">Data Pengguna Admin</h3>
@@ -239,7 +259,7 @@ $email = $_SESSION['email'];
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="exampleModalLabel">Tambah Data Admin</h4>
@@ -305,40 +325,40 @@ $email = $_SESSION['email'];
         <!-- End modal tambah admin -->
 
 
-        
-</div>
 
-</section><!-- /.content -->
-</aside><!-- /.right-side -->
-</div><!-- ./wrapper -->
+  </div>
 
-<!-- add new calendar event modal -->
+  </section><!-- /.content -->
+  </aside><!-- /.right-side -->
+  </div><!-- ./wrapper -->
+
+  <!-- add new calendar event modal -->
 
 
-<!-- jQuery 2.0.2 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<!-- DATA TABES SCRIPT -->
-<script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-<script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <!-- jQuery 2.0.2 -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <!-- DATA TABES SCRIPT -->
+  <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+  <!-- AdminLTE App -->
+  <script src="js/AdminLTE/app.js" type="text/javascript"></script>
 
-<!-- page script -->
-<script type="text/javascript">
-  $(function() {
-    $("#example1").dataTable();
-    $('#example2').dataTable({
-      "bPaginate": true,
-      "bLengthChange": false,
-      "bFilter": false,
-      "bSort": true,
-      "bInfo": true,
-      "bAutoWidth": false
+  <!-- page script -->
+  <script type="text/javascript">
+    $(function() {
+      $("#example1").dataTable();
+      $('#example2').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": false,
+        "bSort": true,
+        "bInfo": true,
+        "bAutoWidth": false
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 

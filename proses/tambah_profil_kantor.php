@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
               echo "<script>alert('Data gagal ditambah.');window.location='../pengaturan.php';</script>";
               // die("Data gagal disimpan" . mysqli_errno($con) . "-" . mysqli_error($con));
             } else {
-              echo "<script>alert('Data berhasil disimpan.');window.location='../pengaturan.php';</script>";
+              header("location:../pengaturan.php?pesan=berhasil");
             }
           } else {
             echo "<script>alert('Dimensi gambar tidak sesuai.');window.location='../pengaturan.php';</script>";

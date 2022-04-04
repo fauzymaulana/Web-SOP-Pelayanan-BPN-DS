@@ -162,6 +162,48 @@ $email = $_SESSION['email'];
 
       <!-- Main content -->
       <section class="content">
+
+      <?php if (isset($_GET['pesan'])) { ?>
+          <?php if ($_GET['pesan'] == "berhasil") { ?>
+            <div class="alert alert-success show" role="alert">
+              <label>Data <strong>Berhasil</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "gagal") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Data <strong>Gagal</strong> di prose!.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "ukuranfile") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Ukuran file maks. <strong>2MB!</strong></label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "atribut") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Atribut gambar harus  <strong>.png</strong> atau <strong>.jpg!</strong></label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "dimensi") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Ukuran dimensi tidak sesuai</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } ?>
+        <?php } ?>
+        <!-- SAMPAI SINI, tinggal membuat parameter di header API nya -->
+
+
         <div class="row">
           <div class="col-md-6">
             <div class="box box-primary">
@@ -186,6 +228,7 @@ $email = $_SESSION['email'];
                       <label for="exampleInputFile">Foto profil kantor*</label>
                       <input type="file" id="gambar_kantor" class="form-control" name="gambar_kantor" value="<?= $data_kantor['gambar_profil_kantor']['name']; ?>">
                       <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
+                      <p class="help-block">** dimensi gambar wajib berukuran: lebar 1000px X tinggi 1000px</p>
                       <img src="gambar/<?= $data_kantor['gambar_profil_kantor']; ?>" width="400px" height="400px">
 
                     </div>
@@ -226,6 +269,7 @@ $email = $_SESSION['email'];
                       <label>Gambar</label>
                       <input type="file" id="exampleInputFile" class="form-control" name="gambar_penulis" value="<?= $data_penulis['gambar_penulis']['name']; ?>">
                       <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
+                      <p class="help-block">** dimensi gambar wajib berukuran: lebar 177px X tinggi 236px</p>
                       <img src="gambar/penulis/<?= $data_penulis['gambar_penulis']; ?>" width="177px" height="236px">
                     </div>
                     <div class="form-group">

@@ -16,13 +16,11 @@ if (isset($_POST['submit'])) {
     
 
     if (mysqli_query($con, $input)) {
-        header("location: ../lihatadmin.php");
+        header("location: ../lihatadmin.php?pesan=berhasil");
         // echo "<script>alert('Data berhasil di tambahkan!');</script>";
-        echo "return confirm('Berhasil Menambahkan Data.')";
     }else {
-        header("location: ../lihatadmin.php");
+        header("location: ../lihatadmin.php?pesan=gagal");
         // echo "<script>alert('Data gagal di tambahkan!');</script>". mysqli_error($con);
-        echo "Gagal";
     }
 
     mysqli_close($con);
