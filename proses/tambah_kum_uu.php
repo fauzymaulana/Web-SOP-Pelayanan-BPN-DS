@@ -32,12 +32,10 @@ if (isset($_POST['submit'])) {
 
 
         // header("location: ../empty.php");
-        echo "<script>alert('Data berhasil ditambahkan!');</script>";
-        // echo "<script>alert('Data berhasil di tambahkan!');history.go(-1);</script>";
-        // echo "return confirm('Berhasil Menambahkan Data.')";
+        header("location: ../pages/empty.php?pesan=berhasil");
     } else {
         // header("location: ../empty.php");
-        echo "<script>alert('Data gagal di tambahkan!');</script>";
+        header("location: ../pages/empty.php?pesan=gagal");
         // echo "<script>alert('Data gagal di tambahkan!');history.go(-1);</script>". mysqli_error($con);
         // echo "Gagal";
     }

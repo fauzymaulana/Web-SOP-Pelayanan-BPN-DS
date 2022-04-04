@@ -1,10 +1,10 @@
 <?php
-include './connect/koneksi.php';
+include '../connect/koneksi.php';
 
 session_start();
 
 if (!isset($_SESSION['email'])) {
-  echo "<script>window.location='./index.php';alert('Anda harus login dulu!');</script>";
+  echo "<script>window.location='../index.php';alert('Anda harus login dulu!');</script>";
 
   exit;
 }
@@ -22,25 +22,25 @@ $email = $_SESSION['email'];
   <title>Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- font Awesome -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons -->
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
-  <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+  <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->
-  <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
   <!-- fullCalendar -->
-  <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+  <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <!-- Daterange picker -->
-  <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+  <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
-  <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <!-- DATA TABLES -->
-  <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="../css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
-  <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +53,7 @@ $email = $_SESSION['email'];
 <body class="skin-black">
   <!-- header logo: style can be found in header.less -->
   <header class="header">
-    <a href="index.php" class="logo">
+    <a href="#" class="logo">
       <!-- Add the class icon to your logo image or logo icon to add the margining -->
       Aplikasi Buku Saku
     </a>
@@ -78,7 +78,7 @@ $email = $_SESSION['email'];
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
                   <?= $_SESSION['nama']; ?>
 
@@ -91,7 +91,7 @@ $email = $_SESSION['email'];
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -108,7 +108,7 @@ $email = $_SESSION['email'];
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
             <p>Hello, <?= $_SESSION['nama']; ?></p>
@@ -120,12 +120,12 @@ $email = $_SESSION['email'];
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li>
-            <a href="dashboard.php">
+            <a href="../pages/dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
-          <a href="pengaturan.php">
+          <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -136,7 +136,7 @@ $email = $_SESSION['email'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -148,8 +148,8 @@ $email = $_SESSION['email'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li class="active"><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
+              <li><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li class="active"><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
               <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
               <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
               <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
@@ -165,6 +165,24 @@ $email = $_SESSION['email'];
 
       <!-- Main content -->
       <section class="content">
+
+      <?php if (isset($_GET['pesan'])) { ?>
+          <?php if ($_GET['pesan'] == "berhasil") { ?>
+            <div class="alert alert-success show" role="alert">
+              <label>Data <strong>SK Berhasil</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "gagal") { ?>
+            <div class="alert alert-danger show" role="alert">
+            <label>Data <strong>SK Gagal</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } ?>
+        <?php } ?>
 
         <div class="row">
           <div class="col-xs-12">
@@ -201,11 +219,11 @@ $email = $_SESSION['email'];
                           <td class="text-center">
 
                             <!-- <a href="lihat_sk_bab_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lengkapi SK</a> -->
-                            <a href="ini_untuk_edit_lihat_sk_bab_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Lengkapi SK</a>
+                            <a href="../pages/ini_untuk_edit_lihat_sk_bab_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Lengkapi SK</a>
 
-                            <a href="form_tambah_pasal_per_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Lengkapi Pasal</a>
+                            <a href="../pages/form_tambah_pasal_per_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Lengkapi Pasal</a>
 
-                            <a href="sop_bab.php?id=<?= $dt['id']; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Lengkapi SOP</a>
+                            <a href="../pages/sop_bab.php?id=<?= $dt['id']; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Lengkapi SOP</a>
 
                           </td>
                           <td><?= $dt['nama_uu']; ?></td>
@@ -233,7 +251,7 @@ $email = $_SESSION['email'];
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <form action="form_pembuatan_sk.php" method="POST">
+          <form action="../pages/form_pembuatan_sk.php" method="POST">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -278,12 +296,12 @@ $email = $_SESSION['email'];
   <!-- jQuery 2.0.2 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
   <!-- DATA TABES SCRIPT -->
-  <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-  <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
-  <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
 
   <!-- page script -->
   <script type="text/javascript">

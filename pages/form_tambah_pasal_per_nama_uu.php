@@ -1,11 +1,11 @@
 <?php
 
-include './connect/koneksi.php';
+include '../connect/koneksi.php';
 
 session_start();
 
 if (!isset($_SESSION['email'])) {
-  echo "<script>window.location='./index.php';alert('Anda harus login dulu!');</script>";
+  echo "<script>window.location='../index.php';alert('Anda harus login dulu!');</script>";
 
   exit;
 }
@@ -26,23 +26,23 @@ $get_id = $_GET['id'];
   <title>Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- font Awesome -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons -->
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
-  <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+  <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->
-  <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
   <!-- fullCalendar -->
-  <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+  <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <!-- Daterange picker -->
-  <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+  <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
-  <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
-  <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,7 +55,7 @@ $get_id = $_GET['id'];
 <body class="skin-black">
   <!-- header logo: style can be found in header.less -->
   <header class="header">
-    <a href="index.php" class="logo">
+    <a href="#" class="logo">
       <!-- Add the class icon to your logo image or logo icon to add the margining -->
       Aplikasi Buku Saku
     </a>
@@ -80,7 +80,7 @@ $get_id = $_GET['id'];
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
                   <?= $_SESSION['nama']; ?>
 
@@ -93,7 +93,7 @@ $get_id = $_GET['id'];
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -110,7 +110,7 @@ $get_id = $_GET['id'];
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
             <p>Hello, <?= $_SESSION['nama']; ?></p>
@@ -122,12 +122,12 @@ $get_id = $_GET['id'];
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li>
-            <a href="dashboard.php">
+            <a href="../pages/dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
-          <a href="pengaturan.php">
+            <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -138,7 +138,7 @@ $get_id = $_GET['id'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -150,11 +150,8 @@ $get_id = $_GET['id'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li class="active"><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
-              <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
-              <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-              <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
+              <li><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li class="active"><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
             </ul>
           </li>
         </ul>
@@ -179,19 +176,9 @@ $get_id = $_GET['id'];
                 while ($dt = mysqli_fetch_array($result)) :
                   $db_nama_uu = $dt['nama_uu'];
                 ?>
-
-                  <!-- <div class="box-body row">
-                                        <div class="col">
-                                            <span>Nama Kumpulan UU '<?= $dt['nama_uu'] ?>'</span>
-                                        </div>
-
-                                        <div class="col pull-right">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-top: 10px; margin-right: 8px;"><i class="fa fa-plus"></i> Tambah Kumpulan SK</button>
-                                        </div>
-                                    </div> -->
-
                   <h4 class="box-body">Data Kumpulan UU '<?= $dt['nama_uu'] ?>'</h4>
-                  <a href="form_tambah_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-primary pull-right" style="margin-top: 10px; margin-right: 8px;"><i class="fa fa-plus"></i> Tambah Pasal</a>
+                  <?ph SAMPAI SINI, sync file bawah ini untuk notifikasi dan dir foldernya
+                  <a href="../pages/form_tambah_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-primary pull-right" style="margin-top: 10px; margin-right: 8px;"><i class="fa fa-plus"></i> Tambah Pasal</a>
                 <?php
                 endwhile;
                 ?>
@@ -227,9 +214,10 @@ $get_id = $_GET['id'];
                           <td class="text-center"><?= $data['nomor_bab']; ?></td>
                           <td class="text-center"><?= $data['judul_bab']; ?></td>
                           <td>
-                            <a href="ini_untuk_edit_lihat_sk_bab_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
+                            
+                            <a href="../pages/ini_untuk_edit_lihat_sk_bab_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
 
-                            <a href="tambah_pasal_per_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                            <a href="../pages/form_tambah_pasal_per_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                           </td>
                         </tr>
@@ -254,40 +242,6 @@ $get_id = $_GET['id'];
             </div><!-- /.box -->
           </div>
         </div>
-
-        <!-- Modal
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <form action="form_pembuatan_sk.php" method="POST">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="exampleModalLabel"></h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="control-group">
-                                        <div class="form-group row">
-                                            <label class="col-md-3" name="num_bab" id="num_bab">Jumlah Bab </label>
-                                            <div class="col-md-9">
-                                                <input type="number" class="col-md-6 select form-control" id="inp_jlh_bab" name="inp_jlh_bab" required>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                 End Modal -->
-
   </div>
   </div>
   </div>
@@ -302,12 +256,12 @@ $get_id = $_GET['id'];
   <!-- jQuery 2.0.2 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
   <!-- DATA TABES SCRIPT -->
-  <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-  <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
-  <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
 
   <!-- page script -->
   <script type="text/javascript">

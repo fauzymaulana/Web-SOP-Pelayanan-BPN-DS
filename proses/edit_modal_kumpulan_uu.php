@@ -17,13 +17,15 @@ while ($dt = mysqli_fetch_array($selectPaksaStatus)) {
   $pub = $dt['status'];
   if (mysqli_num_rows($selectPaksaStatus) > 1) {
     $queryUpdatePaksaStatus = "UPDATE tb_nama_uu SET status='Draft' WHERE id != '$id'";
-    echo "<script>window.location='../empty.php';alert('Data berhasil disimpan!');</script>";
+    header("location:../pages/empty.php?pesan=berhasil");
+    // echo "<script>window.location='../empty.php';alert('Data berhasil disimpan!');</script>";
   } elseif (mysqli_num_rows($selectPaksaStatus) < 1) {
     $queryUpdatePaksaStatus = "UPDATE tb_nama_uu SET status='Publish' WHERE id = '$id'";
-    echo "<script>window.location='../empty.php';alert('Data berhasil disimpan!');</script>";
+    header("location:../pages/empty.php?pesan=berhasil");
   }
   else {
-    echo "<script>alert('Status Publish tidak boleh lebih dari 1!');</script>";
+    header("location:../pages/empty.php?pesan=error");
+    // echo "<script>alert('Status Publish tidak boleh lebih dari 1!');</script>";
     $queryUpdatePaksaStatus = "UPDATE tb_nama_uu SET status='Draft' WHERE id = '$id'";
   }
 }
@@ -41,5 +43,5 @@ if (mysqli_query($con, $sql_edit)) {
   
   
 } else {
-  echo "<script>window.location='../empty.php';alert('Data gagal di ubah!');</script>";
+  header("location:../pages/empty.php?pesan=gagal");
 }

@@ -20,7 +20,7 @@ if ($jumlah>0) {
     $_SESSION["email"] = $row["email"];
     
 
-    header("location: ../dashboard.php");
+    header("location: ../pages/dashboard.php");
 }else {
     echo "Username atau Password salah";
      header('location: ../index.php');

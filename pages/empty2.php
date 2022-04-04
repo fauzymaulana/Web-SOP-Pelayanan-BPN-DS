@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['email'])) {
-  echo "<script>window.location='./index.php';alert('Anda harus login dulu!');</script>";
+  echo "<script>window.location='../index.php';alert('Anda harus login dulu!');</script>";
 
   exit;
 }
@@ -12,7 +12,6 @@ $nama = $_SESSION['nama'];
 $email = $_SESSION['email'];
 
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -21,23 +20,23 @@ $email = $_SESSION['email'];
   <title>Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- font Awesome -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons -->
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
-  <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+  <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->
-  <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
   <!-- fullCalendar -->
-  <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+  <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <!-- Daterange picker -->
-  <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+  <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
-  <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
-  <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,9 +74,9 @@ $email = $_SESSION['email'];
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
-                  <?= $nama; ?>
+                  <?= $_SESSION['nama']; ?>
 
                 </p>
               </li>
@@ -88,7 +87,7 @@ $email = $_SESSION['email'];
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -105,10 +104,10 @@ $email = $_SESSION['email'];
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
-            <p>Hello, <?= $nama; ?></p>
+            <p>Hello, <?= $_SESSION['nama']; ?></p>
 
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
@@ -116,13 +115,13 @@ $email = $_SESSION['email'];
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-          <li class="active">
-            <a href="dashboard.php">
+          <li>
+            <a href="../pages/dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="pengaturan.php">
+          <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -133,7 +132,7 @@ $email = $_SESSION['email'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -145,8 +144,8 @@ $email = $_SESSION['email'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
+              <li class="active"><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
               <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
               <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
               <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
@@ -159,37 +158,62 @@ $email = $_SESSION['email'];
 
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Dashboard
-          <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Dashboard</li>
-        </ol>
-      </section>
 
       <!-- Main content -->
       <section class="content">
 
         <div class="row">
           <div class="col-xs-12">
+
+
             <div class="box">
-              <div class="box-header text-center">
-                <!-- <h1>Selamat Datang <?= $nama; ?></h1>
-                <h3>Aplikasi Buku Saku Pelayanan SOP Kantah Deli Serdang</h2> -->
+              <div class="box-header justify-content-between ml-auto">
+                <h3 class="box-title">Formulir untuk menambah data kumpulan undang-undang</h3>
+              </div><!-- /.box-header -->
+
+              <div class="box-body">
+                <form action="../proses/tambah_kum_uu.php" method="POST">
+                  <?php
+                  $status_select = array('Draft', 'Publish');
+                  $status = 'Draft';
+                  ?>
+                  <div class="form-group">
+                    <div class="form-group row">
+                      <div class="col-md-3">
+                      <label>Nama kumpulan undang-undang</label>
+                      </div>
+                      <div class="col-md-9">
+                      <input type="text" name="nama_kumpulan_uu" class="form-control" placeholder="masukkan nama kumpulan undang-undang" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-3">
+                      <label>Status Tampil</label>
+                      </div>
+                      <div class="col-md-9">
+                      <select class="select form-control" id="status" name="status">
+                                        <?php
+                                        foreach ($status_select as $key_status_select => $value_status_select) {
+                                          echo '<option value="' . $value_status_select . '">' . $value_status_select . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                      </div>
+                    </div>
+                    <hr>
+
+                    <input type="submit" class="btn btn-primary" name="submit" value="Simpan">
+                  </div>
+                </form>
               </div>
-              <div class="box-body text-center">
-                <h1>Selamat Datang <?= $nama; ?></h1>
-                <h3>Aplikasi Buku Saku Pelayanan SOP Kantah Deli Serdang</h2>
-              </div>
-            </div>
+            </div><!-- /.box -->
           </div>
         </div>
-      </section><!-- /.content -->
-    </aside><!-- /.right-side -->
+
+  </div>
+
+  </section><!-- /.content -->
+  </aside><!-- /.right-side -->
   </div><!-- ./wrapper -->
 
   <!-- add new calendar event modal -->
@@ -197,34 +221,28 @@ $email = $_SESSION['email'];
 
   <!-- jQuery 2.0.2 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-  <!-- jQuery UI 1.10.3 -->
-  <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
   <!-- Bootstrap -->
-  <script src="js/bootstrap.min.js" type="text/javascript"></script>
-  <!-- Morris.js charts -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
-  <!-- Sparkline -->
-  <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-  <!-- jvectormap -->
-  <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-  <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-  <!-- fullCalendar -->
-  <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-  <!-- daterangepicker -->
-  <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-  <!-- Bootstrap WYSIHTML5 -->
-  <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-  <!-- iCheck -->
-  <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+  <!-- DATA TABES SCRIPT -->
+  <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
-  <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
 
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+  <!-- page script -->
+  <script type="text/javascript">
+    $(function() {
+      $("#example1").dataTable();
+      $('#example2').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": false,
+        "bSort": true,
+        "bInfo": true,
+        "bAutoWidth": false
+      });
+    });
+  </script>
 
 </body>
 

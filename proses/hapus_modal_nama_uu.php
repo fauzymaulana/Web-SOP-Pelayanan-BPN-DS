@@ -8,9 +8,9 @@ $get_id = $_GET['id'];
 $query = "DELETE FROM tb_nama_uu WHERE id = '$get_id'";
 
 if($con->query($query)) {
-    echo"<script>alert('Data Berhasil dihapus.');history.go(-1);</script>";
+    header("location:../pages/empty.php?pesan=berhasil");
 } else {
-    echo"<script>alert('Data Berhasil dihapus.');history.go(-1);</script>";
+    header("location:../pages/empty.php?pesan=gagal");
     
 }
 

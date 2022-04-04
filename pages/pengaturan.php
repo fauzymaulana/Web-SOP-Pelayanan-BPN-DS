@@ -1,9 +1,9 @@
 <?php
-include './connect/koneksi.php';
+include '../connect/koneksi.php';
 session_start();
 
 if (!isset($_SESSION['email'])) {
-  echo "<script>window.location='./index.php';alert('Anda harus login dulu!');</script>";
+  echo "<script>window.location='../index.php';alert('Anda harus login dulu!');</script>";
 
   exit;
 }
@@ -21,23 +21,23 @@ $email = $_SESSION['email'];
   <title>Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- font Awesome -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons -->
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
-  <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+  <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->
-  <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
   <!-- fullCalendar -->
-  <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+  <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <!-- Daterange picker -->
-  <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+  <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
-  <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
-  <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,7 +75,7 @@ $email = $_SESSION['email'];
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
                   <?= $_SESSION['nama']; ?>
 
@@ -88,7 +88,7 @@ $email = $_SESSION['email'];
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -105,7 +105,7 @@ $email = $_SESSION['email'];
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
             <p>Hello, <?= $_SESSION['nama']; ?></p>
@@ -117,12 +117,12 @@ $email = $_SESSION['email'];
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li>
-            <a href="dashboard.php">
+            <a href="../pages/dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li class="active">
-          <a href="pengaturan.php">
+          <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -133,7 +133,7 @@ $email = $_SESSION['email'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -145,8 +145,8 @@ $email = $_SESSION['email'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
+              <li><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
               <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
               <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
               <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
@@ -173,7 +173,7 @@ $email = $_SESSION['email'];
           </div>
           <?php } elseif ($_GET['pesan'] == "gagal") { ?>
             <div class="alert alert-danger show" role="alert">
-             <label> Data <strong>Gagal</strong> di prose!.</label>
+             <label> Data <strong>Gagal</strong> di proses!.</label>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -201,9 +201,7 @@ $email = $_SESSION['email'];
           </div>
           <?php } ?>
         <?php } ?>
-        <!-- SAMPAI SINI, tinggal membuat parameter di header API nya -->
-
-
+      
         <div class="row">
           <div class="col-md-6">
             <div class="box box-primary">
@@ -218,7 +216,7 @@ $email = $_SESSION['email'];
               while ($data_kantor = mysqli_fetch_array($query_tampil)) :
                 $id_kntr = $data_kantor['id_profil_kantor'];
               ?>
-                <form role="form" action="./proses/tambah_profil_kantor.php?id_profil_kantor=<?= $id_kntr ?>" method="POST" enctype="multipart/form-data">
+                <form role="form" action="../proses/tambah_profil_kantor.php?id_profil_kantor=<?= $id_kntr ?>" method="POST" enctype="multipart/form-data">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Judul profil</label>
@@ -229,7 +227,7 @@ $email = $_SESSION['email'];
                       <input type="file" id="gambar_kantor" class="form-control" name="gambar_kantor" value="<?= $data_kantor['gambar_profil_kantor']['name']; ?>">
                       <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
                       <p class="help-block">** dimensi gambar wajib berukuran: lebar 1000px X tinggi 1000px</p>
-                      <img src="gambar/<?= $data_kantor['gambar_profil_kantor']; ?>" width="400px" height="400px">
+                      <img src="../gambar/<?= $data_kantor['gambar_profil_kantor']; ?>" width="400px" height="400px">
 
                     </div>
                     <div class="form-group">
@@ -262,7 +260,7 @@ $email = $_SESSION['email'];
                   $id_penulis = $data_penulis['id_profil_penulis'];
                 ?>
                 
-                  <form role="form" action="./proses/tambah_profil_penulis.php?id_profil_penulis=<?= $id_penulis ?>" method="POST" enctype="multipart/form-data">
+                  <form role="form" action="../proses/tambah_profil_penulis.php?id_profil_penulis=<?= $id_penulis ?>" method="POST" enctype="multipart/form-data">
                   
                     <!-- text input -->
                     <div class="form-group">
@@ -270,7 +268,7 @@ $email = $_SESSION['email'];
                       <input type="file" id="exampleInputFile" class="form-control" name="gambar_penulis" value="<?= $data_penulis['gambar_penulis']['name']; ?>">
                       <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
                       <p class="help-block">** dimensi gambar wajib berukuran: lebar 177px X tinggi 236px</p>
-                      <img src="gambar/penulis/<?= $data_penulis['gambar_penulis']; ?>" width="177px" height="236px">
+                      <img src="../gambar/penulis/<?= $data_penulis['gambar_penulis']; ?>" width="177px" height="236px">
                     </div>
                     <div class="form-group">
                       <label>Nama Penulis</label>
@@ -303,15 +301,15 @@ $email = $_SESSION['email'];
   <!-- jQuery 2.0.2 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
   <!-- DATA TABES SCRIPT -->
-  <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-  <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
-  <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
   <!-- CK Editor -->
-  <script src="./js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-  <script src="./js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
+  <script src="../js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+  <script src="../js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
 
   <!-- page script -->
   <script type="text/javascript">

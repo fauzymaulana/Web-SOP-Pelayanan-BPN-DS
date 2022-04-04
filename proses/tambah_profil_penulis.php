@@ -14,7 +14,8 @@ if (isset($_POST['submit'])) {
   $time = $dt->format('Y-m-d G:i:s');
 
   if ($gambar_penulis_size > 2097152) {
-    echo "<script>alert('Maksimal ukuran adalah 2MB.');window.location='../pengaturan.php';</script>";
+    // echo "<script>alert('Maksimal ukuran adalah 2MB.');window.location='../pengaturan.php';</script>";
+    header("location:../pages/pengaturan.php?pesan=ukuranfile");
   } else {
 
     // cek dulu gambarnya jika ada jalankan program ini
@@ -44,12 +45,13 @@ if (isset($_POST['submit'])) {
         $img_info = array();
 
         if (!($img_info = getimagesize($tampung_nama))) {
-          echo "<script>alert('Dimensi gambar tidak sesuai.');window.location='../pengaturan.php';</script>";
+          // echo "<script>alert('Dimensi gambar tidak sesuai.');window.location='../pengaturan.php';</script>";
+          header("location:../pages/pengaturan.php?pesan=dimensi");
 
          
           
         }else{
-          // SAMPAI DI QUERY UPDATE PROFIL PENULIS GUYS<< BELUM DI SYNC FIELD DENGAN TEXTBOX
+          
           if (($img_info[0] === $max_img_width) && ($img_info[1] === $max_img_height)) {
             // query
             $query_insert = "UPDATE tb_profil_penulis SET nama_profil_penulis = '$nama_penulis', deskripsi_penulis='$deksripsi_penulis',gambar_penulis='$nama_gambar_baru' WHERE id_profil_penulis='$id_penulis'";
@@ -57,23 +59,24 @@ if (isset($_POST['submit'])) {
             // $query_insert = "INSERT INTO tb_profil_penulis(nama_profil_penulis, deskripsi_penulis, gambar_penulis, created_at) VALUES('$nama_penulis', '$deksripsi_penulis', '$nama_gambar_baru', '$time')";
             $result = mysqli_query($con, $query_insert);
             if (!$result) {
-              echo "<script>alert('Data gagal ditambah.');window.location='../pengaturan.php';</script>";
+              header("location:../pages/pengaturan.php?pesan=gagal");
               // die("Data gagal disimpan" . mysqli_errno($con) . "-" . mysqli_error($con));
             } else {
-              echo "<script>alert('Data berhasil disimpan.');window.location='../pengaturan.php';</script>";
+              header("location:../pages/pengaturan.php?pesan=berhasil");
             }
           } else {
-            echo "<script>alert('Dimensi gambar tidak sesuai.');window.location='../pengaturan.php';</script>";
+            header("location:../pages/pengaturan.php?pesan=dimensi");
 
           } 
         }
 
       } else {
-        echo "<script>alert('Gunakan gambar png atau jpg.');window.location='../pengaturan.php';</script>";
+        // echo "<script>alert('Gunakan gambar png atau jpg.');window.location='../pengaturan.php';</script>";
+        header("location:../pages/pengaturan.php?pesan=atribut");
       }
     } else {
       
-      echo "<script>alert('Masukkan data gambar valid.');window.location='../pengaturan.php';</script>";
+      header("location:../pages/pengaturan.php?pesan=atribut");
     }
 
   }

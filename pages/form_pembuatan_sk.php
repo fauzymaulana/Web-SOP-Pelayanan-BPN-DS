@@ -2,11 +2,11 @@
 <?php
 session_start();
 
-include './proses/input_jumlah_pasal_per_b.php';
+// include './proses/input_jumlah_pasal_per_b.php';
 
 if (!isset($_SESSION['email'])) {
   // header('location:./index.php');
-  echo "<script>window.location='./index.php';alert('Anda harus login dulu!');</script>";
+  echo "<script>window.location='../index.php';alert('Anda harus login dulu!');</script>";
 
   exit;
 }
@@ -29,23 +29,23 @@ if (isset($_POST['submit'])) {
   <title>Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- font Awesome -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons -->
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
-  <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+  <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->
-  <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
   <!-- fullCalendar -->
-  <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+  <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <!-- Daterange picker -->
-  <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+  <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
-  <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
-  <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
         ?>
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-          <a href="index.php" class="logo">
+          <a href="#" class="logo">
             <!-- Add the class icon to your logo image or logo icon to add the margining -->
             Aplikasi Buku Saku
           </a>
@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
                   <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header bg-light-blue">
-                      <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                      <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                       <p>
                         <?= $_SESSION['nama']; ?>
 
@@ -132,7 +132,7 @@ if (isset($_POST['submit'])) {
                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                       </div>
                       <div class="pull-right">
-                        <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                       </div>
                     </li>
                   </ul>
@@ -149,7 +149,7 @@ if (isset($_POST['submit'])) {
               <!-- Sidebar user panel -->
               <div class="user-panel">
                 <div class="pull-left image">
-                  <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                  <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
                   <p>Hello, <?= $_SESSION['nama']; ?></p>
@@ -161,7 +161,7 @@ if (isset($_POST['submit'])) {
               <!-- sidebar menu: : style can be found in sidebar.less -->
               <ul class="sidebar-menu">
                 <li class="">
-                  <a href="dashboard.php">
+                  <a href="../dashboard.php">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                   </a>
                 </li>
@@ -386,15 +386,15 @@ if (isset($_POST['submit'])) {
         <!-- jQuery 2.1.1 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->
-        <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+        <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
         <!-- AdminLTE App -->
-        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+        <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
         <!-- CK Editor -->
-        <script src="./js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-        <script src="./js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
+        <script src="../js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script src="../js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
 
 
 

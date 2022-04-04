@@ -15,11 +15,11 @@ if (isset($_POST['submit'])) {
   $edit = "UPDATE tb_admin SET nama = '$nama', email = '$email', password = '$password', tanggal_daftar = '$tgl' WHERE id = '$idd'";
 
   if (mysqli_query($con,$edit)===TRUE) {
-    header('Location:../lihatadmin.php?pesan=berhasil');
+    header('Location:../pages/lihatadmin.php?pesan=berhasil');
     // echo "Data Berhasil Diubah";
     
   }else {
-    header('Location:../lihatadmin.php?pesan=gagal');
+    header('Location:../pages/lihatadmin.php?pesan=gagal');
     // echo "Data gagal Diubah" . mysqli_error($con);
   }
 

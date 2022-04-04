@@ -14,7 +14,8 @@ if (isset($_POST['submit'])) {
   $time = $dt->format('Y-m-d G:i:s');
 
   if ($gambar_kantor_size > 2097152) {
-    echo "<script>alert('Maksimal ukuran adalah 2MB.');window.location='../pengaturan.php';</script>";
+    // echo "<script>alert('Maksimal ukuran adalah 2MB.');window.location='../pengaturan.php';</script>";
+    header("location:../pages/pengaturan.php?pesan=ukuranfile");
   } else {
 
     // cek dulu gambarnya jika ada jalankan program ini
@@ -44,7 +45,7 @@ if (isset($_POST['submit'])) {
         $img_info = array();
 
         if (!($img_info = getimagesize($tampung_nama))) {
-          echo "<script>alert('Dimensi gambar tidak sesuai.');window.location='../pengaturan.php';</script>";
+          header("location:../pages/pengaturan.php?pesan=dimensi");
 
          
           
@@ -54,23 +55,23 @@ if (isset($_POST['submit'])) {
             $query_insert = "UPDATE tb_profil_kantor SET gambar_profil_kantor='$nama_gambar_baru', judul_profil_kantor='$judul_kantor', deskripsi_kantor='$deskripsi_kantor' WHERE id_profil_kantor='$id_kntr'";
             $result = mysqli_query($con, $query_insert);
             if (!$result) {
-              echo "<script>alert('Data gagal ditambah.');window.location='../pengaturan.php';</script>";
+              header("location:../pages/pengaturan.php?pesan=gagal");
               // die("Data gagal disimpan" . mysqli_errno($con) . "-" . mysqli_error($con));
             } else {
-              header("location:../pengaturan.php?pesan=berhasil");
+              header("location:../pages/pengaturan.php?pesan=berhasil");
             }
           } else {
-            echo "<script>alert('Dimensi gambar tidak sesuai.');window.location='../pengaturan.php';</script>";
+            header("location:../pages/pengaturan.php?pesan=dimensi");
 
           } 
         }
 
       } else {
-        echo "<script>alert('Gunakan gambar png atau jpg.');window.location='../pengaturan.php';</script>";
+        header("location:../pages/pengaturan.php?pesan=atribut");
       }
     } else {
       
-      echo "<script>alert('Masukkan data gambar valid.');window.location='../pengaturan.php';</script>";
+      header("location:../pages/pengaturan.php?pesan=atribut");
     }
 
   }
