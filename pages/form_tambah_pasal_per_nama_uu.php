@@ -165,6 +165,24 @@ $get_id = $_GET['id'];
       <!-- Main content -->
       <section class="content">
 
+      <?php if (isset($_GET['pesan'])) { ?>
+          <?php if ($_GET['pesan'] == "berhasil") { ?>
+            <div class="alert alert-success show" role="alert">
+              <label>Data <strong>Berhasil</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "gagal") { ?>
+            <div class="alert alert-danger show" role="alert">
+            <label>Data <strong>Gagal</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } ?>
+        <?php } ?>
+
         <div class="row">
           <div class="col-xs-12">
 
@@ -177,7 +195,7 @@ $get_id = $_GET['id'];
                   $db_nama_uu = $dt['nama_uu'];
                 ?>
                   <h4 class="box-body">Data Kumpulan UU '<?= $dt['nama_uu'] ?>'</h4>
-                  <?ph SAMPAI SINI, sync file bawah ini untuk notifikasi dan dir foldernya
+                  
                   <a href="../pages/form_tambah_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-primary pull-right" style="margin-top: 10px; margin-right: 8px;"><i class="fa fa-plus"></i> Tambah Pasal</a>
                 <?php
                 endwhile;
@@ -215,9 +233,9 @@ $get_id = $_GET['id'];
                           <td class="text-center"><?= $data['judul_bab']; ?></td>
                           <td>
                             
-                            <a href="../pages/ini_untuk_edit_lihat_sk_bab_pasal.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
 
-                            <a href="../pages/form_tambah_pasal_per_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                           </td>
                         </tr>

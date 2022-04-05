@@ -1,11 +1,11 @@
 <?php
-include './connect/koneksi.php';
+include '../connect/koneksi.php';
 session_start();
 
 //akses session login
 if (!isset($_SESSION['email'])) {
   // header('location:./index.php');
-  echo "<script>window.location='./index.php';alert('Anda harus login dulu!');</script>";
+  echo "<script>window.location='../index.php';alert('Anda harus login dulu!');</script>";
 
   exit;
 }
@@ -34,13 +34,10 @@ if (isset($_POST['submit'])) {
   $input_anak_sub_bab_sop = "INSERT INTO tb_anak_sub_bab_sop(id,id_bab_utama_sop,id_sub_bab_sop,urutan_anak_sub_bab,judul_anak_sub_bab,tanggal_pembuatan) VALUES ('$get_id','$get_id_bab_utama_sop','$get_id_sub_bab_sop','$select_bab','$judul_bab','$time')";
 
   if (mysqli_query($con, $input_anak_sub_bab_sop)) {
-    // header("location: ../sop_bab.php");
-    echo "<script>alert('Data berhasil di tambahkan!');</script>";
-    // echo "return confirm('Berhasil Menambahkan Data.')";
+    // echo "<script>alert('Data berhasil di tambahkan!');</script>";
+    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&pesan=berhasil");
   } else {
-    // header("location: ../sop_bab.php");
-    echo "<script>alert('Data gagal di tambahkan!');</script>" . mysqli_error($con);
-    // echo "Gagal";
+    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&pesan=gagal");
   }
 }
 
@@ -55,23 +52,23 @@ $selectedSel = '0';
   <title>Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- font Awesome -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons -->
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
-  <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+  <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->
-  <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
   <!-- fullCalendar -->
-  <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+  <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <!-- Daterange picker -->
-  <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+  <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
-  <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
-  <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="skin-black">
@@ -88,7 +85,7 @@ $selectedSel = '0';
   ?>
   <!-- header logo: style can be found in header.less -->
   <header class="header">
-    <a href="index.php" class="logo">
+    <a href="#" class="logo">
       <!-- Add the class icon to your logo image or logo icon to add the margining -->
       Aplikasi Buku Saku
     </a>
@@ -113,7 +110,7 @@ $selectedSel = '0';
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
                   <?= $_SESSION['nama']; ?>
 
@@ -126,7 +123,7 @@ $selectedSel = '0';
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -143,7 +140,7 @@ $selectedSel = '0';
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
             <p>Hello, <?= $_SESSION['nama']; ?></p>
@@ -155,12 +152,12 @@ $selectedSel = '0';
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li>
-            <a href="dashboard.php">
+            <a href="../pages/dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
-          <a href="pengaturan.php">
+          <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -171,7 +168,7 @@ $selectedSel = '0';
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -183,8 +180,8 @@ $selectedSel = '0';
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li class="active"><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
+              <li><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li class="active"><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
               <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
               <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
               <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
@@ -201,7 +198,23 @@ $selectedSel = '0';
       <!-- Main content -->
       <section class="content">
 
-
+      <?php if (isset($_GET['pesan'])) { ?>
+          <?php if ($_GET['pesan'] == "berhasil") { ?>
+            <div class="alert alert-success show" role="alert">
+              <label>Data <strong>Berhasil</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "gagal") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Data <strong>Gagal</strong> di proses!.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } ?>
+        <?php } ?>
 
         <div class="row">
           <div class="col-xs-12">
@@ -278,7 +291,7 @@ $selectedSel = '0';
                     </div>
 
                     <div class="box-body" id="forminp" style="display: none;">
-                      <form action="./proses/tambah_sop_anak_sub_bab_tanpa_sub_bab.php" method="POST">
+                      <form action="../proses/tambah_sop_anak_sub_bab_tanpa_sub_bab.php" method="POST">
                         <input type="hidden" id="txt_id_sub_bab" name="txt_id_sub_bab" value="<?= $get_id ?>" readonly>
                         <input type="hidden" id="txt_id_bab_utama_sop_sub_bab" name="txt_id_bab_utama_sop_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly>
                         <input type="hidden" id="txt_id_sub_bab_sop_sub_bab" name="txt_id_sub_bab_sop_sub_bab" value="<?= $get_id_sub_bab_sop ?>" readonly>
@@ -366,7 +379,7 @@ $selectedSel = '0';
                                   ?>
                                   <button data-toggle="modal" data-target="#exampleModal<?=$id_modal?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_anak_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                 </td>
                               </tr>
@@ -426,11 +439,11 @@ $selectedSel = '0';
                                 <td class="text-center"><?= $dt['urutan_anak_sub_bab']; ?></td>
                                 <td><?= $dt['judul_anak_sub_bab']; ?></td>
                                 <td class="text-center">
-                                  <a href="sop_sub_anak_sub_bab.php?id=<?= $data['id']; ?>&id_bab_utama_sop=<?= $data['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
+                                  <a href="../pages/sop_sub_anak_sub_bab.php?id=<?= $data['id']; ?>&id_bab_utama_sop=<?= $data['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
 
                                   <button data-toggle="modal" data-target="#editModalSubBab<?= $id_modal_edit?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>&id_anak_sub_bab_sop=<?=$dt['id_anak_sub_bab_sop'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>&id_anak_sub_bab_sop=<?=$dt['id_anak_sub_bab_sop'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                 </td>
                               </tr>
@@ -543,7 +556,7 @@ $selectedSel = '0';
   </div>
   <!-- End Modal -->
 
-  <!-- Start Modal -->
+  <!-- Start Modal Edit Tanpa sub bab -->
   <div class="modal fade" id="exampleModal<?=$id_modal?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
     <?php
     $query_edit = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_sub_bab_sop_tanpa_sub_bab = '$id_modal'");
@@ -552,7 +565,7 @@ $selectedSel = '0';
       // $id_modal = $data['id_bab_utama_sop_tanpa_sub_bab'];
     ?>
 
-      <form action="./proses/edit_modal_sop_anak_sub_bab_sop_tanpa_sub_bab.php?id_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
+      <form action="../proses/edit_modal_sop_anak_sub_bab_sop_tanpa_sub_bab.php?id_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -565,7 +578,7 @@ $selectedSel = '0';
               <div class="control-group">
               <input type="number" id="txt_id_modal" name="txt_id_modal" value="<?= $get_id ?>" readonly hidden>
                       <input type="text" id="txt_id_bab_utama_sop_modal" name="txt_id_bab_utama_sop_modal" value="<?= $get_id_bab_utama_sop ?>" readonly hidden>
-                      <input type="text" id="txt_id_sub_bab_sop_modal" name="txt_id_sub_bab_sop_modal" value="<?= $get_id_sub_bab_sop ?>" readonly hidden>
+                      <input type="text" id="txt_id_sub_bab_sop_modal" name="txt_id_sub_bab_sop_modal" value="<?= $get_id_sub_bab_sop ?>" readonly>
                 <div class="form-group row">
                   <label class="col-md-3" name="num_bab" id="num_bab">Dasar Hukum</label>
                   <div class="col-md-9">
@@ -653,7 +666,7 @@ $selectedSel = '0';
       $id_modal_edit = $data_sop['id_anak_sub_bab_sop'];
     ?>
 
-      <form action="./proses/edit_modal_sop_anak_sub_bab.php?id_anak_sub_bab_sop=<?=$id_modal_edit?>" method="POST">
+      <form action="../proses/edit_modal_sop_anak_sub_bab.php?id_anak_sub_bab_sop=<?=$id_modal_edit?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -668,7 +681,7 @@ $selectedSel = '0';
             <input type="hidden" id="txt_id_modal_sub_bab" name="txt_id_modal_sub_bab" value="<?= $get_id ?>" readonly>
                       <input type="hidden" id="txt_id_bab_utama_sop_modal_sub_bab" name="txt_id_bab_utama_sop_modal_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
                       <input type="hidden" id="txt_id_sub_bab_sop_modal_sub_bab" name="txt_id_sub_bab_sop_modal_sub_bab" value="<?= $get_id_sub_bab_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_anak_sub_bab_sop_modal_sub_bab" name="txt_id_anak_sub_bab_sop_modal_sub_bab" value="<?= $get_id_anak_sub_bab_sop ?>" readonly >
+                      <input type="hidden" id="txt_id_anak_sub_bab_sop_modal_sub_bab" name="txt_id_anak_sub_bab_sop_modal_sub_bab" value="<?= $id_modal_edit ?>" readonly >
               <div class="form-group row">
                 <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
                 <div class="col-md-9">
@@ -712,80 +725,19 @@ $selectedSel = '0';
 
   <!-- End Modal -->
 
-
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="" method="POST">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel"></h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="control-group">
-                            <div class="form-group row">
-                                <label class="col-md-3" name="no_bab" id="no_bab">BAB</label>
-                                <div class="col-md-9">
-                                    <select class="select form-control" id="nomor_bab" name="nomor_bab">
-                                        <?php
-                                        foreach ($bab_romawi as $key_bab_romawi => $value_bab_romawi) {
-                                          echo '<option value="' . $value_bab_romawi . '">' . $value_bab_romawi . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <div class="form-group row">
-                                <label class="col-md-3" name="jlh_pasal" id="jlh_pasal">Jumlah Pasal </label>
-                                <div class="col-md-9">
-                                    <select class="select form-control" id="jlh_pasal" name="jlh_pasal">
-                                        <?php
-                                        foreach ($jumlah_pasal as $key_jumlah_pasal => $value_jumlah_pasal) {
-                                          echo '<option value="' . $value_jumlah_pasal . '">' . $value_jumlah_pasal . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                    </div>
-                </div>
-            </div>
-
-        </form>
-    </div> -->
-
-  <!-- End Modal -->
-
-
-
-
   <!-- add new calendar event modal -->
   <!-- jQuery 2.1.1 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
   <!-- DATA TABES SCRIPT -->
-  <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-  <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
-  <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
   <!-- CK Editor -->
-  <script src="./js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-  <script src="./js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
+  <script src="../js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+  <script src="../js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
 
 
 

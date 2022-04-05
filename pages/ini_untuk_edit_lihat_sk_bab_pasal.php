@@ -218,13 +218,6 @@ $get_id = $_GET['id'];
                 }
 
                 $sql_sk_sk_pra_bab_nama_uu = mysqli_query($con, "SELECT * FROM tb_sk_pra_bab_pasal WHERE nama_uu_bab = '$nama_uu'");
-                // while($dta = mysqli_fetch_array($sql_sk_sk_pra_bab_nama_uu)){ $nama_uu_pra_bab = $dta['nama_uu_bab'];}
-
-                // echo $dt['nama_pejabat_lembaga_instansi'];
-                // while($data = mysqli_fetch_array($sql_sk_sk_pra_bab_nama_uu)):
-                //   $nama_uu_pra_bab = $dt['nama_uu_bab'];
-
-
 
                 while ($data = mysqli_fetch_array($sql_sk_sk_pra_bab_nama_uu)) :
                   $nama_uu_pra_bab = $data['nama_uu_bab'];

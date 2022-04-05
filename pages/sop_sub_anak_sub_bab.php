@@ -1,11 +1,11 @@
 <?php
-include './connect/koneksi.php';
+include '../connect/koneksi.php';
 session_start();
 
 //akses session login
 if (!isset($_SESSION['email'])) {
   // header('location:./index.php');
-  echo "<script>window.location='./index.php';alert('Anda harus login dulu!');</script>";
+  echo "<script>window.location='../index.php';alert('Anda harus login dulu!');</script>";
 
   exit;
 }
@@ -36,13 +36,10 @@ if (isset($_POST['submit'])) {
   $input_sub_anak_sub_bab_sop = "INSERT INTO tb_sub_anak_sub_bab_sop(id,id_bab_utama_sop,id_sub_bab_sop,id_anak_sub_bab_sop,urutan_sub_anak_sub_bab,judul_sub_anak_sub_bab,tanggal_pembuatan) VALUES ('$get_id','$get_id_bab_utama_sop','$get_id_sub_bab_sop','$get_id_anak_sub_bab_sop','$select_bab','$judul_bab','$time')";
 
   if (mysqli_query($con, $input_sub_anak_sub_bab_sop)) {
-    // header("location: ../sop_bab.php");
-    echo "<script>alert('Data berhasil di tambahkan!');</script>";
-    // echo "return confirm('Berhasil Menambahkan Data.')";
+    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=berhasil");
+    
   } else {
-    // header("location: ../sop_bab.php");
-    echo "<script>alert('Data gagal di tambahkan!');</script>";
-    // echo "Gagal";
+    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=gagal");
   }
 }
 
@@ -57,40 +54,32 @@ $selectedSel = '0';
   <title>Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- font Awesome -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons -->
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
-  <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+  <link href="../css/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->
-  <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+  <link href="../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
   <!-- fullCalendar -->
-  <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+  <link href="../css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
   <!-- Daterange picker -->
-  <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+  <link href="../css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
   <!-- bootstrap wysihtml5 - text editor -->
-  <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+  <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
-  <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="skin-black">
   <?php
-  // if ($selected == "-- Pilih Bab --") {
-  //   echo "Silahkan Pilih Bab.!";
-  // }
-  // elseif ($selected == 'BAB I') {
-  //   # code...
-  // }
-
-
   $opsi_pasal = array('Tidak', 'Ya');
   ?>
   <!-- header logo: style can be found in header.less -->
   <header class="header">
-    <a href="index.php" class="logo">
+    <a href="#" class="logo">
       <!-- Add the class icon to your logo image or logo icon to add the margining -->
       Aplikasi Buku Saku
     </a>
@@ -115,7 +104,7 @@ $selectedSel = '0';
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
                   <?= $_SESSION['nama']; ?>
 
@@ -128,7 +117,7 @@ $selectedSel = '0';
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -145,7 +134,7 @@ $selectedSel = '0';
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
             <p>Hello, <?= $_SESSION['nama']; ?></p>
@@ -157,12 +146,12 @@ $selectedSel = '0';
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li>
-            <a href="dashboard.php">
+            <a href="../pages/dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
-          <a href="pengaturan.php">
+          <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -173,7 +162,7 @@ $selectedSel = '0';
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -185,11 +174,8 @@ $selectedSel = '0';
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li class="active"><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
-              <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
-              <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-              <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
+              <li><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li class="active"><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
             </ul>
           </li>
         </ul>
@@ -203,12 +189,26 @@ $selectedSel = '0';
       <!-- Main content -->
       <section class="content">
 
-
+      <?php if (isset($_GET['pesan'])) { ?>
+          <?php if ($_GET['pesan'] == "berhasil") { ?>
+            <div class="alert alert-success show" role="alert">
+              <label>Data <strong>Berhasil</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "gagal") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Data <strong>Gagal</strong> di proses!.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } ?>
+        <?php } ?>
 
         <div class="row">
           <div class="col-xs-12">
-
-
             <div class="box">
               <?php
               $result = mysqli_query($con, "SELECT * FROM tb_anak_sub_bab_sop JOIN tb_nama_uu USING(id) JOIN tb_bab_utama_sop USING(id) JOIN tb_sub_bab_sop USING(id) WHERE tb_anak_sub_bab_sop.id_anak_sub_bab_sop='$get_id_anak_sub_bab_sop' AND tb_bab_utama_sop.id_bab_utama_sop='$get_id_bab_utama_sop' AND tb_sub_bab_sop.id_sub_bab_sop= '$get_id_sub_bab_sop'");
@@ -227,7 +227,6 @@ $selectedSel = '0';
                     <span class="col-md-1"></span>
                     <h5 class="col-md-1" style="text-align: right;"><?= $data['urutan_bab_utama_sop']; ?>.</h5>
                     <div class="col-md-6">
-                      <!-- <input type="text" class="form-control" name="nama_kumpulan_uu" id="nama_kumpulan_uu" value="<?= $data['nama_uu_bab']; ?>" required readonly> -->
                       <h5><?= $data['judul_bab_utama_sop']; ?></h5>
                       <input type="text" id="judul_bab_utama" name="judul_bab_utama" value="<?= $data['judul_bab_utama_sop']; ?>" disabled hidden>
                     </div>
@@ -237,7 +236,6 @@ $selectedSel = '0';
                     <span class="col-md-2"></span>
                     <h5 class="col-md-1" style="width: 10px; margin-top: -10px;"><?= $data['urutan_sub_bab']; ?>.</h5>
                     <div class="col-md-6">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_sub_bab']; ?>" class="form-control" readonly> -->
                       <h5 style="margin-top: -10px;"><?= $data['judul_sub_bab']; ?></h5>
                       <input type="text" id="inp_urutan_bab_utama" name="inp_urutan_sub_bab" value="<?= $data['judul_sub_bab']; ?>" disabled hidden>
                     </div>
@@ -248,7 +246,7 @@ $selectedSel = '0';
                     <span class="col-md-1" style="width: 10px; margin-top: -10px;"> </span>
                     <h5 class="col-md-1" style=" width: 10px; margin-left: 30px; margin-top: -10px; text-align: left;"><?= $data['urutan_anak_sub_bab']; ?>.</h5>
                     <div class="col-md-6">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_sub_bab']; ?>" class="form-control" readonly> -->
+                     
                       <h5 style="margin-top: -10px;"><?= $data['judul_anak_sub_bab']; ?></h5>
                       <input type="text" id="inp_urutan_bab_utama" name="inp_urutan_sub_bab" value="<?= $data['judul_anak_sub_bab']; ?>" disabled hidden>
                     </div>
@@ -257,23 +255,13 @@ $selectedSel = '0';
                   <div class="form-group row">
                     <span class="col-md-3">Sub Bab Pembahasan</span>
                     <div class="col-md-9">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_bab_utama_sop']; ?>" class="form-control" readonly> -->
+                      
                       <?php
                       $select_sub_bab = '0';
-                      // $select_sub_bab = strval($select_sub_bab);
-                      // $sub_bab = array(
-                      //   'Tidak',
-                      //   'Ya'
-                      // );
                       ?>
                       <select class="select form-control" id="sub_bab_utamaa" name="sub_bab_utamaa">
                         <option value="0">Tidak</option>
                         <option value="1">Ya</option>
-                        <?php
-                        // foreach ($sub_bab as $key_sub_bab => $value_sub_bab) {
-                        //   echo '<option value="' . $value_sub_bab . '">' . $value_sub_bab . '</option>';
-                        // }
-                        ?>
                       </select>
                     </div>
                   </div>
@@ -289,7 +277,7 @@ $selectedSel = '0';
                     </div>
 
                     <div class="box-content" id="forminp" style="display: block;">
-                      <form action="./proses/tambah_sop_anak_sub_anak_sub_bab_tanpa_sub_bab.php" method="POST">
+                      <form action="../proses/tambah_sop_anak_sub_anak_sub_bab_tanpa_sub_bab.php" method="POST">
                         <input type="hidden" id="txt_id_sub_bab" name="txt_id_sub_bab" value="<?= $get_id ?>" readonly >
                         <input type="hidden" id="txt_id_bab_utama_sop_sub_bab" name="txt_id_bab_utama_sop_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
                         <input type="hidden" id="txt_id_sub_bab_sop_sub_bab" name="txt_id_sub_bab_sop_sub_bab" value="<?= $get_id_sub_bab_sop ?>" readonly>
@@ -374,7 +362,7 @@ $selectedSel = '0';
                                     $id_modal = $dt['id_anak_sub_bab_sop_tanpa_sub_bab'];
                                     ?>
                                     <button data-toggle="modal" data-target="#exampleModalEdit<?= $id_modal?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
-                                    <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_sub_anak_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_anak_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_anak_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                    <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_sub_anak_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_anak_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_anak_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                   </td>
                                 </tr>
@@ -399,9 +387,6 @@ $selectedSel = '0';
                     </div>
 
                   </div>
-
-<!-- ADA MASALAH DISINI, KETIKA MENGHAPUS DATA TABEL DIBAWAH INI, REDIRECTNYA MINTA RESUBMIT, APA YANG MAU DI RESUBMIT, COBA PERIKSA LAGI -->
-<!-- besok periksa ini ya  -->
 
                   <!-- Select option Ya -->
                   <div class="1 kotak" id="ktkk" hidden>
@@ -437,8 +422,9 @@ $selectedSel = '0';
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td class="text-center"><?= $dt['urutan_sub_anak_sub_bab']; ?></td>
                                 <td><?= $dt['judul_sub_anak_sub_bab']; ?></td>
+                                <?ph SAMPE SINI, 
                                 <td class="text-center">
-                                  <a href="sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
+                                  <a href="../pages/sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
 
                                   <button data-toggle="modal" data-target="#editModalSubBab<?= $id_modal_edit ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
@@ -563,7 +549,7 @@ $selectedSel = '0';
       // $id_modal = $data['id_bab_utama_sop_tanpa_sub_bab'];
     ?>
 
-      <form action="./proses/edit_modal_anak_sub_bab_sop_tanpa_sub_bab.php?id_anak_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
+      <form action="../proses/edit_modal_anak_sub_bab_sop_tanpa_sub_bab.php?id_anak_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -727,15 +713,15 @@ $selectedSel = '0';
   <!-- jQuery 2.1.1 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
   <!-- DATA TABES SCRIPT -->
-  <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-  <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
   <!-- AdminLTE App -->
-  <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
   <!-- CK Editor -->
-  <script src="./js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-  <script src="./js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
+  <script src="../js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+  <script src="../js/plugins/ckeditor/adapters/jquery.js" type="text/javascript"></script>
 
 
 

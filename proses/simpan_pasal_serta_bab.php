@@ -24,11 +24,11 @@ if (isset($_POST['submit'])) {
     }
 
     if (mysqli_query($con, $input)) {
-        header("location: ../form_tambah_pasal_per_nama_uu.php?id=$id_nama_uu");
+        header("location: ../pages/form_tambah_pasal_per_nama_uu.php?id=".$id_nama_uu."&pesan=berhasil");
         echo "<script>alert('Data berhasil di tambahkan!');</script>";
         
     }else {
-        header("location: ../form_tambah_pasal_per_nama_uu.php?id=$id_nama_uu");
+        header("location: ../pages/form_tambah_pasal_per_nama_uu.php?id=".$id_nama_uu."&pesan=gagal");
         echo "<script>alert('Data gagal di tambahkan!');</script>";
         // echo "Gagal" . mysqli_error($con);
     }

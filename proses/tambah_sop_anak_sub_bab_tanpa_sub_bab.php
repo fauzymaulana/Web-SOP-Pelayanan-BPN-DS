@@ -21,9 +21,8 @@ if (isset($_POST['submit'])) {
     $input_sop_anak_sub_bab_tanpa_sub_bab = "INSERT INTO tb_sub_bab_sop_tanpa_sub_bab(id,id_bab_utama_sop,id_sub_bab_sop,dasar_hukum,persyaratan,biaya,waktu,keterangan,tanggal_pembuatan) VALUES ('$txt_id_sub_bab','$txt_id_bab_utama_sop_sub_bab','$txt_id_sub_bab_sop_sub_bab','$txt_dasar_hukum','$txt_persyaratan','$txt_biaya','$txt_waktu','$txt_keterangan','$time')";
 
     if (mysqli_query($con, $input_sop_anak_sub_bab_tanpa_sub_bab)) {
-        echo "<script>alert('Data berhasil di tambahkan!');history.go(-1);</script>";
-        // header("location:../sop_anak_sub_bab.php?id=" . $id . "&id_bab_utama_sop=" . $id_bab_utama_sop . "&id_sub_bab_sop=" . $id_sub_bab_sop);
+        header("location:../pages/sop_anak_sub_bab.php?id=" .$txt_id_sub_bab . "&id_bab_utama_sop=" . $txt_id_bab_utama_sop_sub_bab . "&id_sub_bab_sop=" . $txt_id_sub_bab_sop_sub_bab . "&pesan=berhasil");
     } else {
-        echo "<script>alert('Data gagal di tambahkan!');history.go(-1);</script>";
+        header("location:../pages/sop_anak_sub_bab.php?id=" .$txt_id_sub_bab . "&id_bab_utama_sop=" . $txt_id_bab_utama_sop_sub_bab . "&id_sub_bab_sop=" . $txt_id_sub_bab_sop_sub_bab . "&pesan=gagal");
     }
 }
