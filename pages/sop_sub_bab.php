@@ -37,11 +37,12 @@ if (isset($_POST['submit'])) {
   $input_sub_bab_sop = "INSERT INTO tb_sub_bab_sop(id_bab_utama_sop,id,urutan_sub_bab,judul_sub_bab,tanggal_pembuatan) VALUES ('$get_id_bab_utama_sop','$get_id','$select_bab','$judul_bab','$time')";
 
   if (mysqli_query($con, $input_sub_bab_sop)) {
-    // header("location: ../sop_bab.php");
-    echo "<script>alert('Data berhasil di tambahkan!');</script>";
+    header("location: ../pages/sop_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&pesan=berhasil");
+    // echo "<script>alert('Data berhasil di tambahkan!');</script>";
     // echo "return confirm('Berhasil Menambahkan Data.')";
   } else {
-    echo "<script>alert('Data gagal di tambahkan!');</script>" . mysqli_error($con);
+    // echo "<script>alert('Data gagal di tambahkan!');</script>" . mysqli_error($con);
+    header("location: ../pages/sop_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&pesan=gagal");
   }
 }
 $selectedSel = '0';
@@ -441,7 +442,7 @@ $selectedSel = '0';
 
                     <div class="box-body table-responsive ">
                       <table id="example1" class="table table-bordered table-striped">
-                        <thead class="bg-olive">
+                        <thead class="bg-maroon">
                           <tr>
                             <th class="text-center" width="50px">#</th>
                             <th class="text-center" width="150px">Urutan Pembahasan</th>

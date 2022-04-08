@@ -205,11 +205,11 @@ $email = $_SESSION['email'];
                 <table id="example1" class="table table-bordered table-striped">
                   <thead class="bg-olive">
                     <tr>
-                      <th class="text-center" width="60px">#</th>
+                      <th class="text-center" width="40px">#</th>
                       <th class="text-center">Judul Kumpulan Undang-Undang</th>
                       <th class="text-center" width="150px">Tanggal Pembuatan</th>
                       <th class="text-center" width="70px">Status Tampil</th>
-                      <th class="text-center" width="150px">Aksi</th>
+                      <th class="text-center" width="120px">Aksi</th>
 
                     </tr>
                   </thead>
@@ -253,8 +253,8 @@ $email = $_SESSION['email'];
                       }
                     } else {
                       echo '
-												<tr>
-												<td colspan"6">Tidak ada data.</td>
+												<tr class="text-center">
+												<td colspan="5">Tidak ada data.</td>
 												</tr>
 												';
                     }

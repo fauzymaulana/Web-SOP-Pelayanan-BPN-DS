@@ -36,10 +36,10 @@ if (isset($_POST['submit'])) {
   $input_sub_anak_sub_bab_sop = "INSERT INTO tb_sub_anak_sub_bab_sop(id,id_bab_utama_sop,id_sub_bab_sop,id_anak_sub_bab_sop,urutan_sub_anak_sub_bab,judul_sub_anak_sub_bab,tanggal_pembuatan) VALUES ('$get_id','$get_id_bab_utama_sop','$get_id_sub_bab_sop','$get_id_anak_sub_bab_sop','$select_bab','$judul_bab','$time')";
 
   if (mysqli_query($con, $input_sub_anak_sub_bab_sop)) {
-    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=berhasil");
+    header("location:../pages/sop_sub_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=berhasil");
     
   } else {
-    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=gagal");
+    header("location:../pages/sop_sub_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=gagal");
   }
 }
 
@@ -422,7 +422,7 @@ $selectedSel = '0';
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td class="text-center"><?= $dt['urutan_sub_anak_sub_bab']; ?></td>
                                 <td><?= $dt['judul_sub_anak_sub_bab']; ?></td>
-                                <?ph SAMPE SINI, 
+                                
                                 <td class="text-center">
                                   <a href="../pages/sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
 
@@ -430,7 +430,7 @@ $selectedSel = '0';
 
                                   <!-- <a href="./proses/edit_modal_sop_sub_bab_anak_sub_bab.php" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a> -->
 
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_anak_sub_bab_sop.php?id_sub_anak_sub_bab_sop=<?=$dt['id_sub_anak_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab_sop.php?id_sub_anak_sub_bab_sop=<?=$dt['id_sub_anak_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
                                   <!-- <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>&id_anak_sub_bab_sop=<?=$dt['id_anak_sub_bab_sop']?>&id_sub_anak_sub_bab_sop=<?=$dt['id_sub_anak_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a> -->
 
                                 </td>
@@ -646,7 +646,7 @@ $selectedSel = '0';
       $id_modal_edit = $data_sop['id_sub_anak_sub_bab_sop'];
     ?>
 
-      <form action="./proses/edit_modal_sop_sub_bab_anak_sub_bab.php?id_sub_anak_sub_bab_sop=<?=$id_modal_edit?>" method="POST">
+      <form action="../proses/edit_modal_sop_sub_bab_anak_sub_bab.php?id_sub_anak_sub_bab_sop=<?=$id_modal_edit?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -772,23 +772,6 @@ $selectedSel = '0';
       }
     });
 
-
-    // event onchange untuk milih jumlah bab dengan select option 
-    // $('.kotak').hide();
-    //   $('#sub_bab_utama').change(function() {
-    //     $('.kotak').hide();
-    //     $('.' + $(this).val()).show();
-    //   }).trigger('change');
-    // $(document).ready(function() {
-    //     // $('.inp_bab').inp_bab()
-    //     // $('#inp_bab').on('change', function() {
-    //     //     const selectedSelect = $('#inp_bab').val();
-    //     //     // $('#myModal').modal('show');
-    //     //     $('#sp').text(selectedSelect);
-    //     //     $("#asp").val(selectedSelect);
-    //     // });
-
-    // });
   </script>
 
 

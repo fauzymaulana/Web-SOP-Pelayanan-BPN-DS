@@ -198,8 +198,8 @@ $email = $_SESSION['email'];
                 <table id="example1" class="table table-bordered table-striped">
                   <thead class="bg-olive">
                     <tr>
-                      <th class="text-center" width="65px">#</th>
-                      <th class="text-center" width="350px">Aksi</th>
+                      <th class="text-center" width="45px">#</th>
+                      <th class="text-center" width="300px">Aksi</th>
                       <th class="text-center">Judul Kumpulan Undang-Undang</th>
                       <!-- <th class="text-center" width="150px">Tanggal Pembuatan</th> -->
 
@@ -226,7 +226,7 @@ $email = $_SESSION['email'];
                             <a href="../pages/sop_bab.php?id=<?= $dt['id']; ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Lengkapi SOP</a>
 
                           </td>
-                          <td><?= $dt['nama_uu']; ?></td>
+                          <td><h5><?= $dt['nama_uu']; ?></h5></td>
                           <!-- <td class="text-center"><?= $dt['tanggal_pembuatan']; ?></td> -->
 
                         </tr>

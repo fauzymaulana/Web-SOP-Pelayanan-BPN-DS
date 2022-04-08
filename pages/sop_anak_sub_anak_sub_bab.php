@@ -78,7 +78,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
                   <?= $_SESSION['nama']; ?>
 
@@ -91,7 +91,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="./proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../proses/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -108,7 +108,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
           </div>
           <div class="pull-left info">
             <p>Hello, <?= $_SESSION['nama']; ?></p>
@@ -120,12 +120,12 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li>
-            <a href="dashboard.php">
+            <a href="../pages/dashboard.php">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
           <li>
-          <a href="pengaturan.php">
+          <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -136,7 +136,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
+              <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
               <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                                     <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
@@ -148,11 +148,9 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a href="empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
-              <li class="active"><a href="lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
-              <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
-              <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-              <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
+              <li><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
+              <li class="active"><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
+              
             </ul>
           </li>
         </ul>
@@ -166,7 +164,23 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
       <!-- Main content -->
       <section class="content">
 
-
+      <?php if (isset($_GET['pesan'])) { ?>
+          <?php if ($_GET['pesan'] == "berhasil") { ?>
+            <div class="alert alert-success show" role="alert">
+              <label>Data <strong>Berhasil</strong> di proses.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } elseif ($_GET['pesan'] == "gagal") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Data <strong>Gagal</strong> di proses!.</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <?php } ?>
+        <?php } ?>
 
         <div class="row">
           <div class="col-xs-12">
@@ -190,7 +204,6 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
                     <span class="col-md-1"></span>
                     <h5 class="col-md-1" style="text-align: right;"><?= $data['urutan_bab_utama_sop']; ?>.</h5>
                     <div class="col-md-6">
-                      <!-- <input type="text" class="form-control" name="nama_kumpulan_uu" id="nama_kumpulan_uu" value="<?= $data['nama_uu_bab']; ?>" required readonly> -->
                       <h5><?= $data['judul_bab_utama_sop']; ?></h5>
                       <input type="text" id="judul_bab_utama" name="judul_bab_utama" value="<?= $data['judul_bab_utama_sop']; ?>" disabled hidden>
                     </div>
@@ -200,7 +213,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
                     <span class="col-md-2"></span>
                     <h5 class="col-md-1" style="width: 10px; margin-top: -10px;"><?= $data['urutan_sub_bab']; ?>.</h5>
                     <div class="col-md-6">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_sub_bab']; ?>" class="form-control" readonly> -->
+              
                       <h5 style="margin-top: -10px;"><?= $data['judul_sub_bab']; ?></h5>
                       <input type="text" id="inp_urutan_bab_utama" name="inp_urutan_sub_bab" value="<?= $data['judul_sub_bab']; ?>" disabled hidden>
 
@@ -211,7 +224,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
                     <span class="col-md-1" style="width: 10px; margin-top: -10px;"> </span>
                     <h5 class="col-md-1" style=" width: 10px; margin-left: 30px; margin-top: -10px; text-align: left;"><?= $data['urutan_anak_sub_bab']; ?>.</h5>
                     <div class="col-md-6">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_sub_bab']; ?>" class="form-control" readonly> -->
+                     
                       <h5 style="margin-top: -10px;"><?= $data['judul_anak_sub_bab']; ?></h5>
                       <input type="text" id="inp_urutan_bab_utama" name="inp_urutan_sub_bab" value="<?= $data['judul_anak_sub_bab']; ?>" disabled hidden>
                     </div>
@@ -223,7 +236,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
                     <span class="col-md-1" style="width: 10px; margin-top: -10px;"> </span>
                     <h5 class="col-md-1" style=" width: 10px; margin-left: 60px; margin-top: -10px; text-align: left;"><?= $data['urutan_sub_anak_sub_bab']; ?>&#41;</h5>
                     <div class="col-md-6">
-                      <!-- <input type="text" name="inp_urutan_bab_utama" id="inp_urutan_bab_utama" value="<?= $data['urutan_sub_bab']; ?>" class="form-control" readonly> -->
+                    
                       <h5 style="margin-top: -10px;"><?= $data['judul_sub_anak_sub_bab']; ?></h5>
                       <input type="text" id="inp_urutan_bab_utama" name="inp_urutan_sub_bab" value="<?= $data['judul_sub_anak_sub_anak_sub_bab']; ?>" disabled hidden>
                     </div>
@@ -242,13 +255,13 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
 
 
                   <div class="0 kotak" id="ktk" style="display: none;">
-                    <form action="./proses/tambah_sop_sub_anak_sub_anak_sub_bab_tanpa_sub_bab.php" method="POST">
+                    <form action="../proses/tambah_sop_sub_anak_sub_anak_sub_bab_tanpa_sub_bab.php" method="POST">
                       <input type="number" id="txt_id_sub_bab" name="txt_id_sub_bab" value="<?= $get_id ?>" readonly hidden>
                       <input type="text" id="txt_id_bab_utama_sop_sub_bab" name="txt_id_bab_utama_sop_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly hidden>
                       <input type="text" id="txt_id_sub_bab_sop_sub_bab" name="txt_id_sub_bab_sop_sub_bab" value="<?= $get_id_sub_bab_sop ?>" readonly hidden>
                       <input type="text" id="txt_id_anak_sub_bab_sop_sub_bab" name="txt_id_anak_sub_bab_sop_sub_bab" value="<?= $get_id_anak_sub_bab_sop ?>" readonly hidden>
                       <input type="text" id="txt_id_sub_anak_sub_bab_sop_sub_bab" name="txt_id_sub_anak_sub_bab_sop_sub_bab" value="<?= $get_id_sub_anak_sub_bab_sop ?>" readonly hidden>
-                      <!-- <form action="./proses/tambah_sop_sub_bab_tanpa_sub_bab.php?id=$get_id&id_bab_utama_sop=$get_id_bab_utama_sop" method="POST"> -->
+                      
 
                       <div class="form-group row">
                         <label class="col-md-3" name="num_bab" id="num_bab">Dasar Hukum</label>
@@ -330,14 +343,14 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
                                 <td class="text-center"><?= $dt['waktu']; ?></td>
                                 <td class="text-center"><?= $dt['keterangan']; ?></td>
                                 <td class="text-center">
-                                  <a href="sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
+                                  <!-- <a href="../pages/sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a> -->
                                   <?php
                                   $id_modal = $dt['id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab'];
                                   ?>
                                   <button data-toggle="modal" data-target="#exampleModal<?= $id_modal ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
                                   <!-- <button data-toggle="modal" data-target="#exampleModal<?= $dt['id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab'] ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button> -->
 
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>&id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>&id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                 </td>
                               </tr>
@@ -401,7 +414,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
     '20'
   );
   ?>
-  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModaltam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form action="" method="POST">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -454,7 +467,7 @@ $get_id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
       $id_modal = $data['id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab'];
     ?>
 
-      <form action="./proses/edit_modal_anak_sub_anak_sub_bab_sop_tanpa_sub_bab.php?id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
+      <form action="../proses/edit_modal_anak_sub_anak_sub_bab_sop_tanpa_sub_bab.php?id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

@@ -231,9 +231,9 @@ if (isset($_POST['submit'])) {
                   <thead class="bg-olive">
                     <tr>
                       <th class="text-center" width="50px">#</th>
-                      <th class="text-center" width="150px">Urutan Pembahasan</th>
+                      <th class="text-center" width="120px">Urutan Pembahasan</th>
                       <th class="text-center">Bab Pembahasan Utama</th>
-                      <th class="text-center" width="190px">Aksi</th>
+                      <th class="text-center" width="200px">Aksi</th>
 
                     </tr>
                   </thead>

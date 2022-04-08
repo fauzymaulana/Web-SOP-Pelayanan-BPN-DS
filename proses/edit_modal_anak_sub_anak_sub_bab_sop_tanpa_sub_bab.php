@@ -18,9 +18,9 @@ $tanggal_modal = $_POST['tanggal_modal'];
 $sql_edit = "UPDATE tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab SET id='$txt_id', id_bab_utama_sop='$txt_id_bab_utama_sop_modal', id_sub_bab_sop='$txt_id_sub_bab_sop_modal', id_anak_sub_bab_sop='$txt_id_anak_sub_bab_sop_modal', id_sub_anak_sub_bab_sop = '$txt_id_sub_anak_sub_bab_sop_modal', dasar_hukum = '$txt_dasar_hukum_modal', persyaratan='$txt_persyaratan_modal',biaya='$txt_biaya_modal',waktu='$txt_waktu_modal',keterangan='$txt_keterangan_modal', tanggal_pembuatan='$tanggal_modal' WHERE id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab = '$id_modal'";
 
 if (mysqli_query($con, $sql_edit)) {
-    echo"<script>alert('Data Berhasil diubah.');;history.go(-1);</script>";
+    header("location:../pages/sop_anak_sub_anak_sub_bab.php?id=" . $txt_id_sub_bab . "&id_bab_utama_sop=" . $txt_id_bab_utama_sop_sub_bab . "&id_sub_bab_sop=" .$txt_id_sub_bab_sop_sub_bab . "&id_anak_sub_bab_sop=" .$txt_id_anak_sub_bab_sop_sub_bab . "&id_sub_anak_sub_bab_sop=" . $txt_id_sub_anak_sub_bab_sop_sub_bab . "&pesan=berhasil");
 } else {
-    echo"<script>alert('Data gagal di ubah!');;history.go(-1);</script>";
+    header("location:../pages/sop_anak_sub_anak_sub_bab.php?id=" . $txt_id_sub_bab . "&id_bab_utama_sop=" . $txt_id_bab_utama_sop_sub_bab . "&id_sub_bab_sop=" .$txt_id_sub_bab_sop_sub_bab . "&id_anak_sub_bab_sop=" .$txt_id_anak_sub_bab_sop_sub_bab . "&id_sub_anak_sub_bab_sop=" . $txt_id_sub_anak_sub_bab_sop_sub_bab . "&pesan=gagal");
     
 }
 

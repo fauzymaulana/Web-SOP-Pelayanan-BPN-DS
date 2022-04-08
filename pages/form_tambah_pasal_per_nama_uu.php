@@ -210,7 +210,7 @@ $get_id = $_GET['id'];
                       <th class="text-center">Pasal</th>
                       <th class="text-center" width="100px">Urutan Pasal</th>
                       <th class="text-center" width="80px"> Bab</th>
-                      <th class="text-center" width="200px">Judul Bab</th>
+                      <th class="text-center" width="150px">Judul Bab</th>
                       <th class="text-center" width="130px">Aksi</th>
 
                     </tr>

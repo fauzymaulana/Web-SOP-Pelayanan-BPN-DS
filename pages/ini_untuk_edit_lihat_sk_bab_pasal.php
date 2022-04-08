@@ -295,35 +295,6 @@ $get_id = $_GET['id'];
                         </div>
                         <!-- <span class="col-md-8"><?= $title_bab; ?></span> -->
                       </div>
-
-                      <!-- <?php
-                            // for ($i=1; $i <= $input_jumlah_pasal; $i++) { 
-
-                            //
-                            ?>
-
-                       <div class="control-group inpGroup">
-                        <hr>
-
-                        <div class="form-group text-center row justify-content-center">
-                          <div class="col">
-                            <h4 name="num_bab" id="num_bab">Pasal <?= $i ?> </h4> <input type="text" name="judul_pasal<?= $i ?>" id="judul_pasal" class="form-control hidden" value="Pasal <?= $i ?>" required readonly>
-                          </div>
-                          
-                        </div>
-
-                        <div class="form-group row">
-                          <label class="col-md-3" name="num_bab" id="num_bab">Isi Pasal <?= $i ?> </label> 
-                          <div class="col-md-9">
-                            <textarea class="ckeditor col-md-8" id="isi_pasal" name="isi_pasal<?= $i ?>" rows="10" cols="80" required></textarea>
-                          </div>
-                        </div>
-                      </div>
-
-                      <?php
-                      // }
-                      ?> -->
-
                       <div class="form-group row">
                         <label class="col-md-3" name="num_bab" id="num_bab"></label>
                         <div class="col-md-9">
@@ -333,19 +304,19 @@ $get_id = $_GET['id'];
                       </div>
                     </form>
                   <?php
-                  } elseif ($nama_uu !== $nama_uu_pra_bab) {
+                  } 
+                  // elseif ($nama_uu != $nama_uu_pra_bab) {
                   ?>
-                    <form action="../proses/tambah_lihat_sk_bab_pasal.php" id="form" method="POST">
+
+                     <!-- <form action="../proses/tambah_lihat_sk_bab_pasal.php" id="form" method="POST">
                       <div class="form-group row">
                         <span class="col-md-3">Nama Kumpulan UU</span>
                         <div class="col-md-8">
                           <input type="text" class="form-control" name="nama_kumpulan_uu" id="nama_kumpulan_uu" required readonly>
-                          <!-- <select class="select form-control" id="nama_kumpulan_uu" name="nama_kumpulan_uu" disabled>
-                          <option disabled selected><?= $data['nama_uu']; ?></option>
-                        </select> -->
+                        
                         </div>
 
-                        <!-- <label class="col-md-8"><?= $undang_undang_select_all; ?></label> -->
+                        
                       </div>
 
                       <div class="form-group row">
@@ -353,7 +324,7 @@ $get_id = $_GET['id'];
                         <div class="col-md-8">
                           <input type="text" name="kepala_lembaga_instansi" id="kepala_lembaga_instansi"  class="form-control" required>
                         </div>
-                        <!-- <span class="col-md-8"><?= $select_bab; ?></span> -->
+                        
                       </div>
 
                       <div class="form-group row">
@@ -361,7 +332,7 @@ $get_id = $_GET['id'];
                         <div class="col-md-8">
                           <input type="text" name="nama_pejabat_lembaga_instansi" id="nama_pejabat_lembaga_instansi" class="form-control" required>
                         </div>
-                        <!-- <span class="col-md-8"><?= $select_bab; ?></span> -->
+                        
                       </div>
 
                       <div class="form-group row">
@@ -369,7 +340,7 @@ $get_id = $_GET['id'];
                         <div class="col-md-8">
                           <input type="text" name="lokasi_pengesahan" id="lokasi_pengesahan" class="form-control"  required>
                         </div>
-                        <!-- <span class="col-md-8"><?= $select_bab; ?></span> -->
+                        
                       </div>
 
                       <div class="form-group row">
@@ -377,7 +348,7 @@ $get_id = $_GET['id'];
                         <div class="col-md-8">
                           <input type="date" name="tanggal_pengesahan" id="tanggal_pengesahan" class="form-control"  required>
                         </div>
-                        <!-- <span class="col-md-8"><?= $select_bab; ?></span> -->
+                        
                       </div>
 
                       <div class="form-group row">
@@ -385,7 +356,7 @@ $get_id = $_GET['id'];
                         <div class="col-md-8">
                           <textarea class="ckeditor" id="menimbang" name="menimbang" rows="10" cols="80" required></textarea>
                         </div>
-                        <!-- <span class="col-md-8"><?= $select_bab; ?></span> -->
+                        
                       </div>
 
                       <div class="form-group row">
@@ -393,7 +364,7 @@ $get_id = $_GET['id'];
                         <div class="col-md-8">
                           <textarea class="ckeditor" id="mengingat" name="mengingat" rows="10" cols="80" required></textarea>
                         </div>
-                        <!-- <span class="col-md-8"><?= $select_bab; ?></span> -->
+                        
                       </div>
 
                       <div class="form-group row">
@@ -401,21 +372,21 @@ $get_id = $_GET['id'];
                         <div class="col-md-8">
                           <textarea class="ckeditor" id="menetapkan" name="menetapkan" rows="10" cols="80" required></textarea>
                         </div>
-                        <!-- <span class="col-md-8"><?= $title_bab; ?></span> -->
+                        
                       </div>
                       
                       <div class="form-group row">
                         <label class="col-md-3" name="num_bab" id="num_bab"></label>
                         <div class="col-md-9">
                           <input type="submit" name="submit" id="submit" class="col btn btn-primary" value="Simpan">
-                          <!-- <input type="text" name="get_jlh_psl" readonly id="get_jlh_psl" value="<?= $input_jumlah_pasal; ?>"> -->
+                          
                         </div>
                       </div>
-                    </form>
+                    </form> -->
 
                 <?php
 
-                  }
+                  //}
                 endwhile;
 
                 ?>

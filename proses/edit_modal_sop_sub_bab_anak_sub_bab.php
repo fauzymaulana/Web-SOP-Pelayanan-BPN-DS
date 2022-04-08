@@ -16,9 +16,9 @@ $edit_tgl_bab_modal = $_POST['edit_tgl_bab_modal'];
 $sql_edit = "UPDATE tb_sub_anak_sub_bab_sop SET id='$txt_id_modal_sub_bab',id_bab_utama_sop='$txt_id_bab_utama_sop_modal_sub_bab', id_sub_bab_sop='$get_id_sub_bab_sop_modal_sub_bab', id_anak_sub_bab_sop='$get_id_anak_sub_bab_sop_modal_sub_bab',  urutan_sub_anak_sub_bab =  '$edit_select_bab', judul_sub_anak_sub_bab = '$edit_judul_bab', tanggal_pembuatan='$edit_tgl_bab_modal' WHERE id_sub_anak_sub_bab_sop = '$get_id_sub_anak_sub_bab_sop_modal_sub_bab'";
 
 if (mysqli_query($con, $sql_edit)) {
-    echo"<script>alert('Data Berhasil diubah.');history.go(-1);</script>";
+    header("location:../pages/sop_sub_anak_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" .$get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" .$get_id_anak_sub_bab_sop . "&pesan=berhasil");
 } else {
-    echo"<script>alert('Data gagal di ubah!');history.go(-1);</script>";
-    
+    // echo"<script>alert('Data gagal di ubah!');history.go(-1);</script>";
+    header("location:../pages/sop_sub_anak_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" .$get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" .$get_id_anak_sub_bab_sop . "&pesan=gagal");
 }
 
