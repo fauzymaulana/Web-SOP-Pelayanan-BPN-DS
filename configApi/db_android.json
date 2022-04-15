@@ -1,0 +1,102 @@
+[
+{"type":"header","version":"5.0.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"db_android"},
+{"type":"table","name":"tb_admin","database":"db_android","data":
+[
+{"id":"1","nama":"Andi","email":"andi@gmail.com","password":"123456789","tanggal_daftar":"2022-01-23 09:23:38"}
+]
+}
+,{"type":"table","name":"tb_anak_sub_anak_sub_bab_sop","database":"db_android","data":
+[
+
+]
+}
+,{"type":"table","name":"tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab","database":"db_android","data":
+[
+{"id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab":"23","id":"17","id_bab_utama_sop":"16","id_sub_bab_sop":"9","id_anak_sub_bab_sop":"12","id_sub_anak_sub_bab_sop":"11","dasar_hukum":"<ol>\r\n\t<li>UU No. 5\/1960<\/li>\r\n\t<li>UU No. 21\/1997 jo.&nbsp;20\/2000<\/li>\r\n\t<li>PP No. 48\/1994 jo.&nbsp;PP No. 79\/1996<\/li>\r\n\t<li>PP No. 24\/1997<\/li>\r\n\t<li>PP No. 13\/2010<\/li>\r\n\t<li>PMNA\/KBPN&nbsp;No. 3\/1997<\/li>\r\n\t<li>PMNA\/KBPN&nbsp;No. 3\/1999<\/li>\r\n\t<li>PMNA\/KBPN&nbsp;No. 9\/1999<\/li>\r\n\t<li>Peraturan KBPN RI&nbsp;No. 3\/2006<\/li>\r\n\t<li>Peraturan KBPN RI&nbsp;No. 4\/2006<\/li>\r\n\t<li>Peraturan KBPN&nbsp;No.7\/2007<\/li>\r\n\t<li>KMNA\/KBPN&nbsp;2\/1998<\/li>\r\n\t<li>KMNA\/KBPN&nbsp;6\/1998<\/li>\r\n\t<li>SE KBPN No. 600-1900 tanggal 31 Juli&nbsp;2003<\/li>\r\n<\/ol>\r\n","persyaratan":"<ol>\r\n\t<li>Formulir permohonan yang sudah diisi dan ditandatangani pemohon atau kuasanya di atas materai cukup<\/li>\r\n\t<li>Surat Kuasa apabila dikuasakan<\/li>\r\n\t<li>Fotocopy identitas (KTP, KK) pemohon dan kuasa apabila dikuasakan, yang telah dicocokkan dengan aslinya oleh petugas loket<\/li>\r\n\t<li>Asli Bukti perolehan tanah\/Alas Hak<\/li>\r\n\t<li>Asli Surat-surat bukti pelepasan hak dan pelunasan tanah dan rumah (Rumah Gol III) atau rumah yang dibeli dari pemerintah<\/li>\r\n\t<li>Foto copy SPPT PBB Tahun berjalan yang telah dicocokkan dengan aslinya oleh petugas loket, penyerahan bukti SSB (BPHTB) dan bukti bayar uang pemasukan (pada saat pendaftaran hak)<\/li>\r\n\t<li>Melampirkan bukti SSP\/PPh sesuai dengan ketentuan<\/li>\r\n<\/ol>\r\n","biaya":"<p>Sesuai ketentuan Peraturan Pemerintah tentang jenis dan tarif atas&nbsp;jenis penerimaan negara bukan pajak yang berlaku pada Badan Pertanahan Nasional Republik Indonesia<\/p>\r\n","waktu":"<p>a. 38 (tiga puluh delapan) hari untuk :<\/p>\r\n\r\n<ul>\r\n\t<li>Tanah pertanian yang luasnya tidak lebih dari 2 Ha<\/li>\r\n\t<li>Tanah non pertanian yang luasnya tidak lebih dari 2.000 m2<\/li>\r\n<\/ul>\r\n\r\n<p>b.&nbsp;57 (lima puluh tujuh) hari untuk:<\/p>\r\n\r\n<ul>\r\n\t<li>Tanah pertanian yang luasnya lebih dari 2 Ha<\/li>\r\n\t<li>Tanah non pertanian yang luasnya lebih dari 2.000 m2 s.d. 5.000 m2<\/li>\r\n<\/ul>\r\n\r\n<p>c.&nbsp;97 (sembilan puluh tujuh) hari untuk:<\/p>\r\n\r\n<ul>\r\n\t<li>Tanah non pertanian yang luasnya lebih dari 5.000 m2<\/li>\r\n<\/ul>\r\n","keterangan":"<p>Formulir permohonan memuat:<\/p>\r\n\r\n<ol>\r\n\t<li>Identitas diri<\/li>\r\n\t<li>Luas, letak dan pengunaan tanah yang dimohon<\/li>\r\n\t<li>Pernyataan tanah tidak sengketa<\/li>\r\n\t<li>Pernyataan tanah dikuasai secara fisik<\/li>\r\n\t<li>Pernyataan menguasau tanah tidak lebih dari 5 (lima) bidang untuk permohonan rumah tinggal<\/li>\r\n<\/ol>\r\n\r\n<p>&nbsp;<\/p>\r\n\r\n<p>Catatan :<\/p>\r\n\r\n<ol>\r\n\t<li>Tidak termasuk tenggang waktu pemenuhan kewajiban pembayaran sesuai SK<\/li>\r\n\t<li>Jangka waktu tidak termasuk waktu yang diperlukan untuk pengiriman berkas\/dokumen dari Kantah ke Kanwil dan BPN RI maupun sebaliknya.<\/li>\r\n<\/ol>\r\n","tanggal_pembuatan":"2022-04-07 20:44:55"}
+]
+}
+,{"type":"table","name":"tb_anak_sub_bab_sop","database":"db_android","data":
+[
+{"id_anak_sub_bab_sop":"12","id":"17","id_bab_utama_sop":"16","id_sub_bab_sop":"9","urutan_anak_sub_bab":"a","judul_anak_sub_bab":"Hak Milik","tanggal_pembuatan":"2022-04-07 20:27:04"},
+{"id_anak_sub_bab_sop":"13","id":"17","id_bab_utama_sop":"16","id_sub_bab_sop":"9","urutan_anak_sub_bab":"b","judul_anak_sub_bab":"Hak Guna Bangunan","tanggal_pembuatan":"2022-04-06 22:37:37"},
+{"id_anak_sub_bab_sop":"14","id":"20","id_bab_utama_sop":"19","id_sub_bab_sop":"11","urutan_anak_sub_bab":"a","judul_anak_sub_bab":"sampel III","tanggal_pembuatan":"2022-04-15 16:12:14"}
+]
+}
+,{"type":"table","name":"tb_anak_sub_bab_sop_tanpa_sub_bab","database":"db_android","data":
+[
+
+]
+}
+,{"type":"table","name":"tb_bab_utama_sop","database":"db_android","data":
+[
+{"id_bab_utama_sop":"16","id":"17","urutan_bab_utama_sop":"I","judul_bab_utama_sop":"PELAYANAN PENDAFTARAN TANAH PERTAMA KALI","tanggal_pembuatan":"2022-04-06 23:06:19"},
+{"id_bab_utama_sop":"17","id":"17","urutan_bab_utama_sop":"II","judul_bab_utama_sop":"Pelayanan Pemeliharaan Data Pendaftaran Tanah","tanggal_pembuatan":"2022-04-06 23:08:23"},
+{"id_bab_utama_sop":"18","id":"17","urutan_bab_utama_sop":"III","judul_bab_utama_sop":"Pelayanan Pencatatan Dan Informasi Pertanahan","tanggal_pembuatan":"2022-04-06 23:08:47"},
+{"id_bab_utama_sop":"19","id":"20","urutan_bab_utama_sop":"I","judul_bab_utama_sop":"sampel","tanggal_pembuatan":"2022-04-15 16:11:21"}
+]
+}
+,{"type":"table","name":"tb_bab_utama_sop_tanpa_sub_bab","database":"db_android","data":
+[
+
+]
+}
+,{"type":"table","name":"tb_nama_uu","database":"db_android","data":
+[
+{"id":"17","nama_uu":"PERATURAN KEPALA BADAN PERTANAHAN NASIONAL REPUBLIK INDONESIA NOMOR 1 TAHUN 2010 TENTANG STANDAR PELAYANAN DAN PENGATURAN PERTANAHAN","status":"Publish","tanggal_pembuatan":"2022-04-06 22:37:37"},
+{"id":"18","nama_uu":"sampel undang undang 2","status":"Draft","tanggal_pembuatan":"2022-04-12 20:23:23"},
+{"id":"19","nama_uu":"sampel undang undang 1","status":"Draft","tanggal_pembuatan":"2022-04-12 21:29:49"},
+{"id":"20","nama_uu":"sampel undang undang 10","status":"Draft","tanggal_pembuatan":"2022-04-15 16:10:23"}
+]
+}
+,{"type":"table","name":"tb_pasal","database":"db_android","data":
+[
+{"id_pasal":"15","nomor_bab":"BAB I","judul_bab":"Umum","nomor_urut_pasal":"1","isi_pasal":"<ol>\r\n\t<li>Standar Pelayanan dan Pengaturan Pertanahan merupakan pedoman dalam pelaksanaan layanan pertanahan di lingkungan Badan Pertanahan Nasional Republik Indonesia.<\/li>\r\n\t<li>Standar Pelayanan dan Pengaturan Pertanahan sebagaimana dimaksud pada ayat (1) dituangkan dalam Lampiran dan merupakan satu kesatuan yang tidak terpisahkan dari Peraturan ini.<\/li>\r\n<\/ol>\r\n","nama_uu_pasal":"PERATURAN KEPALA BADAN PERTANAHAN NASIONAL REPUBLIK INDONESIA NOMOR 1 TAHUN 2010 TENTANG STANDAR PELAYANAN DAN PENGATURAN PERTANAHAN","tanggal_pembuatan":"2022-04-06 23:00:04"},
+{"id_pasal":"16","nomor_bab":"BAB I","judul_bab":"Umum","nomor_urut_pasal":"2","isi_pasal":"<p>Standar Pelayanan dan Pengaturan Pertanahan dilaksanakan oleh Badan Pertanahan Nasional Republik Indonesia, Kantor Wilayah Badan Pertanahan Nasional, dan Kantor Pertanahan.<\/p>\r\n","nama_uu_pasal":"PERATURAN KEPALA BADAN PERTANAHAN NASIONAL REPUBLIK INDONESIA NOMOR 1 TAHUN 2010 TENTANG STANDAR PELAYANAN DAN PENGATURAN PERTANAHAN","tanggal_pembuatan":"2022-04-06 23:00:30"},
+{"id_pasal":"17","nomor_bab":"BAB II","judul_bab":"KELOMPOK DAN JENIS PELAYANAN","nomor_urut_pasal":"5","isi_pasal":"<ol>\r\n\t<li>Kelompok pelayanan sebagaimana dimaksud pada Pasal 4<br \/>\r\n\thuruf a terdiri dari pelayanan:<\/li>\r\n<\/ol>\r\n\r\n<ul>\r\n\t<li>Pendaftaran tanah pertama kali<\/li>\r\n\t<li>Pemeliharaan tanah dan Pendaftaran tanah<\/li>\r\n<\/ul>\r\n\r\n<p>&nbsp;<\/p>\r\n","nama_uu_pasal":"PERATURAN KEPALA BADAN PERTANAHAN NASIONAL REPUBLIK INDONESIA NOMOR 1 TAHUN 2010 TENTANG STANDAR PELAYANAN DAN PENGATURAN PERTANAHAN","tanggal_pembuatan":"2022-04-06 23:04:23"}
+]
+}
+,{"type":"table","name":"tb_profil_kantor","database":"db_android","data":
+[
+{"id_profil_kantor":"10","gambar_profil_kantor":"66fe9beb32332f122eaf03fcca9ad845-edit modal nama uu - Copy.PNG","judul_profil_kantor":"Real","deskripsi_kantor":"<p>wetwryu<\/p>\r\n","created_at":"2022-04-03 14:56:20"}
+]
+}
+,{"type":"table","name":"tb_profil_penulis","database":"db_android","data":
+[
+{"id_profil_penulis":"1","nama_profil_penulis":"Perdana","deskripsi_penulis":"<ol>\r\n\t<li>Suka menolong<\/li>\r\n\t<li>rajin menabung<\/li>\r\n<\/ol>\r\n","gambar_penulis":"d3a9d3200ab4dae200a44255b152f103-edit modal nama uu - Copy - Copy.PNG","created_at":"2022-04-03 21:22:28"}
+]
+}
+,{"type":"table","name":"tb_sk_pra_bab_pasal","database":"db_android","data":
+[
+{"id_sk_pra_bab":"18","id":"17","nama_uu_bab":"PERATURAN KEPALA BADAN PERTANAHAN NASIONAL REPUBLIK INDONESIA NOMOR 1 TAHUN 2010 TENTANG STANDAR PELAYANAN DAN PENGATURAN PERTANAHAN","kepala_lembaga_instansi":"KEPALA BADAN PERTANAHAN NASIONAL REPUBLIK INDONESIA,","nama_pejabat_lembaga_instansi":"JOYO WINOTO, Ph.D.","lokasi_pengesahan":"Jakarta","tanggal_pengesahan":"2010-04-25","menimbang":"<ul>\r\n\t<li>bahwa untuk melaksanakan Undang-undang Nomor 25 Tahun 2009 tentang Pelayanan Publik dan dalam rangka menyesuaikan perkembangan dan tuntutan kebutuhan pelayanan masyarakat di bidang pertanahan perlu penyempurnaan Keputusan Kepala Badan Pertanahan Nasional Nomor 1 Tahun 2005 tentang Standar Prosedur Operasi Pengaturan dan Pelayanan di Lingkungan Badan Pertanahan Nasional jo. Peraturan Kepala Badan Pertanahan Nasional Republik Indonesia Nomor 6 Tahun 2008 tentang Penyederhanaan dan Percepatan Standar Prosedur Operasi Pengaturan dan Pelayanan Pertanahan Untuk Jenis Pelayanan Tertentu;<\/li>\r\n\t<li>bahwa berdasarkan pertimbangan sebagaimana dimaksud pada huruf a perlu ditetapkan Peraturan Kepala Badan Pertanahan Nasional Republik Indonesia tentang Standar Pelayanan dan Pengaturan Pertanahan;<\/li>\r\n<\/ul>\r\n","mengingat":"<ol>\r\n\t<li>Undang-undang Nomor 5 Tahun 1960 tentang Peraturan Dasar Pokok-pokok Agraria (Lembaran Negara Republik Indonesia Tahun 1960 Nomor 104, Tambahan Lembaran Negara Republik Indonesia Nomor 2043);<\/li>\r\n\t<li>Undang-undang Nomor 25 Tahun 2009 tentang Pelayanan Publik (Lembaran Negara Republik Indonesia Tahun 2009 Nomor 112, Tambahan Lembaran Negara Republik Indonesia Nomor 5038);<\/li>\r\n\t<li>Peraturan Presiden Nomor 10 Tahun 2006 tentang Badan Pertanahan Nasional;<\/li>\r\n\t<li>Peraturan Kepala Badan Pertanahan Nasional Republik Indonesia Nomor 3 Tahun 2006 tentang Organisasi dan Tata Kerja Badan Pertanahan Nasional Republik Indonesia;<\/li>\r\n\t<li>Peraturan Kepala Badan Pertanahan Nasional Republik Indonesia Nomor 4 Tahun 2006 tentang Organisasi dan Tata Kerja Kantor Wilayah Badan Pertanahan Nasional dan Kantor Pertanahan.<\/li>\r\n<\/ol>\r\n","menetapkan":"<p>PERATURAN KEPALA BADAN PERTANAHAN NASIONAL TENTANG STANDAR PELAYANAN DAN PENGATURAN PERTANAHAN.<\/p>\r\n","tanggal_pembuatan":"2022-04-12 20:20:15"},
+{"id_sk_pra_bab":"19","id":"18","nama_uu_bab":"sampel undang undang 2","kepala_lembaga_instansi":null,"nama_pejabat_lembaga_instansi":null,"lokasi_pengesahan":null,"tanggal_pengesahan":null,"menimbang":null,"mengingat":null,"menetapkan":null,"tanggal_pembuatan":"2022-04-12 21:27:44"},
+{"id_sk_pra_bab":"21","id":"19","nama_uu_bab":"sampel undang undang 1","kepala_lembaga_instansi":"","nama_pejabat_lembaga_instansi":"","lokasi_pengesahan":"","tanggal_pengesahan":"0000-00-00","menimbang":"","mengingat":"","menetapkan":"","tanggal_pembuatan":"2022-04-12 21:56:55"},
+{"id_sk_pra_bab":"22","id":"20","nama_uu_bab":"sampel undang undang 10","kepala_lembaga_instansi":"","nama_pejabat_lembaga_instansi":"","lokasi_pengesahan":"","tanggal_pengesahan":"0000-00-00","menimbang":"","mengingat":"","menetapkan":"","tanggal_pembuatan":"2022-04-15 16:10:34"}
+]
+}
+,{"type":"table","name":"tb_sub_anak_sub_bab_sop","database":"db_android","data":
+[
+{"id_sub_anak_sub_bab_sop":"11","id":"17","id_bab_utama_sop":"16","id_sub_bab_sop":"9","id_anak_sub_bab_sop":"12","urutan_sub_anak_sub_bab":"1","judul_sub_anak_sub_bab":"Hak Milik Perorangan","tanggal_pembuatan":"2022-04-07 20:28:50"},
+{"id_sub_anak_sub_bab_sop":"12","id":"17","id_bab_utama_sop":"16","id_sub_bab_sop":"9","id_anak_sub_bab_sop":"12","urutan_sub_anak_sub_bab":"2","judul_sub_anak_sub_bab":"Hak Milik Badan Hukum","tanggal_pembuatan":"2022-04-07 20:30:51"},
+{"id_sub_anak_sub_bab_sop":"13","id":"20","id_bab_utama_sop":"19","id_sub_bab_sop":"11","id_anak_sub_bab_sop":"14","urutan_sub_anak_sub_bab":"1","judul_sub_anak_sub_bab":"sampel IV","tanggal_pembuatan":"2022-04-15 16:12:33"}
+]
+}
+,{"type":"table","name":"tb_sub_anak_sub_bab_sop_tanpa_sub_bab","database":"db_android","data":
+[
+
+]
+}
+,{"type":"table","name":"tb_sub_bab_sop","database":"db_android","data":
+[
+{"id_sub_bab_sop":"8","id_bab_utama_sop":"16","id":"17","urutan_sub_bab":"1","judul_sub_bab":"Konversi, Pengakuan dan Penegasan Hak","tanggal_pembuatan":"2022-04-06 23:32:28"},
+{"id_sub_bab_sop":"9","id_bab_utama_sop":"16","id":"17","urutan_sub_bab":"2","judul_sub_bab":"Pemberian Hak","tanggal_pembuatan":"2022-04-07 20:20:30"},
+{"id_sub_bab_sop":"10","id_bab_utama_sop":"16","id":"17","urutan_sub_bab":"3","judul_sub_bab":"Wakaf","tanggal_pembuatan":"2022-04-06 22:37:37"},
+{"id_sub_bab_sop":"11","id_bab_utama_sop":"19","id":"20","urutan_sub_bab":"1","judul_sub_bab":"sampel II","tanggal_pembuatan":"2022-04-15 16:11:54"}
+]
+}
+,{"type":"table","name":"tb_sub_bab_sop_tanpa_sub_bab","database":"db_android","data":
+[
+
+]
+}
+]

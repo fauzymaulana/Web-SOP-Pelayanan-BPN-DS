@@ -39,6 +39,7 @@ if (mysqli_query($con, $sql_edit)) {
   // } else {
   //   $returnDraft = 'Draft';
   // }
+  header("location:../pages/empty.php?pesan=berhasil");
   
   
   

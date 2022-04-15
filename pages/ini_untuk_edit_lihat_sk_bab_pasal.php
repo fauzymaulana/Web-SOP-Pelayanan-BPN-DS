@@ -211,22 +211,118 @@ $get_id = $_GET['id'];
 
               <div class="box-body">
                 <?php
-                // $get_id = $_GET['id'];
+                $get_id = $_GET['id'];
                 $result = mysqli_query($con, "SELECT * FROM tb_nama_uu WHERE id= '$get_id'");
                 while ($dt = mysqli_fetch_array($result)) {
                   $nama_uu = $dt['nama_uu'];
+                  $id_nama_uu = $dt['id'];
                 }
 
-                $sql_sk_sk_pra_bab_nama_uu = mysqli_query($con, "SELECT * FROM tb_sk_pra_bab_pasal WHERE nama_uu_bab = '$nama_uu'");
+                // $sql_sk_sk_pra_bab_nama_uu = mysqli_query($con, "SELECT * FROM tb_sk_pra_bab_pasal WHERE nama_uu_bab = '$nama_uu'");
+                // $result = mysqli_query($con, "SELECT * FROM tb_nama_uu WHERE id= '$get_id'");
+                // while ($dt = mysqli_fetch_array($result)) {
+                //   $nama_uu = $dt['nama_uu'];
+                // }
 
-                while ($data = mysqli_fetch_array($sql_sk_sk_pra_bab_nama_uu)) :
-                  $nama_uu_pra_bab = $data['nama_uu_bab'];
-                  if ($nama_uu === $nama_uu_pra_bab) {
+                $sql_sk_sk_pra_bab_nama_uu = mysqli_query($con, "SELECT * FROM tb_sk_pra_bab_pasal WHERE id= '$get_id'");
+                if (mysqli_num_rows($sql_sk_sk_pra_bab_nama_uu) === 0) {
+                  $tz = 'Asia/Jakarta';
+                  $dt = new DateTime("now", new DateTimeZone($tz));
+                  $time = $dt->format('Y-m-d G:i:s');
 
-                    // echo $data['nama_uu'];
+                  $input_sk = "INSERT INTO tb_sk_pra_bab_pasal(id,nama_uu_bab,kepala_lembaga_instansi,nama_pejabat_lembaga_instansi,lokasi_pengesahan,tanggal_pengesahan,menimbang,mengingat,menetapkan,tanggal_pembuatan) VALUES ('$get_id','$nama_uu', '', '', '', '', '', '', '', '$time')";
 
+                  if (mysqli_query($con, $input_sk)) {
+                    $select_sk = mysqli_query($con, "SELECT * FROM tb_sk_pra_bab_pasal WHERE id = '$get_id'");
+                    while ($data_skk = mysqli_fetch_array($select_sk)) :
+                      echo $data_skk['nama_uu_bab'];
                 ?>
+
+                      <form action="../proses/tambah_lihat_sk_bab_pasal.php" method="POST">
+                        <div class="form-group row">
+                          <span class="col-md-3">Nama Kumpulan UU</span>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" name="nama_kumpulan_uu" id="nama_kumpulan_uu" readonly value="<?= $data_skk['nama_uu_bab'];?>">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <span class="col-md-3">Kepala Lembaga Intansi</span>
+                          <div class="col-md-8">
+                            <input type="text" name="kepala_lembaga_instansi" id="kepala_lembaga_instansi" class="form-control" required>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                          <span class="col-md-3">Nama Pejabat Lembaga Intansi</span>
+                          <div class="col-md-8">
+                            <input type="text" name="nama_pejabat_lembaga_instansi" id="nama_pejabat_lembaga_instansi" class="form-control" required>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                          <span class="col-md-3">Lokasi Pengesahan</span>
+                          <div class="col-md-8">
+                            <input type="text" name="lokasi_pengesahan" id="lokasi_pengesahan" class="form-control" required>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                          <span class="col-md-3">Tanggal Pengesahan</span>
+                          <div class="col-md-8">
+                            <input type="date" name="tanggal_pengesahan" id="tanggal_pengesahan" class="form-control" required>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                          <span class="col-md-3">Menimbang</span>
+                          <div class="col-md-8">
+                            <textarea class="ckeditor" id="menimbang" name="menimbang" rows="10" cols="80" required></textarea>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                          <span class="col-md-3">Mengingat</span>
+                          <div class="col-md-8">
+                            <textarea class="ckeditor" id="mengingat" name="mengingat" rows="10" cols="80" required></textarea>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                          <span class="col-md-3">Menetapkan</span>
+                          <div class="col-md-8">
+                            <textarea class="ckeditor" id="menetapkan" name="menetapkan" rows="10" cols="80" required></textarea>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                          <label class="col-md-3" name="num_bab" id="num_bab"></label>
+                          <div class="col-md-9">
+                            <input type="submit" name="submit" id="submit" class="col btn btn-primary" value="Simpan">
+
+                          </div>
+                        </div>
+                      </form>
+
+                    <?php
+                    endwhile;
+                  }
+                } else {
+                  while ($data = mysqli_fetch_array($sql_sk_sk_pra_bab_nama_uu)) :
+                    $nama_uu_pra_bab = $data['nama_uu_bab'];
+                    $id_sk_pra_bab = $data['id'];
+
+                    ?>
+
                     <hr>
+
                     <form action="../proses/tambah_lihat_sk_bab_pasal.php" id="form" method="POST">
                       <div class="form-group row">
                         <span class="col-md-3">Nama Kumpulan UU</span>
@@ -303,93 +399,47 @@ $get_id = $_GET['id'];
                         </div>
                       </div>
                     </form>
-                  <?php
-                  } 
-                  // elseif ($nama_uu != $nama_uu_pra_bab) {
-                  ?>
-
-                     <!-- <form action="../proses/tambah_lihat_sk_bab_pasal.php" id="form" method="POST">
-                      <div class="form-group row">
-                        <span class="col-md-3">Nama Kumpulan UU</span>
-                        <div class="col-md-8">
-                          <input type="text" class="form-control" name="nama_kumpulan_uu" id="nama_kumpulan_uu" required readonly>
-                        
-                        </div>
-
-                        
-                      </div>
-
-                      <div class="form-group row">
-                        <span class="col-md-3">Kepala Lembaga Intansi</span>
-                        <div class="col-md-8">
-                          <input type="text" name="kepala_lembaga_instansi" id="kepala_lembaga_instansi"  class="form-control" required>
-                        </div>
-                        
-                      </div>
-
-                      <div class="form-group row">
-                        <span class="col-md-3">Nama Pejabat Lembaga Intansi</span>
-                        <div class="col-md-8">
-                          <input type="text" name="nama_pejabat_lembaga_instansi" id="nama_pejabat_lembaga_instansi" class="form-control" required>
-                        </div>
-                        
-                      </div>
-
-                      <div class="form-group row">
-                        <span class="col-md-3">Lokasi Pengesahan</span>
-                        <div class="col-md-8">
-                          <input type="text" name="lokasi_pengesahan" id="lokasi_pengesahan" class="form-control"  required>
-                        </div>
-                        
-                      </div>
-
-                      <div class="form-group row">
-                        <span class="col-md-3">Tanggal Pengesahan</span>
-                        <div class="col-md-8">
-                          <input type="date" name="tanggal_pengesahan" id="tanggal_pengesahan" class="form-control"  required>
-                        </div>
-                        
-                      </div>
-
-                      <div class="form-group row">
-                        <span class="col-md-3">Menimbang</span>
-                        <div class="col-md-8">
-                          <textarea class="ckeditor" id="menimbang" name="menimbang" rows="10" cols="80" required></textarea>
-                        </div>
-                        
-                      </div>
-
-                      <div class="form-group row">
-                        <span class="col-md-3">Mengingat</span>
-                        <div class="col-md-8">
-                          <textarea class="ckeditor" id="mengingat" name="mengingat" rows="10" cols="80" required></textarea>
-                        </div>
-                        
-                      </div>
-
-                      <div class="form-group row">
-                        <span class="col-md-3">Menetapkan</span>
-                        <div class="col-md-8">
-                          <textarea class="ckeditor" id="menetapkan" name="menetapkan" rows="10" cols="80" required></textarea>
-                        </div>
-                        
-                      </div>
-                      
-                      <div class="form-group row">
-                        <label class="col-md-3" name="num_bab" id="num_bab"></label>
-                        <div class="col-md-9">
-                          <input type="submit" name="submit" id="submit" class="col btn btn-primary" value="Simpan">
-                          
-                        </div>
-                      </div>
-                    </form> -->
 
                 <?php
 
-                  //}
-                endwhile;
+                  endwhile;
+                }
 
+                // if ($id_nama_uu === $get_id) {
+
+
+                //   var_dump($id_sk_pra_bab . "\n");
+                //   var_dump($get_id . "\n");
+                //   
                 ?>
+
+                 <?php
+
+
+                    //   // } elseif ($get_id != $id_sk_pra_bab) {
+                    // } elseif (mysqli_num_rows($get_id) == 0) {
+
+
+                    //   var_dump($id_sk_pra_bab . "\n");
+                    //   var_dump($get_id . "\n");
+                    //   $input_sk = "INSERT INTO tb_sk_pra_bab_pasal(id,nama_uu_bab,kepala_lembaga_instansi,nama_pejabat_lembaga_instansi,lokasi_pengesahan,tanggal_pengesahan,menimbang,mengingat,menetapkan,tanggal_pembuatan) VALUES ('$get_id','$nama_uu_pra_bab', '', '', '', '', '', '', '', '$time')";
+                    //   if (mysqli_query($con, $input_sk)) {
+                    //     $sql_sk = mysqli_query($con, "SELECT * FROM tb_sk_pra_bab_pasal WHERE id= '$get_id'");
+                    //     while ($data_sk = mysqli_fetch_array($sql_sk)) {
+                    //   
+                    ?>
+
+
+
+               <?php
+
+                    //     }
+                    //   }
+                    // }
+
+
+                    
+                    ?>
               </div>
 
               <!--  </form> -->
@@ -402,7 +452,7 @@ $get_id = $_GET['id'];
   </aside><!-- /.right-side -->
   </div><!-- ./wrapper -->
 
- 
+
   <!-- jQuery 2.1.1 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <!-- Bootstrap -->
@@ -452,19 +502,19 @@ $get_id = $_GET['id'];
       //   $(document).ready(function() {
       //   $('.inp_pasal').inp_pasal()
       // });
-      var z = "<?= $i ?>";
-      $('#inp_pasal' + z).on('change', function() {
-        const po = $('#inp_pasal' + z).val();
-        $('#asb' + z).val(po);
-        if (po == true) {
-          var hsl = document.getElementById("pasal_tampil");
-          hsl.innerHTML = "<input type='text' id='a' name='a' placeholder='ini pasal'>";
-        }
-        if (po == false) {
-          hsl.innerHTML = "";
-        }
+      // var z = "";
+      // $('#inp_pasal' + z).on('change', function() {
+      //   const po = $('#inp_pasal' + z).val();
+      //   $('#asb' + z).val(po);
+      //   if (po == true) {
+      //     var hsl = document.getElementById("pasal_tampil");
+      //     hsl.innerHTML = "<input type='text' id='a' name='a' placeholder='ini pasal'>";
+      //   }
+      //   if (po == false) {
+      //     hsl.innerHTML = "";
+      //   }
 
-      });
+      // });
 
     });
   </script>
