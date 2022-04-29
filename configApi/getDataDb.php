@@ -72,16 +72,17 @@ while ($data_bab_utama = mysqli_fetch_array($query_bab_utama_sop)) {
 }
 
 
-$query_bab_utama_sop = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop WHERE id = '$id_nama_uu'");
-$json_response_detail_bab_utama_sop = array();
-while ($data_bab_utama = mysqli_fetch_array($query_bab_utama_sop)) {
-  array_push($json_response_detail_bab_utama_sop, array(
-    "id_bab_utama_sop" => $data_bab_utama['id_bab_utama_sop'],
-    "id" => $data_bab_utama['id'],
-    "urutan_bab_utama_sop" => $data_bab_utama['urutan_bab_utama_sop'],
-    "judul_bab_utama_sop" => $data_bab_utama['judul_bab_utama_sop'],
-    "tanggal_pembuatan" => $data_bab_utama['tanggal_pembuatan']
-  ));
+$query_bab_utama_sopp = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop WHERE id = '$id_nama_uu'");
+$json_response_detail_bab_utama_sopp = array();
+while ($data_bab_utamaa = mysqli_fetch_assoc($query_bab_utama_sopp)) {
+  $json_response_detail_bab_utama_sopp[] = $data_bab_utamaa;
+  // array_push($json_response_detail_bab_utama_sop, array(
+  //   "id_bab_utama_sop" => $data_bab_utama['id_bab_utama_sop'],
+  //   "id" => $data_bab_utama['id'],
+  //   "urutan_bab_utama_sop" => $data_bab_utama['urutan_bab_utama_sop'],
+  //   "judul_bab_utama_sop" => $data_bab_utama['judul_bab_utama_sop'],
+  //   "tanggal_pembuatan" => $data_bab_utama['tanggal_pembuatan']
+  // ));
 }
 
 
@@ -115,20 +116,20 @@ while ($data_sub_bab_sop = mysqli_fetch_array($query_sub_bab_sop)) {
 }
 
 
-$json_response_detail_sub_bab_sop_tanpa_sub_bab = array();
-while ($data_sub_bab_sop_tanpa_sub_bab = mysqli_fetch_array($query_sub_bab_sop_tanpa_sub_bab)) {
-  array_push($json_response_detail_sub_bab_sop_tanpa_sub_bab, array(
-    "id_sub_bab_sop_tanpa_sub_bab" => $data_sub_bab_sop_tanpa_sub_bab['id_sub_bab_sop_tanpa_sub_bab'],
-    "id" => $data_sub_bab_sop_tanpa_sub_bab['id'],
-    "id_bab_utama_sop" => $data_sub_bab_sop_tanpa_sub_bab['id_bab_utama_sop'],
-    "dasar_hukum" => $data_sub_bab_sop_tanpa_sub_bab['dasar_hukum'],
-    "persyaratan" => $data_sub_bab_sop_tanpa_sub_bab['persyaratan'],
-    "biaya" => $data_sub_bab_sop_tanpa_sub_bab['biaya'],
-    "waktu" => $data_sub_bab_sop_tanpa_sub_bab['waktu'],
-    "keterangan" => $data_sub_bab_sop_tanpa_sub_bab['keterangan'],
-    "tanggal_pembuatan" => $data_sub_bab_sop_tanpa_sub_bab['tanggal_pembuatan']
-  ));
-}
+// $json_response_detail_sub_bab_sop_tanpa_sub_bab = array();
+// while ($data_sub_bab_sop_tanpa_sub_bab = mysqli_fetch_array($query_sub_bab_sop_tanpa_sub_bab)) {
+//   array_push($json_response_detail_sub_bab_sop_tanpa_sub_bab, array(
+//     "id_sub_bab_sop_tanpa_sub_bab" => $data_sub_bab_sop_tanpa_sub_bab['id_sub_bab_sop_tanpa_sub_bab'],
+//     "id" => $data_sub_bab_sop_tanpa_sub_bab['id'],
+//     "id_bab_utama_sop" => $data_sub_bab_sop_tanpa_sub_bab['id_bab_utama_sop'],
+//     "dasar_hukum" => $data_sub_bab_sop_tanpa_sub_bab['dasar_hukum'],
+//     "persyaratan" => $data_sub_bab_sop_tanpa_sub_bab['persyaratan'],
+//     "biaya" => $data_sub_bab_sop_tanpa_sub_bab['biaya'],
+//     "waktu" => $data_sub_bab_sop_tanpa_sub_bab['waktu'],
+//     "keterangan" => $data_sub_bab_sop_tanpa_sub_bab['keterangan'],
+//     "tanggal_pembuatan" => $data_sub_bab_sop_tanpa_sub_bab['tanggal_pembuatan']
+//   ));
+// }
 
 
 $query_anak_sub_bab_sop = mysqli_query($con, "SELECT * FROM tb_anak_sub_bab_sop WHERE id = '$id_nama_uu'");
@@ -162,17 +163,33 @@ while ($data_sub_bab_sop_tanpa_sub_bab = mysqli_fetch_array($query_anak_sub_bab_
   ));
 }
 
+// echo json_encode($json_response_detail_bab_utama_sopp, JSON_PRETTY_PRINT);
+// echo "<br>";
+echo  json_encode(
+//   ['tb_sk_pra_bab_pasal' => $json_response_detail_sk],
+$json_response_detail_bab_utama_sop
+//   ['tb_bab_utama_sop_tanpa_sub_bab' => $json_response_detail_bab_utama_sop_tanpa_sub_bab],
+//   ['tb_sub_bab_sop' => $json_response_detail_sub_bab_sop],
+//   ['tb_sub_bab_sop_tanpa_sub_bab' => $json_response_detail_sub_bab_sop_tanpa_sub_bab],
+//   ['tb_anak_sub_bab_sop' => $json_response_detail_anak_sub_bab_sop]
+);
 
-echo json_encode(array(
-  ['tb_nama_uu' => $json_response_detail_nama_uu],
-  ['tb_sk_pra_bab_pasal' => $json_response_detail_sk],
-  ['tb_bab_utama_sop' => $json_response_detail_bab_utama_sop],
-  ['tb_bab_utama_sop_tanpa_sub_bab' => $json_response_detail_bab_utama_sop_tanpa_sub_bab],
-  ['tb_sub_bab_sop' => $json_response_detail_sub_bab_sop],
-  ['tb_sub_bab_sop_tanpa_sub_bab' => $json_response_detail_sub_bab_sop_tanpa_sub_bab],
-  ['tb_anak_sub_bab_sop' => $json_response_detail_anak_sub_bab_sop]
-));
+// echo json_decode(array([$json_response_detail_bab_utama_sop]));
 
+
+// $file =  file_get_contents('db_android.json');
+// $file_cont =  file_get_contents('contac.json');
+
+// $js = json_decode($file_cont, true);
+// // var_dump($js);
+// echo $js["contacts"][0]["email"];
+// echo "<br>";
+// echo $js["contacts"][0]["phone"]["mobile"];
+// $js = json_decode($file, true);
+// // var_dump($js);
+// echo $js[12]["name"];
+// echo "<br>";
+// echo $js[12]["data"][0]["nama_profil_penulis"];
 
 
 
