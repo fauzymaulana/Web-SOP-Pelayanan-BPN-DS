@@ -92,7 +92,7 @@ $sk = json_encode($json_response_detail_sk);
     </div>
 
     <div class="row" style="margin-top: 20px;">
-      <p class="col-md-12 text-center">Memutuskan :</p>
+      <p class="col-md-12 text-center">MEMUTUSKAN :</p>
     </div>
 
     <div class="row" style="margin-top: 10px;">
@@ -186,11 +186,7 @@ $sk = json_encode($json_response_detail_sk);
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-  <!-- DATA TABES SCRIPT -->
-  <script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-  <script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-  <!-- AdminLTE App -->
-  <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
+
 
 </body>
 

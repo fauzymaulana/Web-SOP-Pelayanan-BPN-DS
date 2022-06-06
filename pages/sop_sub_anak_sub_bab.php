@@ -276,7 +276,7 @@ $selectedSel = '0';
                       </button>
                     </div>
 
-                    <div class="box-content" id="forminp" style="display: block;">
+                    <div class="box-content" id="forminp" style="display: none;">
                       <form action="../proses/tambah_sop_anak_sub_anak_sub_bab_tanpa_sub_bab.php" method="POST">
                         <input type="hidden" id="txt_id_sub_bab" name="txt_id_sub_bab" value="<?= $get_id ?>" readonly >
                         <input type="hidden" id="txt_id_bab_utama_sop_sub_bab" name="txt_id_bab_utama_sop_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
@@ -743,6 +743,19 @@ $selectedSel = '0';
         tabel.style.display = "none";
       }
     }
+
+    // function unhideTable() {
+    // var tabel = document.getElementById("tabel");
+    // var forminp = document.getElementById("forminp");
+    // if (forminp.style.display === "none") {
+    //   forminp.style.display = "block";
+    //   tabel.style.display = "none";
+
+
+    // } else {
+    //   forminp.style.display = "none";
+    // }
+  // }
 
     function unhideTable() {
       if (forminp.style.display === "none") {
