@@ -39,6 +39,7 @@ if (isset($_POST['submit'])) {
         // memindahkan file kedalam folder "Gambar"
         move_uploaded_file($file_tmp, '../gambar/penulis/' . $nama_gambar_baru);
         $tampung_nama = '../gambar/penulis/' . $nama_gambar_baru;
+        // $tampung_nama = base64_encode($tam)
         // cek dimensi gambar 3X4
         $max_img_width = 177; // piksel
         $max_img_height = 236; // piksel

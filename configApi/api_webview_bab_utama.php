@@ -9,7 +9,7 @@ while ($data_nama_uu = mysqli_fetch_array($query_nama_uu)) {
   $nama_uu = $data_nama_uu['nama_uu'];
 }
 
-$query_bab_utama_sopp = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop WHERE id = '$id_nama_uu'");
+$query_bab_utama_sopp = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop_tanpa_sub_bab WHERE id = '$id_nama_uu'");
 $json_response_detail_bab_utama_sop = array();
 
 while ($data_bab_utamaa = mysqli_fetch_array($query_bab_utama_sopp)) {

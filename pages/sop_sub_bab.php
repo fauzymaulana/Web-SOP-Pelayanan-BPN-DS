@@ -26,15 +26,18 @@ $get_id_bab_utama_sop = $_GET['id_bab_utama_sop'];
 
 
 $select_bab = '1';
+$sub_bab_utamaa = "0";
 if (isset($_POST['submit'])) {
   $select_bab = $_POST['select_bab'];
   $select_bab = strval($select_bab);
   $judul_bab = $_POST['judul_bab'];
+  $apa = $_POST['apa']; 
+  // $apa = strval($apa);
   $tz = 'Asia/Jakarta';
   $dt = new DateTime("now", new DateTimeZone($tz));
   $time = $dt->format('Y-m-d G:i:s');
 
-  $input_sub_bab_sop = "INSERT INTO tb_sub_bab_sop(id_bab_utama_sop,id,urutan_sub_bab,judul_sub_bab,tanggal_pembuatan) VALUES ('$get_id_bab_utama_sop','$get_id','$select_bab','$judul_bab','$time')";
+  $input_sub_bab_sop = "INSERT INTO tb_sub_bab_sop(id_bab_utama_sop,id,urutan_sub_bab,judul_sub_bab,ada_sub_bab,tanggal_pembuatan) VALUES ('$get_id_bab_utama_sop','$get_id','$select_bab','$judul_bab','$apa','$time')";
 
   if (mysqli_query($con, $input_sub_bab_sop)) {
     header("location: ../pages/sop_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&pesan=berhasil");
@@ -304,6 +307,7 @@ $selectedSel = '0';
                         <option value="0">Tidak</option>
                         <option value="1">Ya</option>
                       </select>
+                      <input type="text" id="apa" name="apa">
                     </div>
                   </div>
                   <hr>
@@ -510,6 +514,7 @@ $selectedSel = '0';
 
   <!-- Modal Tambah-->
   <?php
+  $apa = $_POST['apa'];
   $bab_romawi = array(
     '1',
     '2',
@@ -833,6 +838,13 @@ $selectedSel = '0';
         $("#asp").val(selectedSelect);
       });
     });
+
+    $(document).ready(function(){
+      $('#sub_bab_utamaa').on('change', function() {
+        const subsub = $('#sub_bab_utamaa').val();
+        $('#apa').val(subsub);
+      })
+    })
   </script>
 
 
