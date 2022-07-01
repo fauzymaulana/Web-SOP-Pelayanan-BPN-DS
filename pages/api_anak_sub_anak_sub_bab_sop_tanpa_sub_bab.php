@@ -10,32 +10,31 @@ while ($data_nama_uu = mysqli_fetch_array($query_nama_uu)) {
 }
 
 $id_sub_anak_sub_bab_sop = $_GET['id_sub_anak_sub_bab_sop'];
-$query_sub_anak_sub_bab_tanpa_sub_bab = mysqli_query($con, "SELECT * FROM tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab JOIN tb_sub_anak_sub_bab_sop ON tb_sub_anak_sub_bab_sop.id_sub_anak_sub_bab_sop  = tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab.id_sub_anak_sub_bab_sop  WHERE tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab.id_sub_anak_sub_bab_sop = '$id_sub_anak_sub_bab_sop'");
+$query_sub_anak_sub_bab_tanpa_sub_bab = mysqli_query($con, "SELECT * FROM tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab JOIN tb_anak_sub_anak_sub_bab_sop ON tb_anak_sub_anak_sub_bab_sop.id_anak_sub_anak_sub_bab_sop  = tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab.id_anak_sub_anak_sub_bab_sop  WHERE tb_anak_sub_anak_sub_bab_sop_tanpa_sub_bab.id_anak_sub_anak_sub_bab_sop = '$id_anak_sub_anak_sub_bab_sop'");
 $json_response_detail_anak_sub_bab_tanpa_sub_bab = array();
 
-while ($data_anak_sup_bab = mysqli_fetch_array($query_sub_anak_sub_bab_tanpa_sub_bab)) {
+while ($data_anak_sup_bab = mysqli_fetch_array($query_anak_sub_bab_tanpa_sub_bab)) {
   // $json_response_detail_bab_utama_sop_tanpa_sub_bab[] = $data_bab_utamaa;
   array_push($json_response_detail_anak_sub_bab_tanpa_sub_bab, array(
-    "id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab" => $data_anak_sup_bab['id_anak_sub_anak_sub_bab_sop_tanpa_sub_bab'],
+    "id_anak_sub_bab_sop_tanpa_sub_bab" => $data_anak_sup_bab['id_anak_sub_bab_sop_tanpa_sub_bab'],
     "id" => $data_anak_sup_bab['id'],
     "id_bab_utama_sop" => $data_anak_sup_bab['id_bab_utama_sop'],
     "id_sub_bab_sop" => $data_anak_sup_bab['id_sub_bab_sop'],
     "id_anak_sub_bab_sop" => $data_anak_sup_bab['id_anak_sub_bab_sop'],
-    "id_sub_anak_sub_bab_sop" => $data_anak_sup_bab['id_sub_anak_sub_bab_sop'],
     "dasar_hukum" => $data_anak_sup_bab['dasar_hukum'],
     "persyaratan" => $data_anak_sup_bab['persyaratan'],
     "biaya" => $data_anak_sup_bab['biaya'],
     "waktu" => $data_anak_sup_bab['waktu'],
     "keterangan" => $data_anak_sup_bab['keterangan'],
     "tanggal_pembuatan" => $data_anak_sup_bab['tanggal_pembuatan'],
-    "judul_sub_anak_sub_bab" => $data_anak_sup_bab['judul_sub_anak_sub_bab']
+    "judul_anak_sub_bab" => $data_anak_sup_bab['judul_anak_sub_bab']
     
   ));
 }
 
 $json_response_detail_anak_sub_bab_tanpa_sub_bab = json_encode($json_response_detail_anak_sub_bab_tanpa_sub_bab)
 ;
-// echo $json_response_detail_anak_sub_bab_tanpa_sub_bab;
+echo $json_response_detail_anak_sub_bab_tanpa_sub_bab;
 
 ?>
 <!DOCTYPE html>
@@ -64,7 +63,7 @@ $json_response_detail_anak_sub_bab_tanpa_sub_bab = json_encode($json_response_de
   <section class="content">
 
     <div class="row" style="margin-top: 10px;">
-      <p class="col-md-12 text-center"><?= $json_response_detail_anak_sub_bab_tanpa_sub_bab[0]['judul_sub_anak_sub_bab'] ?></p>
+      <p class="col-md-12 text-center"><?= $json_response_detail_anak_sub_bab_tanpa_sub_bab[0]['judul_anak_sub_bab'] ?></p>
     </div>
 
     <div class="row" style="margin-top: 20px;">

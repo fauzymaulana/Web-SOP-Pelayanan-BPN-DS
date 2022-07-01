@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
   $dt = new DateTime("now", new DateTimeZone($tz));
   $time = $dt->format('Y-m-d G:i:s');
 
-  $input_bab_sop = "INSERT INTO tb_bab_utama_sop(id,urutan_bab_utama_sop,judul_bab_utama_sop,tanggal_pembuatan) VALUES ('$get_id','$select_bab','$judul_bab','$time')";
+  $input_bab_sop = "INSERT INTO tb_bab_utama_sop(id,ada_sub_bab_bab_utama,urutan_bab_utama_sop,judul_bab_utama_sop,tanggal_pembuatan) VALUES ('$get_id','1','$select_bab','$judul_bab','$time')";
 
   if (mysqli_query($con, $input_bab_sop)) {
     header("location:../pages/sop_bab.php?id=" . $get_id . "&pesan=berhasil");
@@ -242,7 +242,7 @@ if (isset($_POST['submit'])) {
 
 
                     $no = 1;
-                    $select_tb_pasal = mysqli_query($con, "SELECT * from tb_bab_utama_sop JOIN tb_nama_uu USING(id) WHERE id = '$get_id' ORDER BY urutan_bab_utama_sop ASC");
+                    $select_tb_pasal = mysqli_query($con, "SELECT * from tb_bab_utama_sop JOIN tb_nama_uu USING(id) WHERE id = '$get_id' ORDER BY id_bab_utama_sop ASC");
                     if (mysqli_num_rows($select_tb_pasal) > 0) {
                       while ($data = mysqli_fetch_array($select_tb_pasal)) {
                         $id_bab_utama_sop = $data['id_bab_utama_sop'];

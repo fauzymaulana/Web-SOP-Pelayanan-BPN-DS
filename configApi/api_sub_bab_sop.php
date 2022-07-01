@@ -9,28 +9,8 @@ while ($data_nama_uu = mysqli_fetch_array($query_nama_uu)) {
   $nama_uu = $data_nama_uu['nama_uu'];
 }
 
-
-// $query_bab_utama_sopp = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop WHERE id = '$id_nama_uu'");
-// $json_response_detail_bab_utama_sop = array();
-// while ($data_bab_utama_sopp = mysqli_fetch_array($query_bab_utama_sopp)) {
-//   // array_push($json_response_detail_bab_utama_sop, array(
-//   //   "id_bab_utama_sop" => $data_bab_utama_sopp['id_bab_utama_sop'],
-//   //   "id" => $data_bab_utama_sopp['id'],
-//   //   "urutan_bab_utama_sop" => $data_bab_utama_sopp['urutan_bab_utama_sop'],
-//   //   "judul_bab_utama_sop" => $data_bab_utama_sopp['judul_bab_utama_sop'],
-//   //   "tanggal_pembuatan" => $data_bab_utama_sopp['tanggal_pembuatan'],
-//   //   "status"      => "201"
-//   // ));
-//   // $id_bab_utama_sop = $data_bab_utama_sopp['id_bab_utama_sop'];
-  
-// }
-// // $json_response_detail_bab_utama_sop = json_encode($json_response_detail_bab_utama_sop);
-// // $json_response_detail_bab_utama_sop = json_decode($json_response_detail_bab_utama_sop, true);
-
-// // $id_bab_utam = $json_response_detail_bab_utama_sop[0]['id_bab_utama_sop'];
-
 $id_bab_utama_sop = $_GET['id_bab_utama_sop'];
-$query_sub_bab_sop = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop WHERE id = '$id_nama_uu' AND id_bab_utama_sop = '$id_bab_utama_sop' ");
+$query_sub_bab_sop = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop WHERE id = '$id_nama_uu' AND id_bab_utama_sop = '$id_bab_utama_sop' AND ada_sub_bab = '1' ");
 //AND id_bab_utama_sop = '16'
 $json_response_detail_sub_bab_sop = array();
 

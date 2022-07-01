@@ -213,10 +213,16 @@ $email = $_SESSION['email'];
               <?php
               $query_tampil = mysqli_query($con, "SELECT * FROM tb_profil_kantor ORDER BY id_profil_kantor DESC LIMIT 0,1");
 
+              if(mysqli_num_rows($query_tampil) <= 0){
+                $pengolah_data_kantor = 'tambah_profil_kantor.php?id_profil_kantor=';
+              }else{
+                $pengolah_data_kantor = 'edit_profil_kantor.php?id_profil_kantor=';
+              }
+
               while ($data_kantor = mysqli_fetch_array($query_tampil)) :
                 $id_kntr = $data_kantor['id_profil_kantor'];
               ?>
-                <form role="form" action="../proses/tambah_profil_kantor.php?id_profil_kantor=<?= $id_kntr ?>" method="POST" enctype="multipart/form-data">
+                <form role="form" action="../proses/<?=$pengolah_data_kantor?><?= $id_kntr ?>" method="POST" enctype="multipart/form-data">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Judul profil</label>

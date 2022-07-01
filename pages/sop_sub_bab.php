@@ -1,4 +1,5 @@
 <?php
+
 include '../connect/koneksi.php';
 //sampai di tambah bab dan pasal.php
 // bingung konsep penambahan field tabel secara dinamis menyesuaikan inputan user jumlah pasal per bab
@@ -31,13 +32,14 @@ if (isset($_POST['submit'])) {
   $select_bab = $_POST['select_bab'];
   $select_bab = strval($select_bab);
   $judul_bab = $_POST['judul_bab'];
-  $apa = $_POST['apa']; 
+  $nilai_sub_bab = $_POST['nilai_sub_bab']; 
+
   // $apa = strval($apa);
   $tz = 'Asia/Jakarta';
   $dt = new DateTime("now", new DateTimeZone($tz));
   $time = $dt->format('Y-m-d G:i:s');
 
-  $input_sub_bab_sop = "INSERT INTO tb_sub_bab_sop(id_bab_utama_sop,id,urutan_sub_bab,judul_sub_bab,ada_sub_bab,tanggal_pembuatan) VALUES ('$get_id_bab_utama_sop','$get_id','$select_bab','$judul_bab','$apa','$time')";
+  $input_sub_bab_sop = "INSERT INTO tb_sub_bab_sop(id_bab_utama_sop,id,urutan_sub_bab,judul_sub_bab,ada_sub_bab,tanggal_pembuatan) VALUES ('$get_id_bab_utama_sop','$get_id','$select_bab','$judul_bab','$nilai_sub_bab','$time')";
 
   if (mysqli_query($con, $input_sub_bab_sop)) {
     header("location: ../pages/sop_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&pesan=berhasil");
@@ -306,8 +308,8 @@ $selectedSel = '0';
                       <select class="select form-control" id="sub_bab_utamaa" name="sub_bab_utamaa">
                         <option value="0">Tidak</option>
                         <option value="1">Ya</option>
+                        <input type="text" name="nilai_sub_bab3" id="nilai_sub_bab3" value="0" hidden readonly>
                       </select>
-                      <input type="text" id="apa" name="apa">
                     </div>
                   </div>
                   <hr>
@@ -327,7 +329,9 @@ $selectedSel = '0';
                     <form action='../proses/tambah_sop_sub_bab_tanpa_sub_bab.php' method="POST">
                       <input type="number" id="id" name="id" value="<?=$get_id?>" readonly hidden>
                       <input type="number" id="id_bab_utama_sop" name="id_bab_utama_sop" value="<?=$get_id_bab_utama_sop?>" readonly hidden >
+                      <input type="text" name="nilai_sub_bab2" id="nilai_sub_bab2" value="0" hidden readonly>
                       <div class="form-group row">
+                        
                         <label class="col-md-3" name="num_bab" id="num_bab">Dasar Hukum</label>
                         <div class="col-md-9">
                           <textarea class="ckeditor col-md-8" id="txt_dasar_hukum" name="txt_dasar_hukum" rows="10" cols="80" required></textarea>
@@ -460,7 +464,7 @@ $selectedSel = '0';
 
 
                           $no = 1;
-                          $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_bab_utama_sop= '$get_id_bab_utama_sop'");
+                          $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_bab_utama_sop= '$get_id_bab_utama_sop' AND ada_sub_bab = '1'");
                           if (mysqli_num_rows($select_tb_pasal) > 0) {
                             while ($dt = mysqli_fetch_array($select_tb_pasal)) {
                               $id_modal_edit = $dt['id_sub_bab_sop'];
@@ -475,7 +479,7 @@ $selectedSel = '0';
                                   
                                   <button data-toggle="modal" data-target="#editModalSubBab<?= $id_modal_edit ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                 </td>
                               </tr>
@@ -514,7 +518,6 @@ $selectedSel = '0';
 
   <!-- Modal Tambah-->
   <?php
-  $apa = $_POST['apa'];
   $bab_romawi = array(
     '1',
     '2',
@@ -552,6 +555,7 @@ $selectedSel = '0';
             <div class="control-group">
               <div class="form-group row">
                 <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
+                <input type="text" name="nilai_sub_bab" id="nilai_sub_bab" hidden readonly>
                 <div class="col-md-9">
                   <select class="select form-control" id="select_bab" name="select_bab" required>
                     <?php
@@ -842,8 +846,13 @@ $selectedSel = '0';
     $(document).ready(function(){
       $('#sub_bab_utamaa').on('change', function() {
         const subsub = $('#sub_bab_utamaa').val();
-        $('#apa').val(subsub);
-      })
+        $('#nilai_sub_bab').val(subsub);
+        $('#nilai_sub_bab2').val(subsub);
+        $('#nilai_sub_bab3').val(subsub);
+      });
+      // $('#apa').on('change',function(){
+      //   const nilai = ('#apa').val();
+      // })
     })
   </script>
 

@@ -9,6 +9,7 @@ while ($data_nama_uu = mysqli_fetch_array($query_nama_uu)) {
   $nama_uu = $data_nama_uu['nama_uu'];
 }
 
+
 $id_bab_utama_sop = $_GET['id_bab_utama_sop'];
 $query_bab_utama_sop_tanpa_sub_bab = mysqli_query($con, "SELECT * FROM tb_bab_utama_sop_tanpa_sub_bab JOIN tb_bab_utama_sop ON tb_bab_utama_sop.id_bab_utama_sop = tb_bab_utama_sop_tanpa_sub_bab.id_bab_utama_sop WHERE tb_bab_utama_sop_tanpa_sub_bab.id_bab_utama_sop = '$id_bab_utama_sop'");
 $json_response_detail_bab_utama_sop_tanpa_sub_bab = array();
@@ -19,21 +20,23 @@ while ($data_bab_utamaa = mysqli_fetch_array($query_bab_utama_sop_tanpa_sub_bab)
     "id_bab_utama_sop_tanpa_sub_bab" => $data_bab_utamaa['id_bab_utama_sop_tanpa_sub_bab'],
     "id" => $data_bab_utamaa['id'],
     "id_bab_utama_sop" => $data_bab_utamaa['id_bab_utama_sop'],
+    "ada_sub_bab_bab_utama_tanpa_sub_bab" => $data_bab_utamaa['ada_sub_bab_bab_utama_tanpa_sub_bab'],
     "dasar_hukum" => $data_bab_utamaa['dasar_hukum'],
     "persyaratan" => $data_bab_utamaa['persyaratan'],
     "biaya" => $data_bab_utamaa['biaya'],
     "waktu" => $data_bab_utamaa['waktu'],
     "keterangan" => $data_bab_utamaa['keterangan'],
     "tanggal_pembuatan" => $data_bab_utamaa['tanggal_pembuatan'],
-    "status" => "webview",
-    "judul_bab" => $data_bab_utamaa['judul_bab_utama_sop']
-    
+    "judul_bab" => $data_bab_utamaa['judul_bab_utama_sop'],
+    "status" => "webview"
   ));
 }
 
-$json_response_detail_bab_utama_sop_tanpa_sub_bab = json_encode($json_response_detail_bab_utama_sop_tanpa_sub_bab)
+$json_response_detail_bab_utama_sop_tanpa_sub_bab = json_encode($json_response_detail_bab_utama_sop_tanpa_sub_bab);
+
 ;
 // echo $json_response_detail_bab_utama_sop_tanpa_sub_bab;
+
 
 ?>
 <!DOCTYPE html>
@@ -58,6 +61,7 @@ $json_response_detail_bab_utama_sop_tanpa_sub_bab = json_encode($json_response_d
 
   <?php
   $json_response_detail_bab_utama_sop_tanpa_sub_bab = json_decode($json_response_detail_bab_utama_sop_tanpa_sub_bab, true);
+  
   ?>
   <section class="content">
 

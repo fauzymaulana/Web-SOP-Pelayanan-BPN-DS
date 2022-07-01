@@ -25,7 +25,7 @@ while ($data_sub_anak_sub_bab_sop = mysqli_fetch_array($query_sub_anak_sub_bab_s
     "urutan_sub_anak_sub_bab" => $data_sub_anak_sub_bab_sop['urutan_sub_anak_sub_bab'],
     "judul_sub_anak_sub_bab" => $data_sub_anak_sub_bab_sop['judul_sub_anak_sub_bab'],
     "tanggal_pembuatan" => $data_sub_anak_sub_bab_sop['tanggal_pembuatan'],
-    "status"      => "201"
+    "status"      => "202"
   ));
 }
 

@@ -1,13 +1,20 @@
 <?php
 include '../connect/koneksi.php';
 $id_kntr = $_GET['id_profil_kantor'];
-$id_kntr = $id_kntr+1;
 
 if (isset($_POST['submit'])) {
   $judul_kantor = $_POST['judul_kantor'];
   $gambar_kantor = $_FILES['gambar_kantor']['name'];
   $gambar_kantor_size = $_FILES['gambar_kantor']['size'];
   $deskripsi_kantor = $_POST['deskripsi_kantor'];
+
+  $query_tampil = mysqli_query($con, "SELECT * FROM tb_profil_kantor ORDER BY id_profil_kantor DESC LIMIT 0,1");
+  while ($data_kantor = mysqli_fetch_array($query_tampil)) {
+    $id_kntr = $data_kantor['id_profil_kantor'];
+    $judul_kantor = $data_kantor['judul_profil_kantor'];
+    $gambar_kantor = $data_kantor['gambar_profil_kantor']['name'];
+
+  }
 
   // timestamp
   $tz = 'Asia/Jakarta';
@@ -47,11 +54,13 @@ if (isset($_POST['submit'])) {
 
         if (!($img_info = getimagesize($tampung_nama))) {
           header("location:../pages/pengaturan.php?pesan=dimensi");
+
+         
           
         }else{
           if (($img_info[0] === $max_img_width) && ($img_info[1] === $max_img_height)) {
             // query
-            $query_insert = "INSERT INTO tb_profil_kantor(gambar_profil_kantor,judul_profil_kantor,deskripsi_kantor,created_at) VALUES ('$nama_gambar_baru', '$judul_kantor', '$deskripsi_kantor', $time)";
+            $query_insert = "UPDATE tb_profil_kantor SET gambar_profil_kantor='$tampung_nama', judul_profil_kantor='$judul_kantor', deskripsi_kantor='$deskripsi_kantor' WHERE id_profil_kantor='$id_kntr'";
             $result = mysqli_query($con, $query_insert);
             if (!$result) {
               header("location:../pages/pengaturan.php?pesan=gagal");
@@ -74,5 +83,4 @@ if (isset($_POST['submit'])) {
     }
 
   }
-
 }
