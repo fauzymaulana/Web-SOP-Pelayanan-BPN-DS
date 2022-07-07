@@ -10,16 +10,14 @@ if (!isset($_SESSION['email'])) {
 $id = $_SESSION['id'];
 $nama = $_SESSION['nama'];
 $email = $_SESSION['email'];
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>ATR/BPN</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
   <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -42,12 +40,6 @@ $email = $_SESSION['email'];
   <!-- Theme style -->
   <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-      <![endif]-->
 </head>
 
 <body class="skin-black">
@@ -125,7 +117,7 @@ $email = $_SESSION['email'];
             </a>
           </li>
           <li>
-          <a href="../pages/pengaturan.php">
+            <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -137,8 +129,6 @@ $email = $_SESSION['email'];
             </a>
             <ul class="treeview-menu">
               <li><a href="../pages/lihatadmin.php"><i class="fa fa-angle-double-right"></i> Data Pengguna Admin</a></li>
-              <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                                    <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li> -->
             </ul>
           </li>
           <li class="treeview">
@@ -150,9 +140,6 @@ $email = $_SESSION['email'];
             <ul class="treeview-menu">
               <li class="active"><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
               <li><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
-              <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
-              <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-              <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
             </ul>
           </li>
         </ul>
@@ -166,28 +153,28 @@ $email = $_SESSION['email'];
       <!-- Main content -->
       <section class="content">
 
-      <?php if (isset($_GET['pesan'])) { ?>
+        <?php if (isset($_GET['pesan'])) { ?>
           <?php if ($_GET['pesan'] == "berhasil") { ?>
             <div class="alert alert-success show" role="alert">
               <label>Data <strong>Berhasil</strong> di proses.</label>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
+            </div>
           <?php } elseif ($_GET['pesan'] == "gagal") { ?>
             <div class="alert alert-danger show" role="alert">
-             <label> Data <strong>Gagal</strong> di proses!.</label>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <label> Data <strong>Gagal</strong> di proses!.</label>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
+            </div>
           <?php } elseif ($_GET['pesan'] == "error") { ?>
             <div class="alert alert-danger show" role="alert">
-             <label> Status <strong>Publish</strong> tidak boleh lebih dari 1.</label>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <label> Status <strong>Publish</strong> tidak boleh lebih dari 1.</label>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
+            </div>
           <?php } ?>
         <?php } ?>
 
@@ -218,10 +205,10 @@ $email = $_SESSION['email'];
                     include '../connect/koneksi.php';
 
                     $no = 1;
-                    $data = mysqli_query($con, "SELECT * from tb_nama_uu order by tanggal_pembuatan DESC");
+                    $data = mysqli_query($con, "SELECT * from tb_nama_uu order by id DESC");
                     if (mysqli_num_rows($data) > 0) {
                       while ($dt = mysqli_fetch_array($data)) {
-                        $id = $dt['id'];
+                        $id_nama_uu = $dt['id'];
                     ?>
 
                         <tr>
@@ -239,9 +226,8 @@ $email = $_SESSION['email'];
                           <td class="stat text-center"><span class="badge justify-content-center <?= $bg ?>"><?= $status ?></span></td>
                           <td class="text-center">
 
-                            <!-- <a href="lihat.php?id=<?= $dt['id']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a> -->
-                            <!-- <a href="edit.php?id=<?= $dt['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Ubah</a> -->
-                            <button data-toggle="modal" data-target="#editModal<?=$id?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+                            <!-- <button data-toggle="modal" data-target="#editModal<?= $id_nama_uu ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button> -->
+                            <button data-toggle="modal" id="tombolUbah" data-target="#editModal" class="btn btn-info btn-xs" data-id="<?= $dt['id'] ?>" data-nama="<?= $dt['nama_uu'] ?>" data-status="<?= $dt['status'] ?>"><i class="fa fa-pencil"></i> Ubah</button>
                             <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_modal_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
 
@@ -344,9 +330,9 @@ $email = $_SESSION['email'];
   </div><!-- ./wrapper -->
 
   <!-- Start Modal Edit -->
-  <div class="modal fade" id="editModal<?=$id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php
-    $query_edit = mysqli_query($con, "SELECT * from tb_nama_uu WHERE id = '$id'");
+    $query_edit = mysqli_query($con, "SELECT * from tb_nama_uu WHERE id = '$id_nama_uu'");
 
     while ($data = mysqli_fetch_array($query_edit)) :
       $id = $data['id'];
@@ -363,18 +349,18 @@ $email = $_SESSION['email'];
             </div>
             <div class="modal-body">
               <div class="control-group">
-                <input type="number" id="txt_id_modal" name="txt_id_modal" value="<?= $id ?>" readonly hidden> 
+                <input type="number" id="id" name="txt_id_modal" readonly hidden>
                 <?php
-                  $status_select = array('Draft', 'Publish');
-                  $status = 'Draft';
-                  ?>
+                $status_select = array('Draft', 'Publish');
+                $status = 'Draft';
+                ?>
 
                 <div class="form-group row">
                   <div class="col-md-3">
                     <label>Nama kump. UU</label>
                   </div>
                   <div class="col-md-9">
-                    <input type="text" name="mod_nama_kumpulan_uu" class="form-control" value="<?=$data['nama_uu']?>" required>
+                    <input type="text" name="mod_nama_kumpulan_uu" id="nama_uu" class="form-control"  required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -382,13 +368,13 @@ $email = $_SESSION['email'];
                     <label>Status Tampil</label>
                   </div>
                   <div class="col-md-9">
-                  <input type="hidden" id="edit_tgl_nama_uu" name="edit_tgl_nama_uu" class="form-control" value="<?=$data['tanggal_pembuatan']?>" readonly>
+                    <input type="hidden" id="edit_tgl_nama_uu" name="edit_tgl_nama_uu" class="form-control" value="<?= $data['tanggal_pembuatan'] ?>" readonly>
                     <select class="select form-control" id="status" name="mod_status">
                       <?php
                       foreach ($status_select as $key_status_select => $value_status_select) {
                         if ($value_status_select == $data['status']) {
                           $selec = "selected";
-                        }else{
+                        } else {
                           $selec = "";
                         }
                         echo "<option value= '$value_status_select' $selec >$value_status_select</option>";
@@ -434,6 +420,16 @@ $email = $_SESSION['email'];
         "bInfo": true,
         "bAutoWidth": false
       });
+    });
+
+    $(document).on('click', '#tombolUbah', function() {
+      let id = $(this).data('id');
+      let nama = $(this).data('nama');
+      let status = $(this).data('status');
+
+      $('.modal-body #id').val(id);
+      $('.modal-body #nama_uu').val(nama);
+      $('.modal-body #status').val(status);
     });
   </script>
 

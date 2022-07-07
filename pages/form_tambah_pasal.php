@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include '../connect/koneksi.php';
 //sampai di tambah bab dan pasal.php
 // bingung konsep penambahan field tabel secara dinamis menyesuaikan inputan user jumlah pasal per bab
@@ -20,6 +21,8 @@ $email = $_SESSION['email'];
 
 //get nama kumpulan uU
 $get_id = $_GET['id'];
+$get_id_pasal = 0;
+$get_id_pasal = $_GET['id_pasal'];
 
 ?>
 <!DOCTYPE html>
@@ -27,7 +30,7 @@ $get_id = $_GET['id'];
 
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>ATR/BPN</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
   <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -48,22 +51,11 @@ $get_id = $_GET['id'];
   <!-- Theme style -->
   <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body class="skin-black">
   <?php
-  // if ($selected == "-- Pilih Bab --") {
-  //   echo "Silahkan Pilih Bab.!";
-  // }
-  // elseif ($selected == 'BAB I') {
-  //   # code...
-  // }
+
   $bab_romawi = array(
     'BAB I',
     'BAB II',
@@ -212,9 +204,6 @@ $get_id = $_GET['id'];
             <ul class="treeview-menu">
               <li><a href="../pages/empty.php"><i class="fa fa-angle-double-right"></i> Kumpulan Undang-Undang</a></li>
               <li class="active"><a href="../pages/lihat_sk.php"><i class="fa fa-angle-double-right"></i> Pembuatan SK</a></li>
-              <!-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Pembuatan SOP</a></li>
-              <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-              <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> -->
             </ul>
           </li>
         </ul>
@@ -239,38 +228,70 @@ $get_id = $_GET['id'];
                 <h3 class="box-title">Formulir Tambah Pasal</h3>
               </div><!-- /.box-header -->
 
+              <?php
+              if($get_id_pasal == 0){
+
+                  $result = mysqli_query($con, "SELECT * FROM tb_nama_uu WHERE id= '$get_id'");
+                  while ($dt = mysqli_fetch_array($result)) {
+                    $nama_uu_pasal = $dt['nama_uu'];
+                  }
+                  
+                  $nomor_bab = '';
+                  $judul_bab = '';
+                  $nomor_urut_pasal = '';
+                  $isi_pasal = '';
+
+                    foreach ($bab_romawi as $key_bab_romawi => $value_bab_romawi) {
+                      if ($value_bab_romawi != $nomor_bab) {
+                        $selec = "";
+                      }
+                    }
+ 
+                $route_process = 'simpan_pasal_serta_bab.php';
+
+              }else if($get_id_pasal != 0){
+                $query_edit_pasal = mysqli_query($con, "SELECT * from tb_pasal WHERE id_pasal = '$get_id_pasal'");
+                while($data_pasal = mysqli_fetch_assoc($query_edit_pasal)){
+                  $nomor_bab = $data_pasal['nomor_bab'];
+                  $judul_bab = $data_pasal['judul_bab'];
+                  $nomor_urut_pasal = $data_pasal['nomor_urut_pasal'];
+                  $isi_pasal = $data_pasal['isi_pasal'];
+                  $nama_uu_pasal = $data_pasal['nama_uu_pasal'];
+                }
+                $route_process = 'edit_pasal_serta_bab.php?id='.$get_id.'&id_pasal='.$get_id_pasal;
+
+                foreach ($bab_romawi as $key_bab_romawi => $value_bab_romawi) {
+                  if ($value_bab_romawi == $nomor_bab) {
+                    $selec = "selected";
+                  }
+                }
+
+              }
+              ?>
+
               <div class="box-body">
                 <hr>
-                <form action="../proses/simpan_pasal_serta_bab.php" id="form" method="POST">
+                <form action="../proses/<?= $route_process ?>" id="form" method="POST">
                   <div class="form-group row">
-                    <?php
-                    $result = mysqli_query($con, "SELECT * FROM tb_nama_uu WHERE id= '$get_id'");
-                    while ($dt = mysqli_fetch_array($result)) :
-                    ?>
+                    
                       <span class="col-md-3">Nama Kumpulan UU</span>
                       <div class="col-md-9">
-                        <!-- <select class="select form-control" id="undang_undang_select" name="undang_undang_select" disabled>
-                                                    <option disabled selected><?= $dt['nama_uu'] ?></option>
-                                                </select> -->
-                        <input type="text" name="undang_undang_select" id="undang_undang_select" class="form-control" value="<?= $dt['nama_uu'] ?>" required readonly>
+                        <input type="text" name="undang_undang_select" id="undang_undang_select" class="form-control" value="<?= $nama_uu_pasal ?>" required readonly>
 
-                      </div>
-                      <!-- <label class="col-md-8"><?= $undang_undang_select_all; ?></label> -->
-                    <?php
-                    endwhile;
-                    ?>
+                      </div>                    
                   </div>
 
 
                   <div class="form-group row">
                     <span class="col-md-3">BAB</span>
                     <div class="col-md-9">
-                      <select class="select form-control" id="nomor_bab" name="nomor_bab">
+                      <select class="select form-control" id="nomor_bab" name="nomor_bab" >
                         <?php
                         foreach ($bab_romawi as $key_bab_romawi => $value_bab_romawi) {
-                          echo '<option value="' . $value_bab_romawi . '">' . $value_bab_romawi . '</option>';
+                          echo "<option value= '$value_bab_romawi' $selec >$value_bab_romawi</option>";
                         }
                         ?>
+                        <option value="<?=$value_bab_romawi?>"><?=$value_bab_romawi?></option>
                       </select>
                       <!-- <input type="text" name="pilihan_bab" id="pilihan_bab" class="form-control" value="<?= $pilihan_bab; ?>" required readonly> -->
                     </div>
@@ -281,7 +302,7 @@ $get_id = $_GET['id'];
                     <span class="col-md-3">Nama Bab</span>
                     <div class="col-md-9">
                       <!-- <input type="text" name="title_bab<?= $i ?>" id="title_bab" class="form-control col-md-8" value="<?= $title_bab; ?>" required readonly> -->
-                      <input type="text" name="title_bab" id="title_bab" class="form-control col-md-8" required>
+                      <input type="text" name="title_bab" id="title_bab" class="form-control col-md-8" value="<?=$judul_bab?>" required>
                     </div>
                     <!-- <span class="col-md-8"><?= $title_bab; ?></span> -->
                   </div>
@@ -299,14 +320,14 @@ $get_id = $_GET['id'];
                     <div class="form-group row">
                       <label class="col-md-3" name="num_bab" id="num_bab">No. Urut Pasal </label>
                       <div class="col-md-9">
-                        <input type="number" class="form-control" id="no_urut_pasal" name="no_urut_pasal" required>
+                        <input type="number" class="form-control" id="no_urut_pasal" name="no_urut_pasal" value="<?=$nomor_urut_pasal?>" required>
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-md-3" name="num_bab" id="num_bab">Isi Pasal</label>
                       <div class="col-md-9">
-                        <textarea class="ckeditor col-md-8" id="isi_pasal" name="isi_pasal" rows="10" cols="80" required></textarea>
+                        <textarea class="ckeditor col-md-8" id="isi_pasal" name="isi_pasal" rows="10" cols="80" required><?= $isi_pasal ?></textarea>
                       </div>
                     </div>
                   </div>

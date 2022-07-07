@@ -1,69 +1,78 @@
 <?php
 include '../connect/koneksi.php';
-$id_kntr = $_GET['id_profil_kantor'];
+$id_penulis = $_GET['id_profil_penulis'];
 
-if (isset($_POST['submit'])) {
-  $post_judul_kantor = $_POST['judul_kantor'];
-  $post_gambar_kantor = $_FILES['gambar_kantor']['name'];
-  $gambar_kantor_size = $_FILES['gambar_kantor']['size'];
-  $deskripsi_kantor = $_POST['deskripsi_kantor'];
-
-  $query_tampil = mysqli_query($con, "SELECT * FROM tb_profil_kantor ORDER BY id_profil_kantor DESC LIMIT 0,1");
+$query_tampil = mysqli_query($con, "SELECT * FROM tb_profil_penulis ORDER BY id_profil_penulis DESC LIMIT 0,1");
   while ($data_kantor = mysqli_fetch_array($query_tampil)) {
-    $id_kntr = $data_kantor['id_profil_kantor'];
-    $judul_kantor = $data_kantor['judul_profil_kantor'];
-    $gambar_kantor = $data_kantor['gambar_profil_kantor']['name'];
+    $id_profil_penulis = $data_kantor['id_profil_penulis'];
+    $nama_penulis = $data_kantor['nama_profil_penulis'];
+    $gambar_penulis = $data_kantor['gambar_penulis']['name'];
 
   }
+
+if (isset($_POST['submit'])) {
+  $post_nama_penulis = $_POST['nama_penulis'];
+  $post_gambar_penulis = $_FILES['gambar_penulis']['name'];
+  $gambar_penulis_size = $_FILES['gambar_penulis']['size'];
+  $post_deksripsi_penulis = $_POST['deksripsi_penulis'];
 
   // timestamp
   $tz = 'Asia/Jakarta';
   $dt = new DateTime("now", new DateTimeZone($tz));
   $time = $dt->format('Y-m-d G:i:s');
 
-  if ($gambar_kantor_size > 2097152) {
+  if ($gambar_penulis_size > 2097152) {
     // echo "<script>alert('Maksimal ukuran adalah 2MB.');window.location='../pengaturan.php';</script>";
     header("location:../pages/pengaturan.php?pesan=ukuranfile");
   } else {
 
     // cek dulu gambarnya jika ada jalankan program ini
-    if ($post_gambar_kantor != "") {
+    if ($post_gambar_penulis != "") {
 
 
       $require_ekstensi = array('png', 'jpg', 'jepg');
       // memisahkan nama file dengan ekstensinya
-      $dot_pemisah = explode('.', $post_gambar_kantor);
+      $dot_pemisah = explode('.', $post_gambar_penulis);
       $ekstensi = strtolower(end($dot_pemisah));
       // nama file yang berada di dalam direktori temporer server
-      $file_tmp = $_FILES['gambar_kantor']['tmp_name'];
+      $file_tmp = $_FILES['gambar_penulis']['tmp_name'];
       // membuat karakter random acak berdasarkan waktu upload
       $tgl = md5(date('Y-m-d h:i:s'));
       // menyatukan karakter tanggal dengan nama file aslinya
-      $nama_gambar_baru = $tgl . '-' . $post_gambar_kantor;
+      $nama_gambar_baru = $tgl . '-' . $post_gambar_penulis;
 
       // mengecek apakah ekstensi file sesuai dengan ekstensi file yang diupload 
       if (in_array($ekstensi, $require_ekstensi) === true) {
 
         // memindahkan file kedalam folder "Gambar"
-        move_uploaded_file($file_tmp, '../gambar/' . $nama_gambar_baru);
-        $tampung_nama = '../gambar/' . $nama_gambar_baru;
-        // cek dimensi gambar
-        $max_img_width = 1000; // piksel
-        $max_img_height = 1000; // piksel
+        move_uploaded_file($file_tmp, '../gambar/penulis/' . $nama_gambar_baru);
+        $tampung_nama = '../gambar/penulis/' . $nama_gambar_baru;
+        // $tampung_nama = base64_encode($tam)
+        // cek dimensi gambar 3X4
+        $max_img_width = 354; // piksel
+        $max_img_height = 472; // piksel
         $img_info = array();
 
         if (!($img_info = getimagesize($tampung_nama))) {
+          // echo "<script>alert('Dimensi gambar tidak sesuai.');window.location='../pengaturan.php';</script>";
           header("location:../pages/pengaturan.php?pesan=dimensi");
+
+         
+          
         }else{
+          
           if (($img_info[0] === $max_img_width) && ($img_info[1] === $max_img_height)) {
             // query
-            $query_insert = "UPDATE tb_profil_kantor SET gambar_profil_kantor='$tampung_nama', judul_profil_kantor='$post_judul_kantor', deskripsi_kantor='$deskripsi_kantor' WHERE id_profil_kantor='$id_kntr'";
+            $query_insert = "UPDATE tb_profil_penulis SET nama_profil_penulis = '$post_nama_penulis', deskripsi_penulis='$post_deksripsi_penulis',gambar_penulis='$nama_gambar_baru' WHERE id_profil_penulis='$id_penulis'";
+
+            // $query_insert = "INSERT INTO tb_profil_penulis(nama_profil_penulis, deskripsi_penulis, gambar_penulis, created_at) VALUES('$nama_penulis', '$deksripsi_penulis', '$nama_gambar_baru', '$time')";
             $result = mysqli_query($con, $query_insert);
             if (!$result) {
               header("location:../pages/pengaturan.php?pesan=gagal");
               // die("Data gagal disimpan" . mysqli_errno($con) . "-" . mysqli_error($con));
             } else {
               header("location:../pages/pengaturan.php?pesan=berhasil");
+              // die("Data berhasil disimpan" . mysqli_errno($con) . "-" . mysqli_error($con));
             }
           } else {
             header("location:../pages/pengaturan.php?pesan=dimensi");
@@ -72,6 +81,7 @@ if (isset($_POST['submit'])) {
         }
 
       } else {
+        // echo "<script>alert('Gunakan gambar png atau jpg.');window.location='../pengaturan.php';</script>";
         header("location:../pages/pengaturan.php?pesan=atribut");
       }
     } else {
@@ -80,4 +90,5 @@ if (isset($_POST['submit'])) {
     }
 
   }
+
 }

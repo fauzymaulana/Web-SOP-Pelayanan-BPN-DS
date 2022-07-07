@@ -25,7 +25,7 @@
             <form action="./proses/login.php" method="post">
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Email"/>
+                        <input type="email" name="email" class="form-control" placeholder="Email" autocomplete="off"/>
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password"/>

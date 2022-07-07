@@ -18,7 +18,7 @@ $email = $_SESSION['email'];
 
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>ATR/BPN</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
   <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -192,6 +192,13 @@ $email = $_SESSION['email'];
                 <span aria-hidden="true">&times;</span>
               </button>
           </div>
+          <?php } elseif ($_GET['pesan'] == "kosong") { ?>
+            <div class="alert alert-danger show" role="alert">
+             <label> Gambar tidak boleh kosong</label>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
           <?php } elseif ($_GET['pesan'] == "dimensi") { ?>
             <div class="alert alert-danger show" role="alert">
              <label> Ukuran dimensi tidak sesuai</label>
@@ -213,16 +220,17 @@ $email = $_SESSION['email'];
               <?php
               $query_tampil = mysqli_query($con, "SELECT * FROM tb_profil_kantor ORDER BY id_profil_kantor DESC LIMIT 0,1");
 
-              if(mysqli_num_rows($query_tampil) <= 0){
-                $pengolah_data_kantor = 'tambah_profil_kantor.php?id_profil_kantor=';
-              }else{
-                $pengolah_data_kantor = 'edit_profil_kantor.php?id_profil_kantor=';
-              }
+              
 
               while ($data_kantor = mysqli_fetch_array($query_tampil)) :
                 $id_kntr = $data_kantor['id_profil_kantor'];
+                if(mysqli_num_rows($query_tampil) <= 0){
+                  $pengolah_data_kantor = 'tambah_profil_kantor.php?id_profil_kantor';
+                  }else{
+                    $pengolah_data_kantor = 'edit_profil_kantor.php?id_profil_kantor='.$id_kntr;
+                  }
               ?>
-                <form role="form" action="../proses/<?=$pengolah_data_kantor?><?= $id_kntr ?>" method="POST" enctype="multipart/form-data">
+                <form role="form" action="../proses/<?=$pengolah_data_kantor?>" method="POST" enctype="multipart/form-data">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Judul profil</label>
@@ -231,8 +239,9 @@ $email = $_SESSION['email'];
                     <div class="form-group">
                       <label for="exampleInputFile">Foto profil kantor*</label>
                       <input type="file" id="gambar_kantor" class="form-control" name="gambar_kantor" value="<?= $data_kantor['gambar_profil_kantor']['name']; ?>">
-                      <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
+                      <p class="help-block">* file diwajibkan menggunakan ekstensi .png, .jpg, .jepg</p>
                       <p class="help-block">** dimensi gambar wajib berukuran: lebar 1000px X tinggi 1000px</p>
+                      <p class="help-block">*** file gambar maks. 2MB</p>
                       <img src="../gambar/<?= $data_kantor['gambar_profil_kantor']; ?>" width="400px" height="400px">
 
                     </div>
@@ -264,17 +273,23 @@ $email = $_SESSION['email'];
 
                 while ($data_penulis = mysqli_fetch_array($query_profil)) :
                   $id_penulis = $data_penulis['id_profil_penulis'];
+                  // if(mysqli_num_rows($query_profil) <= 0){
+                  //   $pengolah_data_penulis = 'tambah_profil_penulis.php';
+                  //   }else{
+                      $pengolah_data_penulis = 'edit_profil_penulis.php?id_profil_penulis='.$id_penulis;
+                    // }
                 ?>
                 
-                  <form role="form" action="../proses/tambah_profil_penulis.php?id_profil_penulis=<?= $id_penulis ?>" method="POST" enctype="multipart/form-data">
+                  <form role="form" action="../proses/<?=$pengolah_data_penulis?>" method="POST" enctype="multipart/form-data">
                   
                     <!-- text input -->
                     <div class="form-group">
                       <label>Gambar</label>
                       <input type="file" id="exampleInputFile" class="form-control" name="gambar_penulis" value="<?= $data_penulis['gambar_penulis']['name']; ?>">
-                      <p class="help-block">* file diwajibkan menggunakan ekstensi .png</p>
-                      <p class="help-block">** dimensi gambar wajib berukuran: lebar 177px X tinggi 236px</p>
-                      <img src="../gambar/penulis/<?= $data_penulis['gambar_penulis']; ?>" width="177px" height="236px">
+                      <p class="help-block">* file diwajibkan menggunakan ekstensi .png, .jpg, .jepg</p>
+                      <p class="help-block">** dimensi gambar wajib berukuran: lebar 354px X tinggi 472px (3x4)</p>
+                      <p class="help-block">*** file gambar maks. 2MB</p>
+                      <img src="../gambar/penulis/<?= $data_penulis['gambar_penulis']; ?>" width="154px" height="272px">
                     </div>
                     <div class="form-group">
                       <label>Nama Penulis</label>

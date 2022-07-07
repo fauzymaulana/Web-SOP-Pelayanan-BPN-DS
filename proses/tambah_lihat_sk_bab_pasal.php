@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 	$time = $dt->format('Y-m-d G:i:s');
 
 	// $sql = "UPDATE tb_sk_pra_bab_pasal VALUES ('','$nama_kumpulan_uu', '$kepala_lembaga_instansi', '$nama_pejabat_lembaga_instansi', '$lokasi_pengesahan', '$tanggal_pengesahan', '$menimbang', '$mengingat', '$menetapkan', '$time')";
-	$sql = "UPDATE tb_sk_pra_bab_pasal SET kepala_lembaga_instansi = '$kepala_lembaga_instansi', nama_pejabat_instansi = '$nama_pejabat_lembaga_instansi', lokasi_pengesahan = '$lokasi_pengesahan', tanggal_pengesahan = '$tanggal_pengesahan', menimbang = '$menimbang', mengingat = '$mengingat', menetapkan = '$menetapkan')";
+	$sql = "UPDATE tb_sk_pra_bab_pasal SET kepala_lembaga_instansi = '$kepala_lembaga_instansi', nama_pejabat_lembaga_instansi = '$nama_pejabat_lembaga_instansi', lokasi_pengesahan = '$lokasi_pengesahan', tanggal_pengesahan = '$tanggal_pengesahan', menimbang = '$menimbang', mengingat = '$mengingat', menetapkan = '$menetapkan'";
 
 	if (mysqli_query($con, $sql)) {
 		header("location:../pages/lihat_sk.php?pesan=berhasil");
@@ -27,6 +27,7 @@ if (isset($_POST['submit'])) {
 	} else {
 		header("location:../pages/lihat_sk.php?pesan=gagal");
 		// echo "<script>window.location='../lihat_sk.php';alert('Data gagal ditambahkan!');</script>".mysqli_error($con);
-		// echo die("<script>alert('Data gagal')</script>" . mysqli_error($con));
+		// echo die("<script>alert('Data gagal')</script>" . mysqli_errno($con) . "-" . mysqli_error($con));
+
 	}
 }

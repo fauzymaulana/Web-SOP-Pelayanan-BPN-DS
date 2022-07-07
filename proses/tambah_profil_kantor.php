@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
       }
     } else {
       
-      header("location:../pages/pengaturan.php?pesan=atribut");
+      header("location:../pages/pengaturan.php?pesan=kosong");
     }
 
   }

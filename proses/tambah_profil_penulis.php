@@ -1,6 +1,7 @@
 <?php
 include '../connect/koneksi.php';
-$id_penulis = $_GET['id_profil_penulis'];
+$id_kntr = $_GET['id_profil_kantor'];
+$id_kntr = $id_kntr+1;
 
 if (isset($_POST['submit'])) {
   $nama_penulis = $_POST['nama_penulis'];
@@ -41,8 +42,8 @@ if (isset($_POST['submit'])) {
         $tampung_nama = '../gambar/penulis/' . $nama_gambar_baru;
         // $tampung_nama = base64_encode($tam)
         // cek dimensi gambar 3X4
-        $max_img_width = 177; // piksel
-        $max_img_height = 236; // piksel
+        $max_img_width = 354; // piksel
+        $max_img_height = 472; // piksel
         $img_info = array();
 
         if (!($img_info = getimagesize($tampung_nama))) {
@@ -55,9 +56,8 @@ if (isset($_POST['submit'])) {
           
           if (($img_info[0] === $max_img_width) && ($img_info[1] === $max_img_height)) {
             // query
-            $query_insert = "UPDATE tb_profil_penulis SET nama_profil_penulis = '$nama_penulis', deskripsi_penulis='$deksripsi_penulis',gambar_penulis='$nama_gambar_baru' WHERE id_profil_penulis='$id_penulis'";
-
-            // $query_insert = "INSERT INTO tb_profil_penulis(nama_profil_penulis, deskripsi_penulis, gambar_penulis, created_at) VALUES('$nama_penulis', '$deksripsi_penulis', '$nama_gambar_baru', '$time')";
+            $query_insert = "INSERT INTO tb_profil_penulis(nama_profil_penulis,deskripsi_penulis,gambar_penulis,created_at) VALUES ('$nama_penulis','$deksripsi_penulis','$nama_gambar_baru','$time')";
+            
             $result = mysqli_query($con, $query_insert);
             if (!$result) {
               header("location:../pages/pengaturan.php?pesan=gagal");

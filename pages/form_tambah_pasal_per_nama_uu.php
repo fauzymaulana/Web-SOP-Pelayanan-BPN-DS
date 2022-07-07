@@ -23,7 +23,7 @@ $get_id = $_GET['id'];
 
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>ATR/BPN</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <!-- bootstrap 3.0.2 -->
   <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -220,9 +220,10 @@ $get_id = $_GET['id'];
 
 
                     $no = 1;
-                    $select_tb_pasal = mysqli_query($con, "SELECT * from tb_pasal WHERE nama_uu_pasal = '$db_nama_uu'");
+                    $select_tb_pasal = mysqli_query($con, "SELECT * from tb_pasal WHERE nama_uu_pasal = '$db_nama_uu' ORDER BY nomor_urut_pasal ASC");
                     if (mysqli_num_rows($select_tb_pasal) > 0) {
                       while ($data = mysqli_fetch_array($select_tb_pasal)) {
+                        $id_pasal = $data['id_pasal'];
                     ?>
 
                         <tr>
@@ -233,9 +234,10 @@ $get_id = $_GET['id'];
                           <td class="text-center"><?= $data['judul_bab']; ?></td>
                           <td>
                             
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
+                            <!-- <a href="../pages/dashboard.php" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a> -->
+                            <a href="../pages/form_tambah_pasal.php?id=<?=$get_id?>&id_pasal=<?=$id_pasal?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
 
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                            <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_pasal_per_nama_uu.php?id=<?=$get_id?>&id_pasal=<?=$id_pasal?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                           </td>
                         </tr>
