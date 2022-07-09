@@ -1,8 +1,8 @@
 <?php
 include '../connect/koneksi.php';
 $get_id = $_GET['id'];
-$id_bab_utama_sop = $_GET['id_bab_utama_sop'];
 
+$id_bab_utama_sop = $_POST['txt_id_modal'];
 $judul_bab_edit = $_POST['judul_bab_edit'];
 $select_bab_edit = $_POST['select_bab_edit'];
 

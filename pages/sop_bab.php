@@ -255,11 +255,11 @@ if (isset($_POST['submit'])) {
                           <td class="text-center">
                             <a href="../pages/sop_sub_bab.php?id=<?= $data['id']; ?>&id_bab_utama_sop=<?= $data['id_bab_utama_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
 
-                            <button data-toggle="modal" data-target="#modalEdit<?=$id_bab_utama_sop?>" class="btn btn-info btn-xs">
+                            <button data-toggle="modal" data-target="#modalEdit" class="btn btn-info btn-xs" data-id="<?= $data['id_bab_utama_sop']; ?>" data-nama="<?= $data['judul_bab_utama_sop']; ?>" data-urut="<?= $data['urutan_bab_utama_sop']; ?>" id="tombolUbah">
                               <i class="fa fa-pencil"></i> Ubah
                             </button>
 
-                            <a href="../proses/hapus_sop_bab.php?id=<?=$get_id?>&id_bab_utama_sop=<?=$id_bab_utama_sop?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                            <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_bab.php?id=<?=$get_id?>&id_bab_utama_sop=<?=$id_bab_utama_sop?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                           </td>
                         </tr>
@@ -370,7 +370,7 @@ if (isset($_POST['submit'])) {
           'XV'
         );
         ?>
-        <div class="modal fade" id="modalEdit<?=$id_bab_utama_sop?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <form action="../proses/edit_modal_sop_bab.php?id=<?=$get_id?>&id_bab_utama_sop=<?=$id_bab_utama_sop?>" method="POST">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -387,6 +387,7 @@ if (isset($_POST['submit'])) {
                 <div class="modal-body">
                   <div class="control-group">
                     <div class="form-group row">
+                    <input type="number" id="id" name="txt_id_modal" readonly hidden>
                       <label class="col-md-3" name="num_bab" id="num_bab"> Bab </label>
                       <div class="col-md-9">
                         <select class="select form-control" id="select_bab_edit" name="select_bab_edit">
@@ -407,7 +408,7 @@ if (isset($_POST['submit'])) {
                     <div class="form-group row">
                       <label class="col-md-3" name="num_bab" id="num_bab">Judul Bab </label>
                       <div class="col-md-9">
-                        <input type="text" id="judul_bab_edit" name="judul_bab_edit" class="form-control" value="<?=$data_edit_sop_bab['judul_bab_utama_sop']?>">
+                        <input type="text" id="judul_bab_edit" name="judul_bab_edit" class="form-control" >
                       </div>
                     </div>
                   </div>
@@ -459,6 +460,18 @@ if (isset($_POST['submit'])) {
     //         "bAutoWidth": false
     //     });
     // });
+
+
+
+    $(document).on('click', '#tombolUbah', function() {
+      let id = $(this).data('id');
+      let nama = $(this).data('nama');
+      let nomor_urut = $(this).data('urut');
+
+      $('.modal-body #id').val(id);
+      $('.modal-body #select_bab_edit').val(nomor_urut);
+      $('.modal-body #judul_bab_edit').val(nama);
+    });
   </script>
 
 </body>

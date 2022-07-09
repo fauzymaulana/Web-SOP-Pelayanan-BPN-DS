@@ -36,10 +36,9 @@ if (isset($_POST['submit'])) {
   $input_sub_anak_sub_bab_sop = "INSERT INTO tb_sub_anak_sub_bab_sop(id,id_bab_utama_sop,id_sub_bab_sop,id_anak_sub_bab_sop,urutan_sub_anak_sub_bab,judul_sub_anak_sub_bab,tanggal_pembuatan) VALUES ('$get_id','$get_id_bab_utama_sop','$get_id_sub_bab_sop','$get_id_anak_sub_bab_sop','$select_bab','$judul_bab','$time')";
 
   if (mysqli_query($con, $input_sub_anak_sub_bab_sop)) {
-    header("location:../pages/sop_sub_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=berhasil");
-    
+    header("location:../pages/sop_sub_anak_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=berhasil");
   } else {
-    header("location:../pages/sop_sub_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=gagal");
+    header("location:../pages/sop_sub_anak_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&id_anak_sub_bab_sop=" . $get_id_anak_sub_bab_sop . "&pesan=gagal");
   }
 }
 
@@ -151,7 +150,7 @@ $selectedSel = '0';
             </a>
           </li>
           <li>
-          <a href="../pages/pengaturan.php">
+            <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -189,21 +188,21 @@ $selectedSel = '0';
       <!-- Main content -->
       <section class="content">
 
-      <?php if (isset($_GET['pesan'])) { ?>
+        <?php if (isset($_GET['pesan'])) { ?>
           <?php if ($_GET['pesan'] == "berhasil") { ?>
             <div class="alert alert-success show" role="alert">
               <label>Data <strong>Berhasil</strong> di proses.</label>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
+            </div>
           <?php } elseif ($_GET['pesan'] == "gagal") { ?>
             <div class="alert alert-danger show" role="alert">
-             <label> Data <strong>Gagal</strong> di proses!.</label>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <label> Data <strong>Gagal</strong> di proses!.</label>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
+            </div>
           <?php } ?>
         <?php } ?>
 
@@ -246,7 +245,7 @@ $selectedSel = '0';
                     <span class="col-md-1" style="width: 10px; margin-top: -10px;"> </span>
                     <h5 class="col-md-1" style=" width: 10px; margin-left: 30px; margin-top: -10px; text-align: left;"><?= $data['urutan_anak_sub_bab']; ?>.</h5>
                     <div class="col-md-6">
-                     
+
                       <h5 style="margin-top: -10px;"><?= $data['judul_anak_sub_bab']; ?></h5>
                       <input type="text" id="inp_urutan_bab_utama" name="inp_urutan_sub_bab" value="<?= $data['judul_anak_sub_bab']; ?>" disabled hidden>
                     </div>
@@ -255,7 +254,7 @@ $selectedSel = '0';
                   <div class="form-group row">
                     <span class="col-md-3">Sub Bab Pembahasan</span>
                     <div class="col-md-9">
-                      
+
                       <?php
                       $select_sub_bab = '0';
                       ?>
@@ -278,8 +277,8 @@ $selectedSel = '0';
 
                     <div class="box-content" id="forminp" style="display: none;">
                       <form action="../proses/tambah_sop_anak_sub_anak_sub_bab_tanpa_sub_bab.php" method="POST">
-                        <input type="hidden" id="txt_id_sub_bab" name="txt_id_sub_bab" value="<?= $get_id ?>" readonly >
-                        <input type="hidden" id="txt_id_bab_utama_sop_sub_bab" name="txt_id_bab_utama_sop_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
+                        <input type="hidden" id="txt_id_sub_bab" name="txt_id_sub_bab" value="<?= $get_id ?>" readonly>
+                        <input type="hidden" id="txt_id_bab_utama_sop_sub_bab" name="txt_id_bab_utama_sop_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly>
                         <input type="hidden" id="txt_id_sub_bab_sop_sub_bab" name="txt_id_sub_bab_sop_sub_bab" value="<?= $get_id_sub_bab_sop ?>" readonly>
                         <input type="hidden" id="txt_id_anak_sub_bab_sop_sub_bab" name="txt_id_anak_sub_bab_sop_sub_bab" value="<?= $get_id_anak_sub_bab_sop ?>" readonly>
                         <div class="form-group row">
@@ -361,7 +360,7 @@ $selectedSel = '0';
                                     <?php
                                     $id_modal = $dt['id_anak_sub_bab_sop_tanpa_sub_bab'];
                                     ?>
-                                    <button data-toggle="modal" data-target="#exampleModalEdit<?= $id_modal?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+                                    <button data-toggle="modal" data-target="#exampleModalEdit<?= $id_modal ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
                                     <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_sub_anak_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_anak_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_anak_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                   </td>
@@ -415,6 +414,10 @@ $selectedSel = '0';
                           $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_sub_anak_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_anak_sub_bab_sop= '$get_id_anak_sub_bab_sop'");
                           if (mysqli_num_rows($select_tb_pasal) > 0) {
                             while ($dt = mysqli_fetch_array($select_tb_pasal)) {
+                              $id_uu = $dt['id'];
+                              $id_bab_utama = $dt['id_bab_utama_sop'];
+                              $id_sub_bab = $dt['id_sub_bab_sop'];
+                              $id_anak_sub_bab = $dt['id_anak_sub_bab_sop'];
                               $id_modal_edit = $dt['id_sub_anak_sub_bab_sop'];
                           ?>
 
@@ -422,16 +425,14 @@ $selectedSel = '0';
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td class="text-center"><?= $dt['urutan_sub_anak_sub_bab']; ?></td>
                                 <td><?= $dt['judul_sub_anak_sub_bab']; ?></td>
-                                
+
                                 <td class="text-center">
                                   <a href="../pages/sop_anak_sub_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
 
-                                  <button data-toggle="modal" data-target="#editModalSubBab<?= $id_modal_edit ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+                                  <button id="tombolUbah" data-toggle="modal" data-target="#editModalSubBab" data-id="<?= $id_uu ?>" data-idbabutama="<?= $id_bab_utama ?>" data-idsubbab="<?= $id_sub_bab ?>" data-idanaksubbab="<?= $id_anak_sub_bab ?>" data-idsubanaksubbab="<?= $id_modal_edit ?>" data-nama="<?= $dt['judul_sub_anak_sub_bab'] ?>" data-urut="<?= $dt['urutan_sub_anak_sub_bab']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
-                                  <!-- <a href="./proses/edit_modal_sop_sub_bab_anak_sub_bab.php" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</a> -->
-
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab_sop.php?id_sub_anak_sub_bab_sop=<?=$dt['id_sub_anak_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
-                                  <!-- <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>&id_anak_sub_bab_sop=<?=$dt['id_anak_sub_bab_sop']?>&id_sub_anak_sub_bab_sop=<?=$dt['id_sub_anak_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a> -->
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab_sop.php?id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <!-- <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="./proses/hapus_sop_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop'] ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop'] ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop'] ?>&id_sub_anak_sub_bab_sop=<?= $dt['id_sub_anak_sub_bab_sop'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a> -->
 
                                 </td>
                               </tr>
@@ -540,8 +541,8 @@ $selectedSel = '0';
   </div>
   <!-- End Modal -->
 
-   <!-- Start Modal -->
-   <div class="modal fade" id="exampleModalEdit<?=$id_modal?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+  <!-- Start Modal -->
+  <div class="modal fade" id="exampleModalEdit<?= $id_modal ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php
     $query_edit = mysqli_query($con, "SELECT * FROM tb_anak_sub_bab_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_anak_sub_bab_sop_tanpa_sub_bab = '$id_modal'");
 
@@ -549,7 +550,7 @@ $selectedSel = '0';
       // $id_modal = $data['id_bab_utama_sop_tanpa_sub_bab'];
     ?>
 
-      <form action="../proses/edit_modal_anak_sub_bab_sop_tanpa_sub_bab.php?id_anak_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
+      <form action="../proses/edit_modal_anak_sub_bab_sop_tanpa_sub_bab.php?id_anak_sub_bab_sop_tanpa_sub_bab=<?= $id_modal ?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -560,10 +561,10 @@ $selectedSel = '0';
             </div>
             <div class="modal-body">
               <div class="control-group">
-              <input type="hidden" id="txt_id_modal" name="txt_id_modal" value="<?= $get_id ?>" readonly >
-                      <input type="hidden" id="txt_id_bab_utama_sop_modal" name="txt_id_bab_utama_sop_modal" value="<?= $get_id_bab_utama_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_sub_bab_sop_modal" name="txt_id_sub_bab_sop_modal" value="<?= $get_id_sub_bab_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_anak_sub_bab_sop_modal" name="txt_id_anak_sub_bab_sop_modal" value="<?= $get_id_anak_sub_bab_sop ?>" readonly >
+                <input type="hidden" id="txt_id_modal" name="txt_id_modal" value="<?= $get_id ?>" readonly>
+                <input type="hidden" id="txt_id_bab_utama_sop_modal" name="txt_id_bab_utama_sop_modal" value="<?= $get_id_bab_utama_sop ?>" readonly>
+                <input type="hidden" id="txt_id_sub_bab_sop_modal" name="txt_id_sub_bab_sop_modal" value="<?= $get_id_sub_bab_sop ?>" readonly>
+                <input type="hidden" id="txt_id_anak_sub_bab_sop_modal" name="txt_id_anak_sub_bab_sop_modal" value="<?= $get_id_anak_sub_bab_sop ?>" readonly>
                 <div class="form-group row">
                   <label class="col-md-3" name="num_bab" id="num_bab">Dasar Hukum</label>
                   <div class="col-md-9">
@@ -596,7 +597,7 @@ $selectedSel = '0';
                   <label class="col-md-3" name="num_bab_sub_bab" id="num_bab_sub_bab">Keterangan</label>
                   <div class="col-md-9">
                     <textarea class="ckeditor col-md-8" id="txt_keterangan_modal" name="txt_keterangan_modal" rows="10" cols="80"><?= $data['keterangan'] ?></textarea>
-                    <input type="hidden" id="tanggal_modal" name="tanggal_modal" value="<?= $data['tanggal_pembuatan']; ?>" readonly >
+                    <input type="hidden" id="tanggal_modal" name="tanggal_modal" value="<?= $data['tanggal_pembuatan']; ?>" readonly>
                   </div>
                 </div>
               </div>
@@ -615,7 +616,7 @@ $selectedSel = '0';
   <!-- End Modal -->
 
   <!-- Start Modal -->
-  <div class="modal fade" id="editModalSubBab<?=$id_modal_edit?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editModalSubBab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php
     $bab_romawi_edit = array(
       '1',
@@ -640,13 +641,13 @@ $selectedSel = '0';
       '20'
     );
 
-    $query_edit = mysqli_query($con, "SELECT * FROM tb_sub_anak_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_anak_sub_bab_sop = '$get_id_anak_sub_bab_sop' && id_sub_anak_sub_bab_sop = '$id_modal_edit'");
+    $query_edit = mysqli_query($con, "SELECT * FROM tb_sub_anak_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_sub_anak_sub_bab_sop = '$id_modal_edit'");
 
     while ($data_sop = mysqli_fetch_array($query_edit)) :
       $id_modal_edit = $data_sop['id_sub_anak_sub_bab_sop'];
     ?>
 
-      <form action="../proses/edit_modal_sop_sub_bab_anak_sub_bab.php?id_sub_anak_sub_bab_sop=<?=$id_modal_edit?>" method="POST">
+      <form action="../proses/edit_modal_sop_sub_bab_anak_sub_bab.php?id_sub_anak_sub_bab_sop=<?= $id_modal_edit ?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -657,42 +658,41 @@ $selectedSel = '0';
             </div>
 
             <div class="modal-body">
-            <div class="control-group">
-            <input type="hidden" id="txt_id_modal_sub_bab" name="txt_id_modal_sub_bab" value="<?= $get_id ?>" readonly>
-                      <input type="hidden" id="txt_id_bab_utama_sop_modal_sub_bab" name="txt_id_bab_utama_sop_modal_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_sub_bab_sop_modal_sub_bab" name="txt_id_sub_bab_sop_modal_sub_bab" value="<?= $get_id_sub_bab_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_anak_sub_bab_sop_modal_sub_bab" name="txt_id_anak_sub_bab_sop_modal_sub_bab" value="<?= $get_id_anak_sub_bab_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_sub_anak_sub_bab_sop_modal_sub_bab" name="txt_id_sub_anak_sub_bab_sop_modal_sub_bab" value="<?= $id_modal_edit ?>" readonly >
-              <div class="form-group row">
-                <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
-                <div class="col-md-9">
-                  <select class="select form-control" id="edit_select_bab" name="edit_select_bab" required>
-                    <?php
-                    foreach ($bab_romawi_edit as $key_bab_romawi_edit => $value_bab_romawi_edit) {
-                      if ($value_bab_romawi_edit == $data_sop['urutan_sub_anak_sub_bab']) {
-                        $selec = "selected";
-                      }else{
-                        $selec = "";
+              <div class="control-group">
+                <input type="number" id="txt_id" name="txt_id" readonly hidden>
+                <input type="number" id="txt_id_bab_utama" name="txt_id_bab_utama" readonly hidden>
+                <input type="number" id="txt_id_sub_bab" name="txt_id_sub_bab" readonly hidden>
+                <input type="number" id="txt_id_anak_sub_bab" name="txt_id_anak_sub_bab" readonly hidden>
+                <input type="hidden" id="txt_id_sub_anak_sub_bab" name="txt_id_sub_anak_sub_bab"  readonly hidden>
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
+                  <div class="col-md-9">
+                    <select class="select form-control" id="edit_select_bab" name="edit_select_bab" required>
+                      <?php
+                      foreach ($bab_romawi_edit as $key_bab_romawi_edit => $value_bab_romawi_edit) {
+                        if ($value_bab_romawi_edit == $data_sop['urutan_sub_anak_sub_bab']) {
+                          $selec = "selected";
+                        } else {
+                          $selec = "";
+                        }
+                        echo "<option value ='$value_bab_romawi_edit' $selec>$value_bab_romawi_edit</option>";
+                        // echo '<option value="' . $value_bab_romawi_edit . '">' . $value_bab_romawi_edit . '</option>';
                       }
-                      echo "<option value ='$value_bab_romawi_edit' $selec>$value_bab_romawi_edit</option>";
-                      // echo '<option value="' . $value_bab_romawi_edit . '">' . $value_bab_romawi_edit . '</option>';
-                    }
-                    ?>
-                  </select>
+                      ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab">Judul Sub Bab </label>
+                  <div class="col-md-9">
+                    <input type="text" id="edit_judul_bab" name="edit_judul_bab" class="form-control" >
+
+                  </div>
                 </div>
               </div>
 
-              <div class="form-group row">
-                <label class="col-md-3" name="num_bab" id="num_bab">Judul Sub Bab </label>
-                <div class="col-md-9">
-                  <input type="text" id="edit_judul_bab" name="edit_judul_bab" class="form-control" value="<?=$data_sop['judul_sub_anak_sub_bab']?>">
-                  
-                </div>
-              </div>
-              <input type="hidden" id="edit_tgl_bab_modal" name="edit_tgl_bab_modal" class="form-control" value="<?=$data_sop['tanggal_pembuatan']?>" readonly>
             </div>
-
-          </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <input type="submit" name="submit" class="btn btn-primary" value="Submit">
@@ -734,6 +734,7 @@ $selectedSel = '0';
 
     var tabel = document.getElementById("tabel");
     var forminp = document.getElementById("forminp");
+
     function hideTable() {
       if (tabel.style.display === "none") {
         tabel.style.display = "block";
@@ -755,7 +756,7 @@ $selectedSel = '0';
     // } else {
     //   forminp.style.display = "none";
     // }
-  // }
+    // }
 
     function unhideTable() {
       if (forminp.style.display === "none") {
@@ -785,6 +786,23 @@ $selectedSel = '0';
       }
     });
 
+    $(document).on('click', '#tombolUbah', function() {
+      let id = $(this).data('id');
+      let idBabUtama = $(this).data('idbabutama');
+      let idSubBab = $(this).data('idsubbab');
+      let idAnakSubBab = $(this).data('idanaksubbab');
+      let idSubAnakSubBab = $(this).data('idsubanaksubbab');
+      let nama = $(this).data('nama');
+      let nomor_urut = $(this).data('urut');
+
+      $('.modal-body #txt_id').val(id);
+      $('.modal-body #txt_id_bab_utama').val(idBabUtama);
+      $('.modal-body #txt_id_sub_bab').val(idSubBab);
+      $('.modal-body #txt_id_anak_sub_bab').val(idAnakSubBab);
+      $('.modal-body #txt_id_sub_anak_sub_bab').val(idSubAnakSubBab);
+      $('.modal-body #edit_judul_bab').val(nama);
+      $('.modal-body #edit_select_bab').val(nomor_urut);
+    });
   </script>
 
 

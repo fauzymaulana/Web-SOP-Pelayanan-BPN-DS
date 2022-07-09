@@ -468,16 +468,19 @@ $selectedSel = '0';
                           if (mysqli_num_rows($select_tb_pasal) > 0) {
                             while ($dt = mysqli_fetch_array($select_tb_pasal)) {
                               $id_modal_edit = $dt['id_sub_bab_sop'];
+                              $id_uu = $dt['id'];
+                              $id_bab_utama = $dt['id_bab_utama_sop'];
                           ?>
 
                               <tr>
-                                <td class="text-center"><?= $no++; ?></td>
+                                <td class="text-center"><?= $no++ ?></td>
                                 <td class="text-center"><?= $dt['urutan_sub_bab']; ?></td>
                                 <td><?= $dt['judul_sub_bab']; ?></td>
                                 <td class="text-center">
                                   <a href="../pages/sop_anak_sub_bab.php?id=<?= $data['id']; ?>&id_bab_utama_sop=<?= $data['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop'];?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
                                   
-                                  <button data-toggle="modal" data-target="#editModalSubBab<?= $id_modal_edit ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+                                  <button data-toggle="modal" 
+                                  id="tombolUbah"  data-target="#editModalSubBab" data-id="<?=$id_uu?>" data-idbabutama="<?=$id_bab_utama?>" data-idsubbab="<?=$id_modal_edit?>" data-nama="<?= $dt['judul_sub_bab']; ?>" data-urut="<?= $dt['urutan_sub_bab']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
                                   <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
@@ -659,8 +662,8 @@ $selectedSel = '0';
   <!-- End Modal -->
 
 
-  <!-- Start Modal -->
-  <div class="modal fade" id="editModalSubBab<?=$id_modal_edit?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Start Modal Edit Sub Bab -->
+  <div class="modal fade" id="editModalSubBab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php
     $bab_romawi_edit = array(
       '1',
@@ -703,8 +706,9 @@ $selectedSel = '0';
 
             <div class="modal-body">
             <div class="control-group">
-            <input type="hidden" id="txt_id_modal_sub_bab" name="txt_id_modal_sub_bab" value="<?= $get_id ?>" readonly>
-                      <input type="hidden" id="txt_id_bab_utama_sop_modal_sub_bab" name="txt_id_bab_utama_sop_modal_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
+            <input type="number" id="id" name="txt_id_modal_sub_bab" readonly hidden >
+            <input type="number" id="id_bab_utama" name="txt_id_bab_utama" readonly hidden>
+            <input type="number" id="id_sub_bab" name="txt_id_sub_bab" readonly hidden>
               <div class="form-group row">
                 <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
                 <div class="col-md-9">
@@ -727,11 +731,10 @@ $selectedSel = '0';
               <div class="form-group row">
                 <label class="col-md-3" name="num_bab" id="num_bab">Judul Sub Bab </label>
                 <div class="col-md-9">
-                  <input type="text" id="edit_judul_bab" name="edit_judul_bab" class="form-control" value="<?=$data_sop['judul_sub_bab']?>">
+                  <input type="text" id="edit_judul_bab" name="edit_judul_bab" class="form-control">
                   
                 </div>
               </div>
-              <input type="hidden" id="edit_tgl_bab_modal" name="edit_tgl_bab_modal" class="form-control" value="<?=$data_sop['tanggal_pembuatan']?>" readonly>
             </div>
 
           </div>
@@ -853,7 +856,21 @@ $selectedSel = '0';
       // $('#apa').on('change',function(){
       //   const nilai = ('#apa').val();
       // })
-    })
+    });
+
+    $(document).on('click', '#tombolUbah', function() {
+      let id = $(this).data('id');
+      let idBabUtama = $(this).data('idbabutama');
+      let idSubBab = $(this).data('idsubbab');
+      let nama = $(this).data('nama');
+      let nomor_urut = $(this).data('urut');
+
+      $('.modal-body #id').val(id);
+      $('.modal-body #id_bab_utama').val(idBabUtama);
+      $('.modal-body #id_sub_bab').val(idSubBab);
+      $('.modal-body #edit_judul_bab').val(nama);
+      $('.modal-body #edit_select_bab').val(nomor_urut);
+    });
   </script>
 
 

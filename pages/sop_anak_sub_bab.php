@@ -35,9 +35,9 @@ if (isset($_POST['submit'])) {
 
   if (mysqli_query($con, $input_anak_sub_bab_sop)) {
     // echo "<script>alert('Data berhasil di tambahkan!');</script>";
-    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&pesan=berhasil");
+    header("location:../pages/sop_anak_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&pesan=berhasil");
   } else {
-    header("location:../pages/sop_anak_sub_bab.php?id=" .$get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&pesan=gagal");
+    header("location:../pages/sop_anak_sub_bab.php?id=" . $get_id . "&id_bab_utama_sop=" . $get_id_bab_utama_sop . "&id_sub_bab_sop=" . $get_id_sub_bab_sop . "&pesan=gagal");
   }
 }
 
@@ -157,7 +157,7 @@ $selectedSel = '0';
             </a>
           </li>
           <li>
-          <a href="../pages/pengaturan.php">
+            <a href="../pages/pengaturan.php">
               <i class="fa fa-cogs"></i><span> Pengaturan</span>
             </a>
           </li>
@@ -198,21 +198,21 @@ $selectedSel = '0';
       <!-- Main content -->
       <section class="content">
 
-      <?php if (isset($_GET['pesan'])) { ?>
+        <?php if (isset($_GET['pesan'])) { ?>
           <?php if ($_GET['pesan'] == "berhasil") { ?>
             <div class="alert alert-success show" role="alert">
               <label>Data <strong>Berhasil</strong> di proses.</label>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
+            </div>
           <?php } elseif ($_GET['pesan'] == "gagal") { ?>
             <div class="alert alert-danger show" role="alert">
-             <label> Data <strong>Gagal</strong> di proses!.</label>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <label> Data <strong>Gagal</strong> di proses!.</label>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
+            </div>
           <?php } ?>
         <?php } ?>
 
@@ -343,64 +343,64 @@ $selectedSel = '0';
                   </div>
 
                   <div class="box-body table-responsive" id="tabel" style="display: none;">
-                      <table id="example1" class="table table-bordered table-striped">
-                        <thead class="bg-olive">
-                          <tr>
-                            <th class="text-center" width="50px">#</th>
-                            <th class="text-center" width="150px">Dasar Hukum</th>
-                            <th class="text-center">Persyaratan</th>
-                            <th class="text-center">Biaya</th>
-                            <th class="text-center">Waktu</th>
-                            <th class="text-center">Keterangan</th>
-                            <th class="text-center" width="190px">Aksi</th>
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead class="bg-olive">
+                        <tr>
+                          <th class="text-center" width="50px">#</th>
+                          <th class="text-center" width="150px">Dasar Hukum</th>
+                          <th class="text-center">Persyaratan</th>
+                          <th class="text-center">Biaya</th>
+                          <th class="text-center">Waktu</th>
+                          <th class="text-center">Keterangan</th>
+                          <th class="text-center" width="190px">Aksi</th>
 
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
 
 
-                          $no = 1;
-                          $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_sub_bab_sop= '$get_id_sub_bab_sop'");
-                          if (mysqli_num_rows($select_tb_pasal) > 0) {
-                            while ($dt = mysqli_fetch_array($select_tb_pasal)) {
-                          ?>
+                        $no = 1;
+                        $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_sub_bab_sop= '$get_id_sub_bab_sop'");
+                        if (mysqli_num_rows($select_tb_pasal) > 0) {
+                          while ($dt = mysqli_fetch_array($select_tb_pasal)) {
+                        ?>
 
-                              <tr>
-                                <td class="text-center"><?= $no++; ?></td>
-                                <td class="text-center"><?= $dt['dasar_hukum']; ?></td>
-                                <td class="text-center"><?= $dt['persyaratan']; ?></td>
-                                <td class="text-center"><?= $dt['biaya']; ?></td>
-                                <td class="text-center"><?= $dt['waktu']; ?></td>
-                                <td class="text-center"><?= $dt['keterangan']; ?></td>
-                                <td class="text-center">
-                                  <?php
-                                  $id_modal = $dt['id_sub_bab_sop_tanpa_sub_bab'];
-                                  ?>
-                                  <button data-toggle="modal" data-target="#exampleModal<?=$id_modal?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+                            <tr>
+                              <td class="text-center"><?= $no++; ?></td>
+                              <td class="text-center"><?= $dt['dasar_hukum']; ?></td>
+                              <td class="text-center"><?= $dt['persyaratan']; ?></td>
+                              <td class="text-center"><?= $dt['biaya']; ?></td>
+                              <td class="text-center"><?= $dt['waktu']; ?></td>
+                              <td class="text-center"><?= $dt['keterangan']; ?></td>
+                              <td class="text-center">
+                                <?php
+                                $id_modal = $dt['id_sub_bab_sop_tanpa_sub_bab'];
+                                ?>
+                                <button data-toggle="modal" data-target="#exampleModal<?= $id_modal ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab_tanpa_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop']; ?>&id_sub_bab_sop_tanpa_sub_bab=<?= $dt['id_sub_bab_sop_tanpa_sub_bab']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
-                                </td>
-                              </tr>
-                          <?php
+                              </td>
+                            </tr>
+                        <?php
 
-                            }
-                          } else {
-                            // colspan adalah merge column, 6 adalah banyaknya kolom yang mau di merger
-                            // klo rowspan adalah merge baris 
-                            echo '
+                          }
+                        } else {
+                          // colspan adalah merge column, 6 adalah banyaknya kolom yang mau di merger
+                          // klo rowspan adalah merge baris 
+                          echo '
 												<tr>
 												<td colspan="7" class="text-center">Tidak ada data.</td>
 												</tr>
 												';
-                          }
+                        }
 
-                          ?>
-                        </tbody>
+                        ?>
+                      </tbody>
 
-                      </table>
-                    </div><!-- /.box-body -->
+                    </table>
+                  </div><!-- /.box-body -->
 
 
 
@@ -431,6 +431,10 @@ $selectedSel = '0';
                           $select_tb_pasal = mysqli_query($con, "SELECT * FROM tb_anak_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_sub_bab_sop= '$get_id_sub_bab_sop'");
                           if (mysqli_num_rows($select_tb_pasal) > 0) {
                             while ($dt = mysqli_fetch_array($select_tb_pasal)) {
+
+                              $id_uu = $dt['id'];
+                              $id_bab_utama = $dt['id_bab_utama_sop'];
+                              $id_sub_bab = $dt['id_sub_bab_sop'];
                               $id_modal_edit = $dt['id_anak_sub_bab_sop'];
                           ?>
 
@@ -441,9 +445,9 @@ $selectedSel = '0';
                                 <td class="text-center">
                                   <a href="../pages/sop_sub_anak_sub_bab.php?id=<?= $data['id']; ?>&id_bab_utama_sop=<?= $data['id_bab_utama_sop']; ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop']; ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Lihat</a>
 
-                                  <button data-toggle="modal" data-target="#editModalSubBab<?= $id_modal_edit?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
+                                  <button id="tombolUbah" data-toggle="modal" data-target="#editModalSubBab" data-id="<?= $id_uu ?>" data-idbabutama="<?= $id_bab_utama ?>" data-idsubbab="<?= $id_sub_bab ?>" data-idanaksubbab="<?= $id_modal_edit ?>" data-nama="<?= $dt['judul_anak_sub_bab'] ?>" data-urut="<?= $dt['urutan_anak_sub_bab'] ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button>
 
-                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?=$dt['id_bab_utama_sop']?>&id_sub_bab_sop=<?=$dt['id_sub_bab_sop']?>&id_anak_sub_bab_sop=<?=$dt['id_anak_sub_bab_sop'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
+                                  <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_sop_anak_sub_bab.php?id=<?= $dt['id']; ?>&id_bab_utama_sop=<?= $dt['id_bab_utama_sop'] ?>&id_sub_bab_sop=<?= $dt['id_sub_bab_sop'] ?>&id_anak_sub_bab_sop=<?= $dt['id_anak_sub_bab_sop']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
                                 </td>
                               </tr>
@@ -557,7 +561,7 @@ $selectedSel = '0';
   <!-- End Modal -->
 
   <!-- Start Modal Edit Tanpa sub bab -->
-  <div class="modal fade" id="exampleModal<?=$id_modal?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+  <div class="modal fade" id="exampleModal<?= $id_modal ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php
     $query_edit = mysqli_query($con, "SELECT * FROM tb_sub_bab_sop_tanpa_sub_bab JOIN tb_nama_uu USING(id)  WHERE id_sub_bab_sop_tanpa_sub_bab = '$id_modal'");
 
@@ -565,7 +569,7 @@ $selectedSel = '0';
       // $id_modal = $data['id_bab_utama_sop_tanpa_sub_bab'];
     ?>
 
-      <form action="../proses/edit_modal_sop_anak_sub_bab_sop_tanpa_sub_bab.php?id_sub_bab_sop_tanpa_sub_bab=<?=$id_modal?>" method="POST">
+      <form action="../proses/edit_modal_sop_anak_sub_bab_sop_tanpa_sub_bab.php?id_sub_bab_sop_tanpa_sub_bab=<?= $id_modal ?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -576,9 +580,9 @@ $selectedSel = '0';
             </div>
             <div class="modal-body">
               <div class="control-group">
-              <input type="number" id="txt_id_modal" name="txt_id_modal" value="<?= $get_id ?>" readonly hidden>
-                      <input type="text" id="txt_id_bab_utama_sop_modal" name="txt_id_bab_utama_sop_modal" value="<?= $get_id_bab_utama_sop ?>" readonly hidden>
-                      <input type="text" id="txt_id_sub_bab_sop_modal" name="txt_id_sub_bab_sop_modal" value="<?= $get_id_sub_bab_sop ?>" readonly>
+                <input type="number" id="txt_id_modal" name="txt_id_modal" value="<?= $get_id ?>" readonly hidden>
+                <input type="text" id="txt_id_bab_utama_sop_modal" name="txt_id_bab_utama_sop_modal" value="<?= $get_id_bab_utama_sop ?>" readonly hidden>
+                <input type="text" id="txt_id_sub_bab_sop_modal" name="txt_id_sub_bab_sop_modal" value="<?= $get_id_sub_bab_sop ?>" readonly>
                 <div class="form-group row">
                   <label class="col-md-3" name="num_bab" id="num_bab">Dasar Hukum</label>
                   <div class="col-md-9">
@@ -629,35 +633,35 @@ $selectedSel = '0';
   </div>
   <!-- End Modal -->
 
-  <!-- Start Modal Edit -->
-  <div class="modal fade" id="editModalSubBab<?=$id_modal_edit?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Start Modal Edit Sub Bab -->
+  <div class="modal fade" id="editModalSubBab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php
     $bab_romawi_edit = array(
       'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z'
+      'b',
+      'c',
+      'd',
+      'e',
+      'f',
+      'g',
+      'h',
+      'i',
+      'j',
+      'k',
+      'l',
+      'm',
+      'n',
+      'o',
+      'p',
+      'q',
+      'r',
+      's',
+      't',
+      'v',
+      'w',
+      'x',
+      'y',
+      'z'
     );
 
     $query_edit = mysqli_query($con, "SELECT * FROM tb_anak_sub_bab_sop JOIN tb_nama_uu USING(id)  WHERE id_anak_sub_bab_sop = '$id_modal_edit'");
@@ -666,7 +670,7 @@ $selectedSel = '0';
       $id_modal_edit = $data_sop['id_anak_sub_bab_sop'];
     ?>
 
-      <form action="../proses/edit_modal_sop_anak_sub_bab.php?id_anak_sub_bab_sop=<?=$id_modal_edit?>" method="POST">
+      <form action="../proses/edit_modal_sop_anak_sub_bab.php?id_anak_sub_bab_sop=<?= $id_modal_edit ?>" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -677,41 +681,39 @@ $selectedSel = '0';
             </div>
 
             <div class="modal-body">
-            <div class="control-group">
-            <input type="hidden" id="txt_id_modal_sub_bab" name="txt_id_modal_sub_bab" value="<?= $get_id ?>" readonly>
-                      <input type="hidden" id="txt_id_bab_utama_sop_modal_sub_bab" name="txt_id_bab_utama_sop_modal_sub_bab" value="<?= $get_id_bab_utama_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_sub_bab_sop_modal_sub_bab" name="txt_id_sub_bab_sop_modal_sub_bab" value="<?= $get_id_sub_bab_sop ?>" readonly >
-                      <input type="hidden" id="txt_id_anak_sub_bab_sop_modal_sub_bab" name="txt_id_anak_sub_bab_sop_modal_sub_bab" value="<?= $id_modal_edit ?>" readonly >
-              <div class="form-group row">
-                <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
-                <div class="col-md-9">
-                  <select class="select form-control" id="edit_select_bab" name="edit_select_bab" required>
-                    <?php
-                    foreach ($bab_romawi_edit as $key_bab_romawi_edit => $value_bab_romawi_edit) {
-                      if ($value_bab_romawi_edit == $data_sop['urutan_anak_sub_bab']) {
-                        $selec = "selected";
-                      }else{
-                        $selec = "";
+              <div class="control-group">
+                <input type="number" id="txt_id" name="txt_id" readonly hidden>
+                <input type="number" id="txt_id_bab_utama" name="txt_id_bab_utama" readonly hidden>
+                <input type="number" id="txt_id_sub_bab" name="txt_id_sub_bab" readonly hidden>
+                <input type="number" id="txt_id_anak_sub_bab" name="txt_id_anak_sub_bab" readonly hidden>
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab"> Sub Bab </label>
+                  <div class="col-md-9">
+                    <select class="select form-control" id="edit_select_bab" name="edit_select_bab" required>
+                      <?php
+                      foreach ($bab_romawi_edit as $key_bab_romawi_edit => $value_bab_romawi_edit) {
+                        if ($value_bab_romawi_edit == $data_sop['urutan_anak_sub_bab']) {
+                          $selec = "selected";
+                        } else {
+                          $selec = "";
+                        }
+                        echo "<option value ='$value_bab_romawi_edit' $selec>$value_bab_romawi_edit</option>";
                       }
-                      echo "<option value ='$value_bab_romawi_edit' $selec>$value_bab_romawi_edit</option>";
-                      // echo '<option value="' . $value_bab_romawi_edit . '">' . $value_bab_romawi_edit . '</option>';
-                    }
-                    ?>
-                  </select>
+                      ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3" name="num_bab" id="num_bab">Judul Sub Bab </label>
+                  <div class="col-md-9">
+                    <input type="text" id="edit_judul_bab" name="edit_judul_bab" class="form-control" >
+
+                  </div>
                 </div>
               </div>
 
-              <div class="form-group row">
-                <label class="col-md-3" name="num_bab" id="num_bab">Judul Sub Bab </label>
-                <div class="col-md-9">
-                  <input type="text" id="edit_judul_bab" name="edit_judul_bab" class="form-control" value="<?=$data_sop['judul_anak_sub_bab']?>">
-                  
-                </div>
-              </div>
-              <input type="hidden" id="edit_tgl_bab_modal" name="edit_tgl_bab_modal" class="form-control" value="<?=$data_sop['tanggal_pembuatan']?>" readonly>
             </div>
-
-          </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <input type="submit" name="submit" class="btn btn-primary" value="Submit">
@@ -748,31 +750,31 @@ $selectedSel = '0';
     // });
 
     function hideTable() {
-    
-    var tabel = document.getElementById("tabel");
-    var forminp = document.getElementById("forminp");
-    if (tabel.style.display === "none") {
 
-      tabel.style.display = "block";
-      forminp.style.display = "none";
+      var tabel = document.getElementById("tabel");
+      var forminp = document.getElementById("forminp");
+      if (tabel.style.display === "none") {
 
-    } else {
-      tabel.style.display = "none";
+        tabel.style.display = "block";
+        forminp.style.display = "none";
+
+      } else {
+        tabel.style.display = "none";
+      }
     }
-  }
 
-  function unhideTable() {
-    var tabel = document.getElementById("tabel");
-    var forminp = document.getElementById("forminp");
-    if (forminp.style.display === "none") {
-      forminp.style.display = "block";
-      tabel.style.display = "none";
+    function unhideTable() {
+      var tabel = document.getElementById("tabel");
+      var forminp = document.getElementById("forminp");
+      if (forminp.style.display === "none") {
+        forminp.style.display = "block";
+        tabel.style.display = "none";
 
 
-    } else {
-      forminp.style.display = "none";
+      } else {
+        forminp.style.display = "none";
+      }
     }
-  }
 
 
     // functione hide / show based select option
@@ -808,6 +810,21 @@ $selectedSel = '0';
     //     // });
 
     // });
+    $(document).on('click', '#tombolUbah', function() {
+      let id = $(this).data('id');
+      let idBabUtama = $(this).data('idbabutama');
+      let idSubBab = $(this).data('idsubbab');
+      let idAnakSubBab = $(this).data('idanaksubbab');
+      let nama = $(this).data('nama');
+      let nomor_urut = $(this).data('urut');
+
+      $('.modal-body #txt_id').val(id);
+      $('.modal-body #txt_id_bab_utama').val(idBabUtama);
+      $('.modal-body #txt_id_sub_bab').val(idSubBab);
+      $('.modal-body #txt_id_anak_sub_bab').val(idAnakSubBab);
+      $('.modal-body #edit_judul_bab').val(nama);
+      $('.modal-body #edit_select_bab').val(nomor_urut);
+    });
   </script>
 
 

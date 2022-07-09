@@ -226,7 +226,6 @@ $email = $_SESSION['email'];
                           <td class="stat text-center"><span class="badge justify-content-center <?= $bg ?>"><?= $status ?></span></td>
                           <td class="text-center">
 
-                            <!-- <button data-toggle="modal" data-target="#editModal<?= $id_nama_uu ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Ubah</button> -->
                             <button data-toggle="modal" id="tombolUbah" data-target="#editModal" class="btn btn-info btn-xs" data-id="<?= $dt['id'] ?>" data-nama="<?= $dt['nama_uu'] ?>" data-status="<?= $dt['status'] ?>"><i class="fa fa-pencil"></i> Ubah</button>
                             <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" href="../proses/hapus_modal_nama_uu.php?id=<?= $dt['id']; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus</a>
 
